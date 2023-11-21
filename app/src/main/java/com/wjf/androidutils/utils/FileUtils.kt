@@ -1,6 +1,8 @@
 package com.wjf.androidutils.utils
 
 import android.content.ContentValues
+import android.content.Context
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -137,6 +139,27 @@ object FileUtils {
         outputStream.flush()
         outputStream.close()
         return uri
+    }
+
+    /**
+     * uri转path
+     */
+    fun getRealPathFromUri(context: Context, contentUri: Uri): String? {
+        var cursor: Cursor? = null
+        try {
+            val proj = arrayOf(MediaStore.Images.Media.DATA)
+            cursor = context.contentResolver.query(contentUri, proj, null, null, null)
+            if (cursor != null && cursor.columnCount > 0) {
+                cursor.moveToFirst()
+                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                return cursor.getString(columnIndex)
+            }
+        } catch (e: java.lang.Exception) {
+
+        } finally {
+            cursor?.close()
+        }
+        return ""
     }
 
 
