@@ -1,8 +1,10 @@
 package com.wjf.androidutils.utils
 
+import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
@@ -35,10 +37,10 @@ object FileUtils {
      *   FILE_TYPE_2 -> 外部存储共享空间：/storage/emulated/0/Pictures/[文件名]
      *
      */
-    fun saveImg(bitmap: Bitmap?,fileName: String? = "MyImg", fieType: Int? = FILE_TYPE_1){
+    fun saveImg(bitmap: Bitmap?, fileName: String? = "MyImg", fileType: Int? = FILE_TYPE_1){
         if (bitmap == null){ return }
 
-        val file = when(fieType){
+        val file = when(fileType){
             FILE_TYPE_0 -> {
                 File(MyApplication.instance.filesDir, "${fileName}.png")
             }
@@ -46,11 +48,16 @@ object FileUtils {
                 File(MyApplication.instance.getExternalFilesDir(null), "${fileName}.png")
             }
             FILE_TYPE_2 -> {
-                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "${fileName}.png")
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
+                    saveImgQ(bitmap)
+                    return
+                }else{
+                    File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "${fileName}.png")
+                }
             }
 
             else ->{
-                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "${fileName}.png")
+                File(MyApplication.instance.getExternalFilesDir(null), "${fileName}.png")
 
             }
         }
@@ -70,7 +77,7 @@ object FileUtils {
      *
      * 为什么读取到的bitmap为空: 文件不存在
      */
-    fun getImg(fileName: String? = "MyImg",fieType: Int? = FILE_TYPE_1): Bitmap{
+    fun getImg(fileName: String? = "MyImg",fieType: Int? = FILE_TYPE_1): Bitmap?{
         val file = when(fieType){
             FILE_TYPE_0 -> {
                 File(MyApplication.instance.filesDir, "${fileName}.png")
@@ -87,10 +94,14 @@ object FileUtils {
 
             }
         }
-        Log.d("__img-getImg",file.path)
-        val inputStream = FileInputStream(file)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        inputStream.close()
+        var bitmap: Bitmap? = null
+        try {
+            val inputStream = FileInputStream(file)
+            bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream.close()
+        } catch (e: Exception) {
+            Log.d("__img-getImg-e","${e.message}")
+        }
         return bitmap
 
     }
@@ -110,24 +121,22 @@ object FileUtils {
         }
     }
 
-    fun getImg2(){
-        val uri = Uri.parse("content://com.android.externalstorage.documents/document/primary:Android/data/com.wjf.androidutils/files/MyImg2.png")
-        val cursor = MyApplication.instance.contentResolver.query(uri, null, null, null, null)
-        if (cursor!= null && cursor.moveToFirst()) {
-            val columnIndex = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
-            val filePath = cursor.getString(columnIndex)
-            cursor.close()
-            val bitmap = BitmapFactory.decodeFile(filePath)
-            if (bitmap == null){
-                Log.d("__getImg2","1")
-            }else{
-                Log.d("__getImg2","2")
-
-            }
-            // Do something with the bitmap
-        } else {
-            // Handle the error
+    /**
+     * Android10(Q)公共目录写入方法
+     * uri.path -> content://media/external/images/media/
+     * 真实目录 -> /storage/emulated/0/Pictures/
+     */
+    fun saveImgQ(bitmap: Bitmap,fileName: String? = "MyImg"): Uri{
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "${fileName}.png")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/png")
         }
+        val uri = MyApplication.instance.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+        val outputStream = MyApplication.instance.contentResolver.openOutputStream(uri!!)!!
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+        return uri
     }
 
 
