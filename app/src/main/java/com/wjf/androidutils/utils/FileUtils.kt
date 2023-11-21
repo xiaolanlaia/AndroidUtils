@@ -1,7 +1,6 @@
 package com.wjf.androidutils.utils
 
 import android.content.ContentValues
-import android.content.Context
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,11 +8,15 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.util.Log
 import com.wjf.androidutils.MyApplication
+import java.io.BufferedWriter
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.FileWriter
+import java.io.OutputStream
 
 /**
  * @Description
@@ -22,14 +25,59 @@ import java.io.FileOutputStream
  *
  */
 /**
+ * -1: 其他情况
  * 0: 内部存储
  * 1: 外部存储私有目录
  * 2: 外部存储共享空间
  */
+const val FILE_TYPE_1_N = -1
 const val FILE_TYPE_0 = 0
 const val FILE_TYPE_1 = 1
 const val FILE_TYPE_2 = 2
 object FileUtils {
+
+
+    /**
+     * 在指定文件夹下保存文件
+     * Android 11及以上不能在根目录下创建文件夹
+     */
+    fun saveFileToFolder(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_2){
+
+        val txtContent = "txtContent"
+        val folderPath = when(fileType){
+            FILE_TYPE_0 -> {
+                "${MyApplication.instance.filesDir}/${folderName}"
+            }
+            FILE_TYPE_1 -> {
+                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
+
+            }
+            FILE_TYPE_2 -> {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)}/${folderName}"
+            }
+
+            else ->{
+                folderName
+            }
+        }
+        Log.d("__saveImgToRoot",folderPath!!)
+        if (fileIsExist(folderPath)){
+            val file = File(folderPath,fileName!!)
+
+            if (!file.exists()) {
+                file.createNewFile()
+            }else{
+                //追加模式
+                val filerWriter = FileWriter(file, true)
+                val bufWriter = BufferedWriter(filerWriter)
+                bufWriter.write(txtContent)
+                bufWriter.newLine()
+                bufWriter.close()
+                filerWriter.close()
+            }
+        }
+
+    }
 
     /**
      * 保存图片为png格式
@@ -39,35 +87,43 @@ object FileUtils {
      *   FILE_TYPE_2 -> 外部存储共享空间：/storage/emulated/0/Pictures/[文件名]
      *
      */
-    fun saveImg(bitmap: Bitmap?, fileName: String? = "MyImg", fileType: Int? = FILE_TYPE_1){
+    fun saveImg(bitmap: Bitmap?, folderName: String? = "", fileName: String? = "MyImg", fileType: Int? = FILE_TYPE_1){
         if (bitmap == null){ return }
 
-        val file = when(fileType){
+        val folderPath = when(fileType){
             FILE_TYPE_0 -> {
-                File(MyApplication.instance.filesDir, "${fileName}.png")
+                "${MyApplication.instance.filesDir}/${folderName}"
             }
             FILE_TYPE_1 -> {
-                File(MyApplication.instance.getExternalFilesDir(null), "${fileName}.png")
+                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
             }
             FILE_TYPE_2 -> {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
                     saveImgQ(bitmap)
                     return
                 }else{
-                    File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "${fileName}.png")
+                    "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)}/${folderName}"
                 }
             }
 
             else ->{
-                File(MyApplication.instance.getExternalFilesDir(null), "${fileName}.png")
+                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
 
             }
         }
-        Log.d("__img-saveImg",file.path)
-        val outputStream = FileOutputStream(file)
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        outputStream.flush()
-        outputStream.close()
+
+        if (fileIsExist(folderPath)){
+            val file = File(folderPath,"${fileName}.png")
+            if (file.exists()){
+                file.delete()
+                Log.d("__img-delete",file.path)
+            }
+            Log.d("__img-saveImg",file.path)
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+        }
     }
 
     /**
@@ -110,7 +166,7 @@ object FileUtils {
 
 
     /**
-     * 检测文件是否存在
+     * 检测文件夹，不存在则创建文件夹
      */
     private fun fileIsExist(fileName: String): Boolean {
         //传入指定的路径，然后判断路径是否存在
@@ -125,30 +181,60 @@ object FileUtils {
 
     /**
      * Android10(Q)公共目录写入方法
+     * 通过 MediaStore 在图片目录新建一个图片文件
      * uri.path -> content://media/external/images/media/
      * 真实目录 -> /storage/emulated/0/Pictures/
      */
-    fun saveImgQ(bitmap: Bitmap,fileName: String? = "MyImg"): Uri{
-        val contentValues = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, "${fileName}.png")
-            put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+    fun saveImgQ(bitmap: Bitmap,folderName: String? = "folderName", fileName: String? = "MyImg") {
+
+        val file = File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath}/${folderName}","${fileName}.png")
+        if (file.exists()){
+            file.delete()
         }
-        val uri = MyApplication.instance.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-        val outputStream = MyApplication.instance.contentResolver.openOutputStream(uri!!)!!
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        outputStream.flush()
-        outputStream.close()
-        return uri
+        val contentValues = ContentValues()
+        // 指定文件保存的文件夹名称
+        // 如果想获取上述文件夹的真实地址可以通过这样的方式 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() 获取，他返回的值类似 /storage/emulated/0/Pictures
+        if (!TextUtils.isEmpty(folderName)){
+            contentValues.put(
+                MediaStore.Images.ImageColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/${folderName}")
+        }
+        // 指定文件名
+        contentValues.put(MediaStore.Images.ImageColumns.DISPLAY_NAME, fileName)
+        // 指定文件的 mime（比如 image/jpeg, application/vnd.android.package-archive 之类的）
+        contentValues.put(MediaStore.Images.ImageColumns.MIME_TYPE, "image/png")
+        contentValues.put(MediaStore.Images.ImageColumns.WIDTH, bitmap.width)
+        contentValues.put(MediaStore.Images.ImageColumns.HEIGHT, bitmap.height)
+        val contentResolver = MyApplication.instance.contentResolver
+        // 通过 ContentResolver 在指定的公共目录下按照指定的 ContentValues 创建文件，会返回文件的 content uri（类似这样的地址 content://media/external/images/media/102）
+        // 可以通过 MediaStore 保存文件的公共目录有：Images、Audio、Video、Downloads
+        val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues) ?: return
+
+
+        // 写入图片数据
+        var outputStream: OutputStream? = null
+        try {
+            outputStream = contentResolver.openOutputStream(uri)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        } catch (ex: Exception) {
+            Log.d("__saveImgQ-e", "写入数据失败：$ex")
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.flush()
+                    outputStream.close()
+                }
+            } catch (ex: Exception) {}
+        }
     }
 
     /**
      * uri转path
      */
-    fun getRealPathFromUri(context: Context, contentUri: Uri): String? {
+    fun getRealPathFromUri(contentUri: Uri): String? {
         var cursor: Cursor? = null
         try {
             val proj = arrayOf(MediaStore.Images.Media.DATA)
-            cursor = context.contentResolver.query(contentUri, proj, null, null, null)
+            cursor = MyApplication.instance.contentResolver.query(contentUri, proj, null, null, null)
             if (cursor != null && cursor.columnCount > 0) {
                 cursor.moveToFirst()
                 val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
