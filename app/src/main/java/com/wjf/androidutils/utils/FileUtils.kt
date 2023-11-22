@@ -43,9 +43,8 @@ object FileUtils {
      * txt -> 写入
      * Android 11及以上不能在根目录下创建文件夹
      */
-    fun writeTxtFile(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1){
+    fun writeTxtFile(content: String, folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1){
 
-        val txtContent = "txtContent"
         val folderPath = when(fileType){
             FILE_TYPE_0 -> {
                 "${MyApplication.instance.filesDir}/${folderName}"
@@ -64,17 +63,19 @@ object FileUtils {
         }
         Log.d("__saveImgToRoot",folderPath!!)
         if (fileIsExist(folderPath)){
-            val file = File(folderPath,fileName!!)
+            CachedThreadPoolSingleton.instance?.execute {
+                val file = File(folderPath,fileName!!)
 
-            if (!file.exists()) { file.createNewFile() }
+                if (!file.exists()) { file.createNewFile() }
 
-            //追加模式
-            val filerWriter = FileWriter(file, true)
-            val bufWriter = BufferedWriter(filerWriter)
-            bufWriter.write(txtContent)
-            bufWriter.newLine()
-            bufWriter.close()
-            filerWriter.close()
+                //追加模式
+                val filerWriter = FileWriter(file, true)
+                val bufWriter = BufferedWriter(filerWriter)
+                bufWriter.write(content)
+                bufWriter.newLine()
+                bufWriter.close()
+                filerWriter.close()
+            }
         }
 
     }
@@ -83,7 +84,7 @@ object FileUtils {
     /**
      * txt -> 读取
      */
-    fun readTxtFile(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1): String{
+    fun readTxtFile(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1, result:(String) -> Unit){
         val stringBuilder = StringBuilder()
         val folderPath = when(fileType){
             FILE_TYPE_0 -> {
@@ -103,23 +104,26 @@ object FileUtils {
         }
 
         if (fileIsExist(folderPath)){
-            val file = File(folderPath,fileName!!)
+            CachedThreadPoolSingleton.instance?.execute {
+                val file = File(folderPath,fileName!!)
 
-            if (file.exists()) {
-                val inputStream = FileInputStream(file)
-                val reader = BufferedReader(InputStreamReader(inputStream))
+                if (file.exists()) {
+                    val inputStream = FileInputStream(file)
+                    val reader = BufferedReader(InputStreamReader(inputStream))
 
-                var line: String? = reader.readLine()
-                while (line!= null) {
-                    stringBuilder.append(line)
-                    line = reader.readLine()
+                    var line: String? = reader.readLine()
+                    while (line!= null) {
+                        stringBuilder.append(line)
+                        line = reader.readLine()
+                    }
+
+                    reader.close()
+                    inputStream.close()
+
+                    result(stringBuilder.toString())
                 }
-
-                reader.close()
-                inputStream.close()
             }
         }
-        return stringBuilder.toString()
     }
 
     /**
@@ -156,16 +160,18 @@ object FileUtils {
         }
 
         if (fileIsExist(folderPath)){
-            val file = File(folderPath,"${fileName}.png")
-            if (file.exists()){
-                file.delete()
-                Log.d("__img-delete",file.path)
+            CachedThreadPoolSingleton.instance?.execute {
+                val file = File(folderPath,"${fileName}.png")
+                if (file.exists()){
+                    file.delete()
+                    Log.d("__img-delete",file.path)
+                }
+                Log.d("__img-saveImg",file.path)
+                val outputStream = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                outputStream.flush()
+                outputStream.close()
             }
-            Log.d("__img-saveImg",file.path)
-            val outputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            outputStream.flush()
-            outputStream.close()
         }
     }
 
@@ -178,7 +184,7 @@ object FileUtils {
      *
      * 为什么读取到的bitmap为空: 文件不存在
      */
-    fun getImg(fileName: String? = "MyImg",fieType: Int? = FILE_TYPE_1): Bitmap?{
+    fun getImg(fileName: String? = "MyImg",fieType: Int? = FILE_TYPE_1, result:(Bitmap?)->Unit){
         val file = when(fieType){
             FILE_TYPE_0 -> {
                 File(MyApplication.instance.filesDir, "${fileName}.png")
@@ -195,15 +201,17 @@ object FileUtils {
 
             }
         }
-        var bitmap: Bitmap? = null
-        try {
-            val inputStream = FileInputStream(file)
-            bitmap = BitmapFactory.decodeStream(inputStream)
-            inputStream.close()
-        } catch (e: Exception) {
-            Log.d("__img-getImg-e","${e.message}")
+        CachedThreadPoolSingleton.instance?.execute {
+            var bitmap: Bitmap? = null
+            try {
+                val inputStream = FileInputStream(file)
+                bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream.close()
+            } catch (e: Exception) {
+                Log.d("__img-getImg-e","${e.message}")
+            }
+            result(bitmap)
         }
-        return bitmap
 
     }
 
@@ -253,22 +261,24 @@ object FileUtils {
         // 可以通过 MediaStore 保存文件的公共目录有：Images、Audio、Video、Downloads
         val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues) ?: return
 
-
-        // 写入图片数据
-        var outputStream: OutputStream? = null
-        try {
-            outputStream = contentResolver.openOutputStream(uri)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        } catch (ex: Exception) {
-            Log.d("__saveImgQ-e", "写入数据失败：$ex")
-        } finally {
+        CachedThreadPoolSingleton.instance?.execute {
+            // 写入图片数据
+            var outputStream: OutputStream? = null
             try {
-                if (outputStream != null) {
-                    outputStream.flush()
-                    outputStream.close()
-                }
-            } catch (ex: Exception) {}
+                outputStream = contentResolver.openOutputStream(uri)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            } catch (ex: Exception) {
+                Log.d("__saveImgQ-e", "写入数据失败：$ex")
+            } finally {
+                try {
+                    if (outputStream != null) {
+                        outputStream.flush()
+                        outputStream.close()
+                    }
+                } catch (ex: Exception) {}
+            }
         }
+
     }
 
     /**
