@@ -11,11 +11,13 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import com.wjf.androidutils.MyApplication
+import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.FileWriter
+import java.io.InputStreamReader
 import java.io.OutputStream
 
 /**
@@ -38,10 +40,10 @@ object FileUtils {
 
 
     /**
-     * 在指定文件夹下保存文件
+     * txt -> 写入
      * Android 11及以上不能在根目录下创建文件夹
      */
-    fun saveFileToFolder(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_2){
+    fun writeTxtFile(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1){
 
         val txtContent = "txtContent"
         val folderPath = when(fileType){
@@ -64,19 +66,60 @@ object FileUtils {
         if (fileIsExist(folderPath)){
             val file = File(folderPath,fileName!!)
 
-            if (!file.exists()) {
-                file.createNewFile()
-            }else{
-                //追加模式
-                val filerWriter = FileWriter(file, true)
-                val bufWriter = BufferedWriter(filerWriter)
-                bufWriter.write(txtContent)
-                bufWriter.newLine()
-                bufWriter.close()
-                filerWriter.close()
+            if (!file.exists()) { file.createNewFile() }
+
+            //追加模式
+            val filerWriter = FileWriter(file, true)
+            val bufWriter = BufferedWriter(filerWriter)
+            bufWriter.write(txtContent)
+            bufWriter.newLine()
+            bufWriter.close()
+            filerWriter.close()
+        }
+
+    }
+
+
+    /**
+     * txt -> 读取
+     */
+    fun readTxtFile(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1): String{
+        val stringBuilder = StringBuilder()
+        val folderPath = when(fileType){
+            FILE_TYPE_0 -> {
+                "${MyApplication.instance.filesDir}/${folderName}"
+            }
+            FILE_TYPE_1 -> {
+                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
+
+            }
+            FILE_TYPE_2 -> {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)}/${folderName}"
+            }
+
+            else ->{
+                folderName
             }
         }
 
+        if (fileIsExist(folderPath)){
+            val file = File(folderPath,fileName!!)
+
+            if (file.exists()) {
+                val inputStream = FileInputStream(file)
+                val reader = BufferedReader(InputStreamReader(inputStream))
+
+                var line: String? = reader.readLine()
+                while (line!= null) {
+                    stringBuilder.append(line)
+                    line = reader.readLine()
+                }
+
+                reader.close()
+                inputStream.close()
+            }
+        }
+        return stringBuilder.toString()
     }
 
     /**
@@ -168,7 +211,8 @@ object FileUtils {
     /**
      * 检测文件夹，不存在则创建文件夹
      */
-    private fun fileIsExist(fileName: String): Boolean {
+    private fun fileIsExist(fileName: String?): Boolean {
+        if (TextUtils.isEmpty(fileName)) return false
         //传入指定的路径，然后判断路径是否存在
         val file = File(fileName)
         return if (file.exists()) {
