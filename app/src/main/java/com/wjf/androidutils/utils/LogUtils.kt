@@ -12,7 +12,7 @@ import android.util.Log
 object LogUtils {
 
     private const val isDebug = true
-    private val fileName = "${TimeUtil.getTime(type = 6)}.txt"
+    private val fileName = "${TimeUtil.getTime(pattern = "yyyy-MM-dd")}.txt"
     private const val folderName = "Log"
 
     fun vw(tag: String, msg: String) {

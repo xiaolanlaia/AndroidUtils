@@ -8,63 +8,37 @@ import java.util.Date
 
 @SuppressLint("SimpleDateFormat")
 object TimeUtil {
-    private val format1 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-    private val format2 = SimpleDateFormat("yyyy年MM月dd日")
-    private val format3 = SimpleDateFormat("yyyy/MM/dd")
-    private val format4 = SimpleDateFormat("HH:mm:ss")
-    private val format5 = SimpleDateFormat("MM/dd E HH:mm")
-    private val format6 = SimpleDateFormat("yyyy-MM-dd")
-
-    fun getTime(date: Date? = Date(),type: Int? = 1): String {
-        return when(type){
-            1 -> {format1.format(date!!)}
-            2 -> {format2.format(date!!)}
-            3 -> {format3.format(date!!)}
-            4 -> {format4.format(date!!)}
-            5 -> {format5.format(date!!)}
-            6 -> {format6.format(date!!)}
-            else -> {format1.format(date!!)}
-        }
-    }
-
 
     /**
-     * 获取当前日期是星期几
+     * Y表示这周的年份，y表示标准的年份，若本周过年，Y会算入下一年
      *
-     * @param date
-     * @return
+     * y：年份
+     * yy：两位数年份
+     * yyyy：四位数年份
+     * M：月份
+     * MM：月份
+     * MMM：自动切换语言
+     * H：24小时制的小时数，用HH表示
+     * h：12小时制的小时数，用hh表示
+     * m：分钟数，用mm表示
+     * s：秒数，用ss表示
+     * S：毫秒数，用SSS表示
+     * d：月份中的天数，用dd表述
+     * D：年份中的天数
+     * E：周几，会自动切换语言
+     * F：月份中的第几个星期几
+     * w：年份中的第几个星期
      */
-    fun getWeekOfDate(date: Date?): String {
-        val weekDays = arrayOf("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")
-        val cal = Calendar.getInstance()
-        cal.time = date
-        var w = cal[Calendar.DAY_OF_WEEK] - 1
-        if (w < 0) {
-            w = 0
-        }
-        return weekDays[w]
+    fun getTime(date: Date? = Date(),pattern: String? = "yyyy-MM-dd HH:mm:ss"): String {
+        return SimpleDateFormat(pattern).format(date!!)
     }
 
     /**
-     * 获取当前日期是周几
+     * 将pattern1格式日期转为pattern2格式
      */
-    fun weekOfDate(): String {
-        val weekDays = arrayOf("周日", "周一", "周二", "周三", "周四", "周五", "周六")
-        val cal = Calendar.getInstance()
-        cal.time = Date()
-        var w = cal[Calendar.DAY_OF_WEEK] - 1
-        if (w < 0) {
-            w = 0
-        }
-        return weekDays[w]
-    }
-
-    /**
-     * 将 yyyy-MM-dd HH:mm:ss 转成 HHmm
-     */
-    fun getStringToDate(dateString: String?): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val dateFormat2 = SimpleDateFormat("HHmm")
+    fun getStringToDate(dateString: String?, pattern1: String, pattern2: String): String {
+        val dateFormat = SimpleDateFormat(pattern1)
+        val dateFormat2 = SimpleDateFormat(pattern2)
         try {
             val date = dateFormat.parse(dateString)
             return dateFormat2.format(date)
