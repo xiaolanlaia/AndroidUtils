@@ -63,7 +63,7 @@ object FileUtils {
         }
         Log.d("__saveImgToRoot",folderPath!!)
         if (fileIsExist(folderPath)){
-            CachedThreadPoolSingleton.instance?.execute {
+            ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,fileName!!)
 
                 if (!file.exists()) { file.createNewFile() }
@@ -104,7 +104,7 @@ object FileUtils {
         }
 
         if (fileIsExist(folderPath)){
-            CachedThreadPoolSingleton.instance?.execute {
+            ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,fileName!!)
 
                 if (file.exists()) {
@@ -160,7 +160,7 @@ object FileUtils {
         }
 
         if (fileIsExist(folderPath)){
-            CachedThreadPoolSingleton.instance?.execute {
+            ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,"${fileName}.png")
                 if (file.exists()){
                     file.delete()
@@ -201,7 +201,7 @@ object FileUtils {
 
             }
         }
-        CachedThreadPoolSingleton.instance?.execute {
+        ThreadPoolUtils.cachedThreadPool.execute {
             var bitmap: Bitmap? = null
             try {
                 val inputStream = FileInputStream(file)
@@ -261,7 +261,7 @@ object FileUtils {
         // 可以通过 MediaStore 保存文件的公共目录有：Images、Audio、Video、Downloads
         val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues) ?: return
 
-        CachedThreadPoolSingleton.instance?.execute {
+        ThreadPoolUtils.cachedThreadPool.execute {
             // 写入图片数据
             var outputStream: OutputStream? = null
             try {
