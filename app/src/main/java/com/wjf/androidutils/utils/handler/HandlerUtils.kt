@@ -3,8 +3,6 @@ package com.wjf.androidutils.utils.handler
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import com.wjf.androidutils.MainActivity
-
 
 const val WHAT_CODE = 0
 const val TIME_3000 = 3000L
@@ -19,7 +17,7 @@ class HandlerUtil private constructor(): Handler(Looper.getMainLooper()) {
         when (msg.what) {
 
             WHAT_CODE ->{
-                MainActivity.handlerCallback.handlerCallback()
+//                MainActivity.handlerCallback.handlerCallback()
             }
         }
     }
