@@ -1,17 +1,15 @@
 pluginManagement {
-    repositories {
-        repositories{
-            maven { url 'https://maven.aliyun.com/repository/public' }
-            maven { url 'https://maven.aliyun.com/repository/central' }
-            maven { url 'https://maven.aliyun.com/repository/jcenter' }
-            maven { url 'https://maven.aliyun.com/repository/google' }
-            maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-            maven { url 'https://jitpack.io' }
-            mavenLocal()
-            mavenCentral()
-            google()
-            gradlePluginPortal()
-        }
+    repositories{
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://jitpack.io' }
+        mavenLocal()
+        mavenCentral()
+        google()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -31,3 +29,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AndroidUtils"
 include ':app'
+include ':moduleDesignPattern'
