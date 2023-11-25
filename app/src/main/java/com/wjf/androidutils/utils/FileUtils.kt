@@ -284,7 +284,7 @@ object FileUtils {
     /**
      * uri转path
      */
-    fun getRealPathFromUri(contentUri: Uri): String? {
+    fun uri2RealPath(contentUri: Uri): String? {
         var cursor: Cursor? = null
         try {
             val proj = arrayOf(MediaStore.Images.Media.DATA)

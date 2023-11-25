@@ -21,14 +21,14 @@ object BitmapUtils {
      * 1、不能获取drawable中的xml格式资源
      * 2、mipmap中是否存在xml的同名资源
      */
-    fun getBitmapFromResource(id: Int): Bitmap {
+    fun resource2Bitmap(id: Int): Bitmap {
         return BitmapFactory.decodeResource(MyApplication.instance.resources, id)
     }
 
     /**
      * bitmap转byteArray
      */
-    fun getByteArrFromBitmap(bitmap: Bitmap): ByteArray{
+    fun bitmap2ByteArray(bitmap: Bitmap): ByteArray{
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
         return stream.toByteArray()
@@ -38,7 +38,7 @@ object BitmapUtils {
     /**
      * byteArray转bitmap
      */
-    fun getBitmapFromByteArray(byteArray: ByteArray): Bitmap{
+    fun byteArrayBitmap(byteArray: ByteArray): Bitmap{
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
     }
 
