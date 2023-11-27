@@ -24,4 +24,17 @@ object CoroutineUtils {
             error(error)
         }
     }
+
+    /**
+     * 协程等待
+     */
+    fun joinLaunch(vararg setFun:() -> Unit){
+        CoroutineScope(Dispatchers.Main).launch {
+            setFun.forEach {
+
+                launch { it() }.join()
+            }
+        }
+    }
+
 }
