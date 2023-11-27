@@ -57,21 +57,6 @@ object ArrayUtils {
     }
 
     /**
-     * 删除子数组
-     */
-    fun ByteArray.deleteArray(subArray: ByteArray): ByteArray{
-        val index = indexOf(subArray[0])
-        val newBytes = ByteArray(size - subArray.size) { 0 }
-        if (index!= -1) {
-            System.arraycopy(this, 0, newBytes, 0, index)
-            System.arraycopy(this, index + subArray.size, newBytes, index, size - index - subArray.size)
-        }
-
-        Log.d("__newBytes",newBytes.contentToString())
-        return newBytes
-    }
-
-    /**
      * 查找子数组的起始位置
      */
     fun ByteArray.findSubArray(subArray: ByteArray): Int {
