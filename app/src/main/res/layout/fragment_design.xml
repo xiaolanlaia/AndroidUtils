@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/builder_pattern"
+                android:text="BuilderPattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/builder_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/clone_pattern"
+                android:text="clone_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/clone_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/factory_pattern"
+                android:text="factory_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/factory_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/factory_abstract_pattern"
+                android:text="factory_abstract"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/factory_abstract_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/strategy_pattern"
+                android:text="strategy_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/strategy_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/state_pattern"
+                android:text="state_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/state_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/chain_pattern"
+                android:text="chain_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/chain_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/interpreter_pattern"
+                android:text="interpreter_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/interpreter_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/command_pattern"
+                android:text="command_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/command_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/observer_pattern"
+                android:text="observer_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/observer_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/memoto_pattern"
+                android:text="memoto_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/memoto_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/template_pattern"
+                android:text="template_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/template_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/visitor_pattern"
+                android:text="visitor_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/visitor_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/mediator_pattern"
+                android:text="mediator_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/mediator_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/proxy_pattern"
+                android:text="proxy_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/proxy_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/composite_pattern"
+                android:text="composite_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/composite_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/adapter_pattern"
+                android:text="adapter_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/adapter_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/decorate_pattern"
+                android:text="decorate_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/decorate_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/flyweight_pattern"
+                android:text="flyweight_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/flyweight_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/faced_pattern"
+                android:text="faced_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/faced_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <Button
+                android:id="@+id/bridge_pattern"
+                android:text="bridge_pattern"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+            <Button
+                android:id="@+id/bridge_pattern_example"
+                android:text="example 1"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+

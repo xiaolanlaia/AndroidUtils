@@ -12,11 +12,12 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
+import com.wjf.androidutils.ui.designPattern.DesignFragment
 import com.wjf.androidutils.ui.home.HomeActivity
 import com.wjf.androidutils.utils.DeviceUtils
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
-import com.wjf.androidutils.utils.LogUtils
+import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.StatusBar
 import com.wjf.androidutils.utils.singleClick
 
@@ -68,11 +69,14 @@ class TitleBarActivity : AppCompatActivity() {
         val viewStatus = findViewById<View>(R.id.view_status)
         val layoutParams = viewStatus.layoutParams
         layoutParams.height = DeviceUtils.getStatusBarHeight()
-        LogUtils.d("__height","${DeviceUtils.getStatusBarHeight()}")
         viewStatus.layoutParams = layoutParams
-        val jumpTo = intent.getStringExtra(JUMP_TO)
 
-        when(jumpTo){
+        when(intent.getStringExtra(JUMP_TO)){
+
+            JUMP_TO_DesignFragment -> {
+                tvPageTitle.text = "设计模式"
+                fragment = DesignFragment()
+            }
 
             else -> {
                 commonTitle.visibility = View.GONE

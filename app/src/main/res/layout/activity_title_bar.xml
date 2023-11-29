@@ -15,7 +15,6 @@
         android:id="@+id/common_title"
         layout="@layout/common_title"
         android:layout_below="@+id/view_status"
-        android:layout_marginTop="@dimen/dp21"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
