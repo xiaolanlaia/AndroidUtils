@@ -1,4 +1,4 @@
-package com.wjf.androidutils.utils
+package com.wjf.androidutils.utils.persistent
 
 import android.content.Context
 import com.wjf.androidutils.MyApplication
