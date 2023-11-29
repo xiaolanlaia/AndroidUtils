@@ -22,7 +22,7 @@
         android:theme="@style/Theme.AndroidUtils"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".base.transit.TitleBarActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
