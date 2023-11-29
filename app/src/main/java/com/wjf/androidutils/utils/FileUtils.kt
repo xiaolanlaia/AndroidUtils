@@ -62,7 +62,7 @@ object FileUtils {
             }
         }
         Log.d("__saveImgToRoot",folderPath!!)
-        if (fileIsExist(folderPath)){
+        if (folderExistOrCreate(folderPath)){
             ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,fileName!!)
 
@@ -103,7 +103,7 @@ object FileUtils {
             }
         }
 
-        if (fileIsExist(folderPath)){
+        if (folderExistOrCreate(folderPath!!)){
             ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,fileName!!)
 
@@ -159,7 +159,7 @@ object FileUtils {
             }
         }
 
-        if (fileIsExist(folderPath)){
+        if (folderExistOrCreate(folderPath)){
             ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,"${fileName}.png")
                 if (file.exists()){
@@ -219,16 +219,74 @@ object FileUtils {
     /**
      * 检测文件夹，不存在则创建文件夹
      */
-    private fun fileIsExist(fileName: String?): Boolean {
-        if (TextUtils.isEmpty(fileName)) return false
+    fun folderExistOrCreate(folderPath: String): Boolean {
+        if (TextUtils.isEmpty(folderPath)) return false
         //传入指定的路径，然后判断路径是否存在
-        val file = File(fileName)
-        return if (file.exists()) {
+        val folder = File(folderPath)
+        return if (folder.exists()) {
             true
         } else {
             //创建文件夹
-            file.mkdirs()
+            folder.mkdirs()
         }
+    }
+
+    /**
+     * 检测文件夹是否存在
+     */
+    fun folderExist(folderPath: String): Boolean {
+        if (TextUtils.isEmpty(folderPath)) return false
+        //传入指定的路径，然后判断路径是否存在
+        val folder = File(folderPath)
+        return folder.exists()
+    }
+
+    /**
+     * 检测文件夹是否为空文件夹
+     * true：文件夹为空 | 不存在
+     * false：文件夹存在且不为空
+     */
+    fun folderNull(folderPath: String): Boolean {
+        if (TextUtils.isEmpty(folderPath)) return true
+        //传入指定的路径，然后判断路径是否存在
+        val folder = File(folderPath)
+        if (!folder.exists()) return true
+        try {
+            //空文件夹会报异常
+            folder.listFiles().isEmpty()
+        } catch (e: Exception) {
+            return true
+        }
+        return false
+    }
+
+    /**
+     * 删除文件夹
+     */
+    fun deleteFolder(folderPath: String): Boolean{
+        //传入指定的路径，然后判断路径是否存在
+        val folder = File(folderPath)
+
+        return if (folder.exists()){
+            folder.deleteRecursively()
+        }else{
+            true
+        }
+    }
+
+
+    /**
+     * 获取文件夹中文件的名字
+     */
+    fun getFilesName(folderPath: String): ArrayList<String>{
+        if (folderNull(folderPath)) return ArrayList<String>()
+        val nameList = ArrayList<String>()
+        val file = File(folderPath)
+        val files = file.listFiles()
+        files.forEach {
+            nameList.add(it.name)
+        }
+        return nameList
     }
 
     /**

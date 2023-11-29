@@ -17,11 +17,28 @@ object ArrayUtils {
      * System.arraycopy
      *      1、native方法，在native层实现，速度更快
      *      2、只能用于复制原始类型数组
+     *
+     * arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+     *      src：数据源
+     *      srcPos：源数组要起始的位置
+     *      dest:目的数组
+     *      destPos:目的数组放置的起始位置
+     *      length:复制的长度
+     *
      */
-    fun mergeArray(array1: ByteArray, array2: ByteArray): ByteArray{
-        val mergeArray = ByteArray(array1.size + array2.size)
-        System.arraycopy(array1, 0, mergeArray, 0, array1.size)
-        System.arraycopy(array2, 0, mergeArray, array1.size, array2.size)
+    fun mergeArray(vararg array: ByteArray): ByteArray{
+
+        var lengthTotal = 0
+        array.forEach {
+            lengthTotal += it.size
+        }
+        val mergeArray = ByteArray(lengthTotal)
+        var lengthCurrent = 0
+        array.forEach {
+            System.arraycopy(it, 0, mergeArray, lengthCurrent, it.size)
+            lengthCurrent += it.size
+
+        }
         return mergeArray
     }
 
@@ -32,8 +49,13 @@ object ArrayUtils {
      *      1、Java方法，在Java层实现，更通用
      *      2、能复制原始类型和对象数组
      */
-    fun mergeArrayObject(array1: Array<String>, array2: Array<String>): Array<String>{
-        val mergedArray = arrayOf(*array1, *array2)
+    fun mergeArrayObject(vararg array: Array<String>): Array<String>{
+        var mergedArray =  array[0]
+
+        for (i in 1 until array.size){
+            mergedArray = arrayOf(*mergedArray,*array[i])
+        }
+
         return mergedArray
     }
 
