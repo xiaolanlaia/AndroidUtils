@@ -12,14 +12,18 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
+import com.wjf.androidutils.ui.arrayUtils.ArrayFragment
 import com.wjf.androidutils.ui.designPattern.DesignFragment
 import com.wjf.androidutils.ui.home.HomeActivity
 import com.wjf.androidutils.ui.persistent.PersistentFragment
+import com.wjf.androidutils.ui.toast.ToastFragment
 import com.wjf.androidutils.utils.DeviceUtils
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
+import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
+import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.StatusBar
 import com.wjf.androidutils.utils.singleClick
 
@@ -83,6 +87,16 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_PersistentFragment -> {
                 tvPageTitle.text = "持久化存储"
                 fragment = PersistentFragment()
+            }
+
+            JUMP_TO_ToastFragment -> {
+                tvPageTitle.text = "Toast"
+                fragment = ToastFragment()
+            }
+
+            JUMP_TO_ArrayFragment -> {
+                tvPageTitle.text = "Array"
+                fragment = ArrayFragment()
             }
 
             else -> {

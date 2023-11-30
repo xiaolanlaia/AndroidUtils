@@ -9,8 +9,10 @@ import com.wjf.androidutils.R
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.base.transit.TitleBarActivity
 import com.wjf.androidutils.utils.CoroutineUtils.launch
+import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
+import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.LogUtils
 import com.wjf.androidutils.utils.handler.HandlerCallback
 
@@ -22,6 +24,8 @@ class HomeActivity : MVVMBaseFragment<HomeViewModel>() , HandlerCallback, View.O
 
     lateinit var btnDesign: Button
     lateinit var btnPersistent: Button
+    lateinit var btnToast: Button
+    lateinit var btnArray: Button
 
     override fun initViewModel(): HomeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
@@ -31,8 +35,12 @@ class HomeActivity : MVVMBaseFragment<HomeViewModel>() , HandlerCallback, View.O
         handlerCallback = this
         btnDesign = mView.findViewById(R.id.btn_design)
         btnPersistent = mView.findViewById(R.id.btn_persistent)
+        btnToast = mView.findViewById(R.id.btn_toast)
+        btnArray = mView.findViewById(R.id.btn_array)
         btnDesign.setOnClickListener(this)
         btnPersistent.setOnClickListener(this)
+        btnToast.setOnClickListener(this)
+        btnArray.setOnClickListener(this)
         val btnSave = mView.findViewById<Button>(R.id.btn_save)
         val btnGet  = mView.findViewById<Button>(R.id.btn_get)
         val ivShow  = mView.findViewById<ImageView>(R.id.iv_show)
@@ -66,6 +74,14 @@ class HomeActivity : MVVMBaseFragment<HomeViewModel>() , HandlerCallback, View.O
 
             btnPersistent -> {
                 TitleBarActivity.newInstance(v.context,JUMP_TO_PersistentFragment)
+            }
+
+            btnToast -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_ToastFragment)
+            }
+
+            btnArray -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_ArrayFragment)
             }
         }
     }

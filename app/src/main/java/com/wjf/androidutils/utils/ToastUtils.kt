@@ -1,11 +1,26 @@
 package com.wjf.androidutils.utils
 
+import android.os.Build
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import com.wjf.androidutils.MyApplication
 
 
 object ToastUtils {
     var mToast: Toast? = null
+
+    fun setToastTextSize() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R){
+            mToast = Toast.makeText(MyApplication.instance, null, Toast.LENGTH_SHORT)
+            val linearLayout = mToast!!.view as LinearLayout
+            val messageTextView = linearLayout.getChildAt(0) as TextView
+            messageTextView.textSize = 30f
+            messageTextView.gravity = Gravity.CENTER
+        }
+
+    }
 
     /**
      * 传入文字

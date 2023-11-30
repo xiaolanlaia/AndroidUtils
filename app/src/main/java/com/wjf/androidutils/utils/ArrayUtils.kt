@@ -60,6 +60,47 @@ object ArrayUtils {
     }
 
     /**
+     * 将byteArray拆分成若干个指定长度的数组
+     * 若最后一个不足指定长度，以0填充
+     */
+    fun splitByteArray(byteArray: ByteArray, chunkSize: Int): Array<ByteArray> {
+        val numChunks = (byteArray.size / chunkSize) + if (byteArray.size % chunkSize == 0) 0 else 1
+        val result = Array(numChunks) { ByteArray(chunkSize) }
+        for (i in 0 until numChunks) {
+            val start = i * chunkSize
+            val end = minOf(start + chunkSize, byteArray.size)
+            val length = end - start
+            System.arraycopy(byteArray, start, result[i], 0, length)
+        }
+        return result
+    }
+
+    /**
+     * 将byteArray拆分成若干个指定长度的数组
+     * 若最后一个不足指定长度，则单独作为一个数组
+     */
+    fun splitByteArray2(byteArray: ByteArray, chunkSize: Int): Array<ByteArray> {
+        val numChunks = (byteArray.size / chunkSize) + if (byteArray.size % chunkSize == 0) 0 else 1
+        val result = Array(numChunks) { ByteArray(chunkSize) }
+        for (i in 0 until numChunks - 1) {
+            val start = i * chunkSize
+            val end = start + chunkSize
+            System.arraycopy(byteArray, start, result[i], 0, chunkSize)
+        }
+        val lastChunkSize = byteArray.size % chunkSize
+        if (lastChunkSize > 0) {
+            val lastChunk = ByteArray(lastChunkSize)
+            System.arraycopy(byteArray, byteArray.size - lastChunkSize, lastChunk, 0, lastChunkSize)
+            result[numChunks - 1] = lastChunk
+        } else {
+            result[numChunks - 1] = result[numChunks - 2]
+        }
+        return result
+    }
+
+
+
+    /**
      * 截取指定位置范围内数组数组
      */
     fun ByteArray.subArray(startIndex: Int, endIndex: Int): ByteArray{

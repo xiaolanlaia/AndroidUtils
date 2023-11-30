@@ -2,6 +2,7 @@ package com.wjf.androidutils
 
 import android.app.Application
 import com.tencent.mmkv.MMKV
+import com.wjf.androidutils.utils.ToastUtils
 
 /**
  * @Description
@@ -21,5 +22,6 @@ class MyApplication : Application() {
         instance = this
         // 初始化
         MMKV.initialize(this)
+        ToastUtils.setToastTextSize()
     }
 }

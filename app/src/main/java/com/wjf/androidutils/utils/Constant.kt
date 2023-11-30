@@ -13,9 +13,11 @@ const val IMG_POSITION = "img_position"
  * 页面导航
  */
 const val JUMP_TO = "jump_to"
-const val JUMP_TO_HomeActivity = "jump_to_HomeActivity"
-const val JUMP_TO_DesignFragment = "jump_to_DesignFragment"
-const val JUMP_TO_PersistentFragment = "jump_to_PersistentFragment"
+const val JUMP_TO_HomeActivity          = "jump_to_HomeActivity"
+const val JUMP_TO_DesignFragment        = "jump_to_DesignFragment"
+const val JUMP_TO_PersistentFragment    = "jump_to_PersistentFragment"
+const val JUMP_TO_ToastFragment         = "jump_to_ToastFragment"
+const val JUMP_TO_ArrayFragment         = "jump_to_ArrayFragment"
 
 class Constant {
 }
