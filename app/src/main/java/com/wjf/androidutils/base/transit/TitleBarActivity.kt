@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
 import com.wjf.androidutils.ui.designPattern.DesignFragment
 import com.wjf.androidutils.ui.home.HomeActivity
+import com.wjf.androidutils.ui.persistent.PersistentFragment
 import com.wjf.androidutils.utils.DeviceUtils
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.StatusBar
 import com.wjf.androidutils.utils.singleClick
 
@@ -76,6 +78,11 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_DesignFragment -> {
                 tvPageTitle.text = "设计模式"
                 fragment = DesignFragment()
+            }
+
+            JUMP_TO_PersistentFragment -> {
+                tvPageTitle.text = "持久化存储"
+                fragment = PersistentFragment()
             }
 
             else -> {

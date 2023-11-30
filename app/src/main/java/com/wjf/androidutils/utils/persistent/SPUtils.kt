@@ -20,15 +20,10 @@ import com.wjf.androidutils.MyApplication
  *
  *  不需要考虑提交结果的情况下，优先考虑apply
  */
-class SPUtils private constructor() {
+object SPUtils {
 
     private var mPreferences = MyApplication.instance.getSharedPreferences("SPUtils", Context.MODE_PRIVATE)
     private var mEditor = mPreferences.edit()
-
-    companion object {
-        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { SPUtils() }
-
-    }
 
 
     // 存入数据

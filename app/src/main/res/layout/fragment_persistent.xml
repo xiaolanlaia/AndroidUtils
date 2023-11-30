@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    SP-->
+    <Button
+        android:id="@+id/btn_sp_set"
+        android:text="SP设值"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_sp_get"
+        android:text="SP取值"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/btn_sp_set"
+        app:layout_constraintTop_toTopOf="@+id/btn_sp_set"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_sp_show"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/btn_sp_get"
+        app:layout_constraintTop_toTopOf="@+id/btn_sp_get"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_sp_get"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="match_parent"
+        app:layout_constrainedHeight="true"
+        />
+
+<!--    datastore-->
+    <Button
+        android:id="@+id/btn_datastore_set"
+        android:text="datastore 设值"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_sp_set"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_datastore_get"
+        android:text="datastore 取值"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/btn_datastore_set"
+        app:layout_constraintTop_toTopOf="@+id/btn_datastore_set"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_datastore_show"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/btn_datastore_get"
+        app:layout_constraintTop_toTopOf="@+id/btn_datastore_get"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_datastore_get"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="match_parent"
+        app:layout_constrainedHeight="true"/>
+
+<!--    mmkv-->
+    <Button
+        android:id="@+id/btn_mmkv_set"
+        android:text="mmkv 设值"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_datastore_set"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_mmkv_get"
+        android:text="mmkv 取值"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/btn_mmkv_set"
+        app:layout_constraintTop_toTopOf="@+id/btn_mmkv_set"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_mmkv_show"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/btn_mmkv_get"
+        app:layout_constraintTop_toTopOf="@+id/btn_mmkv_get"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_mmkv_get"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="match_parent"
+        app:layout_constrainedHeight="true"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

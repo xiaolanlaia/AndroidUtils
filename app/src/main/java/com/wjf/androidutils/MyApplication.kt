@@ -1,6 +1,7 @@
 package com.wjf.androidutils
 
 import android.app.Application
+import com.tencent.mmkv.MMKV
 
 /**
  * @Description
@@ -18,5 +19,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        // 初始化
+        MMKV.initialize(this)
     }
 }

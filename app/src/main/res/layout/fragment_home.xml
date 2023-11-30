@@ -12,6 +12,11 @@
         android:text="设计模式"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_persistent"
+        android:text="持久化存储"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btn_save"
