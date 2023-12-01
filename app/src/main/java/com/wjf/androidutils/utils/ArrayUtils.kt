@@ -121,13 +121,24 @@ object ArrayUtils {
 
     /**
      * 查找子数组的起始位置
+     * reverse:
+     *      true: 查找最后一个
+     *      false：查找第一个
      */
-    fun ByteArray.findSubArray(subArray: ByteArray): Int {
+    fun ByteArray.findSubArray(subArray: ByteArray, reverse: Boolean = false): Int {
         val n = size
         val m = subArray.size
-        for (i in 0 until n-m+1) {
-            if (subArray contentEquals sliceArray(i until i+m)) {
-                return i
+        if (reverse) {
+            for (i in n - m downTo 0) {
+                if (subArray contentEquals sliceArray(i until i + m)) {
+                    return i
+                }
+            }
+        }else{
+            for (i in 0 until n - m + 1) {
+                if (subArray contentEquals sliceArray(i until i + m)) {
+                    return i
+                }
             }
         }
         return -1
