@@ -1,11 +1,13 @@
 package com.wjf.androidutils.ui.designPattern
 
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.R
 import com.wjf.androidutils.base.MVVMBaseFragment
+import com.wjf.androidutils.databinding.FragmentDesignBinding
 import com.wjf.moduledesignpattern.actionType.StragetyPattern.learn.BusStrategy
 import com.wjf.moduledesignpattern.actionType.StragetyPattern.learn.CarStrategy
 import com.wjf.moduledesignpattern.actionType.StragetyPattern.learn.TrafficCalculator
@@ -67,97 +69,58 @@ import com.wjf.moduledesignpattern.structureType.proxyPattern.RealSubject
  *
  */
 
-class DesignFragment : MVVMBaseFragment<DesignViewModel>(), View.OnClickListener {
+class DesignFragment : MVVMBaseFragment<DesignViewModel,FragmentDesignBinding>(), View.OnClickListener {
+
     override fun initViewModel() = ViewModelProviders.of(this).get(DesignViewModel::class.java)
 
-    override fun initContentViewID() = R.layout.fragment_design
+    override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentDesignBinding {
+        return FragmentDesignBinding.inflate(inflater,container,false)
+    }
+
 
     override fun initView() {
-        val builder_pattern = mView.findViewById<Button>(R.id.builder_pattern)
-        val builder_pattern_example = mView.findViewById<Button>(R.id.builder_pattern_example)
-        val clone_pattern = mView.findViewById<Button>(R.id.clone_pattern)
-        val clone_pattern_example = mView.findViewById<Button>(R.id.clone_pattern_example)
-        val factory_pattern = mView.findViewById<Button>(R.id.factory_pattern)
-        val factory_pattern_example = mView.findViewById<Button>(R.id.factory_pattern_example)
-        val factory_abstract_pattern = mView.findViewById<Button>(R.id.factory_abstract_pattern)
-        val factory_abstract_pattern_example = mView.findViewById<Button>(R.id.factory_abstract_pattern_example)
-        val strategy_pattern = mView.findViewById<Button>(R.id.strategy_pattern)
-        val strategy_pattern_example = mView.findViewById<Button>(R.id.strategy_pattern_example)
-        val state_pattern = mView.findViewById<Button>(R.id.state_pattern)
-        val state_pattern_example = mView.findViewById<Button>(R.id.state_pattern_example)
-        val chain_pattern = mView.findViewById<Button>(R.id.chain_pattern)
-        val chain_pattern_example = mView.findViewById<Button>(R.id.chain_pattern_example)
-        val interpreter_pattern = mView.findViewById<Button>(R.id.interpreter_pattern)
-        val interpreter_pattern_example = mView.findViewById<Button>(R.id.interpreter_pattern_example)
-        val command_pattern = mView.findViewById<Button>(R.id.command_pattern)
-        val command_pattern_example = mView.findViewById<Button>(R.id.command_pattern_example)
-        val observer_pattern = mView.findViewById<Button>(R.id.observer_pattern)
-        val observer_pattern_example = mView.findViewById<Button>(R.id.observer_pattern_example)
-        val memoto_pattern = mView.findViewById<Button>(R.id.memoto_pattern)
-        val memoto_pattern_example = mView.findViewById<Button>(R.id.memoto_pattern_example)
-        val template_pattern = mView.findViewById<Button>(R.id.template_pattern)
-        val template_pattern_example = mView.findViewById<Button>(R.id.template_pattern_example)
-        val visitor_pattern = mView.findViewById<Button>(R.id.visitor_pattern)
-        val visitor_pattern_example = mView.findViewById<Button>(R.id.visitor_pattern_example)
-        val mediator_pattern = mView.findViewById<Button>(R.id.mediator_pattern)
-        val mediator_pattern_example = mView.findViewById<Button>(R.id.mediator_pattern_example)
-        val proxy_pattern = mView.findViewById<Button>(R.id.proxy_pattern)
-        val proxy_pattern_example = mView.findViewById<Button>(R.id.proxy_pattern_example)
-        val composite_pattern = mView.findViewById<Button>(R.id.composite_pattern)
-        val composite_pattern_example = mView.findViewById<Button>(R.id.composite_pattern_example)
-        val adapter_pattern = mView.findViewById<Button>(R.id.adapter_pattern)
-        val adapter_pattern_example = mView.findViewById<Button>(R.id.adapter_pattern_example)
-        val decorate_pattern = mView.findViewById<Button>(R.id.decorate_pattern)
-        val decorate_pattern_example = mView.findViewById<Button>(R.id.decorate_pattern_example)
-        val flyweight_pattern = mView.findViewById<Button>(R.id.flyweight_pattern)
-        val flyweight_pattern_example = mView.findViewById<Button>(R.id.flyweight_pattern_example)
-        val faced_pattern = mView.findViewById<Button>(R.id.faced_pattern)
-        val faced_pattern_example = mView.findViewById<Button>(R.id.faced_pattern_example)
-        val bridge_pattern = mView.findViewById<Button>(R.id.bridge_pattern)
-        val bridge_pattern_example = mView.findViewById<Button>(R.id.bridge_pattern_example)
-
-        builder_pattern.setOnClickListener(this)
-        builder_pattern_example.setOnClickListener(this)
-        clone_pattern.setOnClickListener(this)
-        clone_pattern_example.setOnClickListener(this)
-        factory_pattern.setOnClickListener(this)
-        factory_pattern_example.setOnClickListener(this)
-        factory_abstract_pattern.setOnClickListener(this)
-        factory_abstract_pattern_example.setOnClickListener(this)
-        strategy_pattern.setOnClickListener(this)
-        strategy_pattern_example.setOnClickListener(this)
-        state_pattern.setOnClickListener(this)
-        state_pattern_example.setOnClickListener(this)
-        chain_pattern.setOnClickListener(this)
-        chain_pattern_example.setOnClickListener(this)
-        interpreter_pattern.setOnClickListener(this)
-        interpreter_pattern_example.setOnClickListener(this)
-        command_pattern.setOnClickListener(this)
-        command_pattern_example.setOnClickListener(this)
-        observer_pattern.setOnClickListener(this)
-        observer_pattern_example.setOnClickListener(this)
-        memoto_pattern.setOnClickListener(this)
-        memoto_pattern_example.setOnClickListener(this)
-        template_pattern.setOnClickListener(this)
-        template_pattern_example.setOnClickListener(this)
-        visitor_pattern.setOnClickListener(this)
-        visitor_pattern_example.setOnClickListener(this)
-        mediator_pattern.setOnClickListener(this)
-        mediator_pattern_example.setOnClickListener(this)
-        proxy_pattern.setOnClickListener(this)
-        proxy_pattern_example.setOnClickListener(this)
-        composite_pattern.setOnClickListener(this)
-        composite_pattern_example.setOnClickListener(this)
-        adapter_pattern.setOnClickListener(this)
-        adapter_pattern_example.setOnClickListener(this)
-        decorate_pattern.setOnClickListener(this)
-        decorate_pattern_example.setOnClickListener(this)
-        flyweight_pattern.setOnClickListener(this)
-        flyweight_pattern_example.setOnClickListener(this)
-        faced_pattern.setOnClickListener(this)
-        faced_pattern_example.setOnClickListener(this)
-        bridge_pattern.setOnClickListener(this)
-        bridge_pattern_example.setOnClickListener(this)
+        binding.builderPattern.setOnClickListener(this)
+        binding.builderPatternExample.setOnClickListener(this)
+        binding.clonePattern.setOnClickListener(this)
+        binding.clonePatternExample.setOnClickListener(this)
+        binding.factoryPattern.setOnClickListener(this)
+        binding.factoryPatternExample.setOnClickListener(this)
+        binding.factoryAbstractPattern.setOnClickListener(this)
+        binding.factoryAbstractPatternExample.setOnClickListener(this)
+        binding.strategyPattern.setOnClickListener(this)
+        binding.strategyPatternExample.setOnClickListener(this)
+        binding.statePattern.setOnClickListener(this)
+        binding.statePatternExample.setOnClickListener(this)
+        binding.chainPattern.setOnClickListener(this)
+        binding.chainPatternExample.setOnClickListener(this)
+        binding.interpreterPattern.setOnClickListener(this)
+        binding.interpreterPatternExample.setOnClickListener(this)
+        binding.commandPattern.setOnClickListener(this)
+        binding.commandPatternExample.setOnClickListener(this)
+        binding.observerPattern.setOnClickListener(this)
+        binding.observerPatternExample.setOnClickListener(this)
+        binding.memotoPattern.setOnClickListener(this)
+        binding.memotoPatternExample.setOnClickListener(this)
+        binding.templatePattern.setOnClickListener(this)
+        binding.templatePatternExample.setOnClickListener(this)
+        binding.visitorPattern.setOnClickListener(this)
+        binding.visitorPatternExample.setOnClickListener(this)
+        binding.mediatorPattern.setOnClickListener(this)
+        binding.mediatorPatternExample.setOnClickListener(this)
+        binding.proxyPattern.setOnClickListener(this)
+        binding.proxyPatternExample.setOnClickListener(this)
+        binding.compositePattern.setOnClickListener(this)
+        binding.compositePatternExample.setOnClickListener(this)
+        binding.adapterPattern.setOnClickListener(this)
+        binding.adapterPatternExample.setOnClickListener(this)
+        binding.decoratePattern.setOnClickListener(this)
+        binding.decoratePatternExample.setOnClickListener(this)
+        binding.flyweightPattern.setOnClickListener(this)
+        binding.flyweightPatternExample.setOnClickListener(this)
+        binding.facedPattern.setOnClickListener(this)
+        binding.facedPatternExample.setOnClickListener(this)
+        binding.bridgePattern.setOnClickListener(this)
+        binding.bridgePatternExample.setOnClickListener(this)
 
     }
 

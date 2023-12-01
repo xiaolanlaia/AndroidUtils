@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
 import com.wjf.androidutils.ui.arrayUtils.ArrayFragment
 import com.wjf.androidutils.ui.designPattern.DesignFragment
-import com.wjf.androidutils.ui.home.HomeActivity
+import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.persistent.PersistentFragment
 import com.wjf.androidutils.ui.toast.ToastFragment
 import com.wjf.androidutils.utils.DeviceUtils
@@ -101,7 +101,7 @@ class TitleBarActivity : AppCompatActivity() {
 
             else -> {
                 commonTitle.visibility = View.GONE
-                fragment = HomeActivity()
+                fragment = HomeFragment()
             }
 
         }

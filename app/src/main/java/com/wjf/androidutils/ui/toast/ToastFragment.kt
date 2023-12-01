@@ -1,9 +1,10 @@
 package com.wjf.androidutils.ui.toast
 
-import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import com.wjf.androidutils.R
 import com.wjf.androidutils.base.MVVMBaseFragment
+import com.wjf.androidutils.databinding.FragmentToastBinding
 import com.wjf.androidutils.utils.ToastUtils
 import com.wjf.androidutils.utils.singleClick
 
@@ -14,15 +15,17 @@ import com.wjf.androidutils.utils.singleClick
  *
  */
 
-class ToastFragment : MVVMBaseFragment<ToastViewModel>() {
+class ToastFragment : MVVMBaseFragment<ToastViewModel,FragmentToastBinding>() {
 
     override fun initViewModel() = ViewModelProviders.of(this).get(ToastViewModel::class.java)
 
-    override fun initContentViewID() = R.layout.fragment_toast
+    override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentToastBinding {
+
+        return FragmentToastBinding.inflate(inflater,container,false)
+    }
 
     override fun initView() {
-        val tvToast = mView.findViewById<TextView>(R.id.tv_toast)
-        tvToast.singleClick {
+        binding.tvToast.singleClick {
             ToastUtils.show("测试字体大小")
         }
     }

@@ -6,19 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 
 /**
  * @Description
  * @Author WuJianFeng
  * @Date 2022/10/19 15:29
  */
-abstract class MVVMBaseFragment<VM : ViewModel> : Fragment(), CommonMethod {
+abstract class MVVMBaseFragment<VM : ViewModel, VB: ViewBinding> : Fragment() {
     lateinit var vm: VM
-    lateinit var mView: View
+    lateinit var binding: VB
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mView = inflater.inflate(initContentViewID(), container, false)
+        binding = initViewBinding(inflater,container)
         vm = initViewModel()
-        return mView
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ abstract class MVVMBaseFragment<VM : ViewModel> : Fragment(), CommonMethod {
         initData()
     }
     abstract fun initViewModel(): VM
+    abstract fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
     abstract fun initView()
     open fun initClick(){}
     open fun initData(){}
