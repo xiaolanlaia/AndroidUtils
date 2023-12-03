@@ -1,7 +1,5 @@
 package com.wjf.androidutils.utils
 
-import android.util.Log
-
 /**
  * @Description
  * @Author WuJianFeng
@@ -102,6 +100,8 @@ object ArrayUtils {
 
     /**
      * 截取指定位置范围内数组数组
+     * startIndex: inclusive
+     * endIndex: exclusive
      */
     fun ByteArray.subArray(startIndex: Int, endIndex: Int): ByteArray{
         val newBytes = copyOfRange(startIndex, endIndex)
@@ -110,7 +110,8 @@ object ArrayUtils {
 
     /**
      * 删除指定位置数组
-     * 删除 index = [startIndex,endIndex-1]范围内的数组
+     * startIndex: inclusive
+     * endIndex: exclusive
      */
     fun ByteArray.deleteArray(startIndex: Int, endIndex: Int): ByteArray{
         val newBytes = ByteArray(size - (endIndex - startIndex)) { 0 }
