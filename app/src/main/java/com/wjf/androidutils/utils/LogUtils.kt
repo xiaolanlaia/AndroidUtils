@@ -19,7 +19,7 @@ object LogUtils {
         if (isDebug) {
             Log.v(tag, msg)
             val content = "\n${TimeUtil.getTime()} \n v $tag $msg"
-            FileUtils.writeTxtFile(content = content, folderName = folderName,fileName = fileName)
+            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
@@ -27,7 +27,7 @@ object LogUtils {
         if (isDebug) {
             Log.i(tag, msg)
             val content = "\n${TimeUtil.getTime()} \n i $tag $msg"
-            FileUtils.writeTxtFile(content = content, folderName = folderName,fileName = fileName)
+            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
@@ -35,7 +35,7 @@ object LogUtils {
         if (isDebug) {
             Log.d(tag, msg)
             val content = "\n${TimeUtil.getTime()} \n d $tag $msg"
-            FileUtils.writeTxtFile(content = content, folderName = folderName,fileName = fileName)
+            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
@@ -43,7 +43,7 @@ object LogUtils {
         if (isDebug) {
             Log.w(tag, msg)
             val content = "\n${TimeUtil.getTime()} \n w $tag $msg"
-            FileUtils.writeTxtFile(content = content, folderName = folderName,fileName = fileName)
+            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
@@ -51,7 +51,7 @@ object LogUtils {
         if (isDebug) {
             Log.e(tag, msg)
             val content = "\n${TimeUtil.getTime()} \n e $tag $msg"
-            FileUtils.writeTxtFile(content = content, folderName = folderName,fileName = fileName)
+            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
 import com.wjf.androidutils.ui.arrayUtils.ArrayFragment
 import com.wjf.androidutils.ui.designPattern.DesignFragment
+import com.wjf.androidutils.ui.fileUtils.FileFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.persistent.PersistentFragment
 import com.wjf.androidutils.ui.toast.ToastFragment
@@ -22,6 +23,7 @@ import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.StatusBar
@@ -97,6 +99,11 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_ArrayFragment -> {
                 tvPageTitle.text = "Array"
                 fragment = ArrayFragment()
+            }
+
+            JUMP_TO_FileFragment -> {
+                tvPageTitle.text = "FileFragment"
+                fragment = FileFragment()
             }
 
             else -> {

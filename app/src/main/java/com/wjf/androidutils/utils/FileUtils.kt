@@ -13,6 +13,7 @@ import android.util.Log
 import com.wjf.androidutils.MyApplication
 import java.io.BufferedReader
 import java.io.BufferedWriter
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -40,34 +41,16 @@ object FileUtils {
 
 
     /**
-     * txt -> 写入
+     * txt -> 写入字符串
      * Android 11及以上不能在根目录下创建文件夹
      */
-    fun writeTxtFile(content: String, folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1){
+    fun writeStr2Txt(content: String, folderName: String = "Test", fileName:String = "fileName.txt", fileType: Int = FILE_TYPE_1){
 
-        val folderPath = when(fileType){
-            FILE_TYPE_0 -> {
-                "${MyApplication.instance.filesDir}/${folderName}"
-            }
-            FILE_TYPE_1 -> {
-                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
-
-            }
-            FILE_TYPE_2 -> {
-                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)}/${folderName}"
-            }
-
-            else ->{
-                folderName
-            }
-        }
-        Log.d("__saveImgToRoot",folderPath!!)
+        val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
         if (folderExistOrCreate(folderPath)){
             ThreadPoolUtils.cachedThreadPool.execute {
-                val file = File(folderPath,fileName!!)
-
+                val file = File(folderPath,fileName)
                 if (!file.exists()) { file.createNewFile() }
-
                 //追加模式
                 val filerWriter = FileWriter(file, true)
                 val bufWriter = BufferedWriter(filerWriter)
@@ -82,30 +65,15 @@ object FileUtils {
 
 
     /**
-     * txt -> 读取
+     * txt -> 读取字符串
      */
-    fun readTxtFile(folderName: String? = "Test", fileName:String? = "fileName.txt", fileType: Int? = FILE_TYPE_1, result:(String) -> Unit){
+    fun readStrFromTxt(folderName: String = "Test", fileName:String = "fileName.txt", fileType: Int = FILE_TYPE_1, result:(String) -> Unit){
         val stringBuilder = StringBuilder()
-        val folderPath = when(fileType){
-            FILE_TYPE_0 -> {
-                "${MyApplication.instance.filesDir}/${folderName}"
-            }
-            FILE_TYPE_1 -> {
-                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
+        val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
 
-            }
-            FILE_TYPE_2 -> {
-                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)}/${folderName}"
-            }
-
-            else ->{
-                folderName
-            }
-        }
-
-        if (folderExistOrCreate(folderPath!!)){
+        if (folderExistOrCreate(folderPath)){
             ThreadPoolUtils.cachedThreadPool.execute {
-                val file = File(folderPath,fileName!!)
+                val file = File(folderPath,fileName)
 
                 if (file.exists()) {
                     val inputStream = FileInputStream(file)
@@ -119,12 +87,52 @@ object FileUtils {
 
                     reader.close()
                     inputStream.close()
-
                     result(stringBuilder.toString())
                 }
             }
         }
     }
+
+    /**
+     * txt -> 写入ByteArray
+     */
+    fun writeByteArray2Txt(byteArray: ByteArray, folderName: String = "Test", fileName:String = "fileName.txt", fileType: Int = FILE_TYPE_1) {
+        val folderPath = getFolderPath(folderName = folderName, fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
+        LogUtils.d("__FileUtils-writeByteArray2Txt",folderPath)
+        if (folderExistOrCreate(folderPath)){
+            val file = File(folderPath,fileName)
+            val outputStream = ByteArrayOutputStream()
+            outputStream.write(byteArray)
+            val fileOutputStream = FileOutputStream(file,true)
+            fileOutputStream.write(outputStream.toByteArray())
+            fileOutputStream.close()
+
+        }
+    }
+
+    /**
+     * txt -> 读取ByteArray
+     */
+    fun readByteArrayFromTxt(folderName: String = "Test", fileName:String = "fileName.txt", fileType: Int = FILE_TYPE_1): ByteArray {
+        val folderPath = getFolderPath(folderName = folderName, fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
+        if (!folderExist(folderPath)) return byteArrayOf()
+
+        val file = File(folderPath,fileName)
+        val inputStream = FileInputStream(file)
+        val outputStream = ByteArrayOutputStream()
+        //每次读取的最大缓存
+        val buffer = ByteArray(64 * 1024)
+        var length: Int
+        while (inputStream.read(buffer).also { length = it } > 0) {
+            outputStream.write(buffer, 0, length)
+        }
+        val byteArray = outputStream.toByteArray()
+        inputStream.close()
+        outputStream.close()
+        LogUtils.d("__FileUtils-readByteArrayFromTxt",byteArray.contentToString())
+        return byteArray
+    }
+
 
     /**
      * 保存图片为png格式
@@ -134,39 +142,23 @@ object FileUtils {
      *   FILE_TYPE_2 -> 外部存储共享空间：/storage/emulated/0/Pictures/[文件名]
      *
      */
-    fun saveImg(bitmap: Bitmap?, folderName: String? = "", fileName: String? = "MyImg", fileType: Int? = FILE_TYPE_1){
+    fun saveImg(bitmap: Bitmap?, folderName: String = "", fileName: String = "MyImg", fileType: Int = FILE_TYPE_1){
         if (bitmap == null){ return }
 
-        val folderPath = when(fileType){
-            FILE_TYPE_0 -> {
-                "${MyApplication.instance.filesDir}/${folderName}"
-            }
-            FILE_TYPE_1 -> {
-                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
-            }
-            FILE_TYPE_2 -> {
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
-                    saveImgQ(bitmap)
-                    return
-                }else{
-                    "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)}/${folderName}"
-                }
-            }
-
-            else ->{
-                "${MyApplication.instance.getExternalFilesDir(null)}/${folderName}"
-
-            }
+        if (fileType == FILE_TYPE_2 && Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
+            saveImgQ(bitmap)
+            return
         }
+
+        val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_PICTURES)
+
 
         if (folderExistOrCreate(folderPath)){
             ThreadPoolUtils.cachedThreadPool.execute {
                 val file = File(folderPath,"${fileName}.png")
                 if (file.exists()){
                     file.delete()
-                    Log.d("__img-delete",file.path)
                 }
-                Log.d("__img-saveImg",file.path)
                 val outputStream = FileOutputStream(file)
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
                 outputStream.flush()
@@ -184,23 +176,9 @@ object FileUtils {
      *
      * 为什么读取到的bitmap为空: 文件不存在
      */
-    fun getImg(fileName: String? = "MyImg",fieType: Int? = FILE_TYPE_1, result:(Bitmap?)->Unit){
-        val file = when(fieType){
-            FILE_TYPE_0 -> {
-                File(MyApplication.instance.filesDir, "${fileName}.png")
-            }
-            FILE_TYPE_1 -> {
-                File(MyApplication.instance.getExternalFilesDir(null), "${fileName}.png")
-            }
-            FILE_TYPE_2 -> {
-                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "${fileName}.png")
-            }
-
-            else ->{
-                File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "${fileName}.png")
-
-            }
-        }
+    fun getImg(fileName: String = "MyImg", fileType: Int = FILE_TYPE_1, result:(Bitmap?)->Unit){
+        val folderPath = getFolderPath(folderName = "", fileType = fileType)
+        val file = File(folderPath,"${fileName}.png")
         ThreadPoolUtils.cachedThreadPool.execute {
             var bitmap: Bitmap? = null
             try {
@@ -295,15 +273,15 @@ object FileUtils {
      * uri.path -> content://media/external/images/media/
      * 真实目录 -> /storage/emulated/0/Pictures/
      */
-    fun saveImgQ(bitmap: Bitmap,folderName: String? = "folderName", fileName: String? = "MyImg") {
+    fun saveImgQ(bitmap: Bitmap,folderName: String = "folderName", fileName: String? = "MyImg") {
 
-        val file = File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath}/${folderName}","${fileName}.png")
+        val file = File(getFolderPath(folderName = folderName,fileType = FILE_TYPE_2),"${fileName}.png")
         if (file.exists()){
             file.delete()
         }
         val contentValues = ContentValues()
         // 指定文件保存的文件夹名称
-        // 如果想获取上述文件夹的真实地址可以通过这样的方式 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() 获取，他返回的值类似 /storage/emulated/0/Pictures
+        // 如果想获取上述文件夹的真实地址可以通过这样的方式 getAbsolutePath() 获取，他返回的值类似 /storage/emulated/0/Pictures
         if (!TextUtils.isEmpty(folderName)){
             contentValues.put(
                 MediaStore.Images.ImageColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/${folderName}")
@@ -358,6 +336,29 @@ object FileUtils {
             cursor?.close()
         }
         return ""
+    }
+
+    /**
+     * 获取文件路径
+     */
+    fun getFolderPath(folderName: String = "Test", fileType: Int = FILE_TYPE_1, EnvironmentType: String = Environment.DIRECTORY_PICTURES): String{
+
+        return when(fileType){
+            FILE_TYPE_0 -> {
+                "${MyApplication.instance.filesDir.absolutePath}/${folderName}"
+            }
+            FILE_TYPE_1 -> {
+                "${MyApplication.instance.getExternalFilesDir(null)?.absolutePath}/${folderName}"
+
+            }
+            FILE_TYPE_2 -> {
+                "${Environment.getExternalStoragePublicDirectory(EnvironmentType).absolutePath}/${folderName}"
+            }
+
+            else ->{
+                folderName
+            }
+        }
     }
 
 
