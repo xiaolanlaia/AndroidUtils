@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentHomeBinding
-import com.wjf.androidutils.utils.CoroutineUtils.launch
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
@@ -38,16 +37,6 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnArray.setOnClickListener(this)
         binding.btnFile.setOnClickListener(this)
 
-        binding.btnSave.setOnClickListener {
-            launch {
-//                incrementCounter()
-            }
-        }
-
-        binding.btnGet.setOnClickListener {
-
-
-        }
     }
 
 
