@@ -1,4 +1,4 @@
-package com.wjf.androidutils.ui.designPattern
+package com.wjf.androidutils.ui
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -61,6 +61,7 @@ import com.wjf.moduledesignpattern.structureType.flyweightPattern.Ticket
 import com.wjf.moduledesignpattern.structureType.flyweightPattern.TicketFactory
 import com.wjf.moduledesignpattern.structureType.proxyPattern.ProxySubject
 import com.wjf.moduledesignpattern.structureType.proxyPattern.RealSubject
+import com.wjf.androidutils.ui.home.HomeViewModel
 
 /**
  * @Description
@@ -69,9 +70,9 @@ import com.wjf.moduledesignpattern.structureType.proxyPattern.RealSubject
  *
  */
 
-class DesignFragment : MVVMBaseFragment<DesignViewModel,FragmentDesignBinding>(), View.OnClickListener {
+class DesignFragment : MVVMBaseFragment<HomeViewModel,FragmentDesignBinding>(), View.OnClickListener {
 
-    override fun initViewModel() = ViewModelProviders.of(this).get(DesignViewModel::class.java)
+    override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentDesignBinding {
         return FragmentDesignBinding.inflate(inflater,container,false)

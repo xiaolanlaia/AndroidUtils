@@ -1,4 +1,4 @@
-package com.wjf.androidutils.ui.persistent
+package com.wjf.androidutils.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentPersistentBinding
+import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.androidutils.utils.persistent.DataStoreUtils
 import com.wjf.androidutils.utils.persistent.MMKVUtils
 import com.wjf.androidutils.utils.persistent.SPUtils
@@ -17,9 +18,9 @@ import com.wjf.androidutils.utils.persistent.SPUtils
  *
  */
 
-class PersistentFragment : MVVMBaseFragment<PersistentViewModel,FragmentPersistentBinding>(), View.OnClickListener {
+class PersistentFragment : MVVMBaseFragment<HomeViewModel,FragmentPersistentBinding>(), View.OnClickListener {
 
-    override fun initViewModel() = ViewModelProviders.of(this).get(PersistentViewModel::class.java)
+    override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentPersistentBinding {
 

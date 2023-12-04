@@ -1,10 +1,11 @@
-package com.wjf.androidutils.ui.toast
+package com.wjf.androidutils.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentToastBinding
+import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.androidutils.utils.ToastUtils
 import com.wjf.androidutils.utils.singleClick
 
@@ -15,9 +16,9 @@ import com.wjf.androidutils.utils.singleClick
  *
  */
 
-class ToastFragment : MVVMBaseFragment<ToastViewModel,FragmentToastBinding>() {
+class ToastFragment : MVVMBaseFragment<HomeViewModel,FragmentToastBinding>() {
 
-    override fun initViewModel() = ViewModelProviders.of(this).get(ToastViewModel::class.java)
+    override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentToastBinding {
 

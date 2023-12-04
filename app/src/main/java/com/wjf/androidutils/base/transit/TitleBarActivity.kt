@@ -3,6 +3,7 @@ package com.wjf.androidutils.base.transit
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,15 +11,15 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
-import com.wjf.androidutils.ui.arrayUtils.ArrayFragment
-import com.wjf.androidutils.ui.designPattern.DesignFragment
-import com.wjf.androidutils.ui.fileUtils.FileFragment
+import com.wjf.androidutils.ui.ArrayFragment
+import com.wjf.androidutils.ui.DesignFragment
+import com.wjf.androidutils.ui.FileFragment
 import com.wjf.androidutils.ui.home.HomeFragment
-import com.wjf.androidutils.ui.persistent.PersistentFragment
-import com.wjf.androidutils.ui.toast.ToastFragment
-import com.wjf.androidutils.utils.DeviceUtils
+import com.wjf.androidutils.ui.PersistentFragment
+import com.wjf.androidutils.ui.ToastFragment
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
@@ -26,6 +27,7 @@ import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
+import com.wjf.androidutils.utils.ScreenUtils
 import com.wjf.androidutils.utils.StatusBar
 import com.wjf.androidutils.utils.singleClick
 
@@ -47,7 +49,7 @@ class TitleBarActivity : AppCompatActivity() {
     var PERMISSIONS_STORAGE = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.MANAGE_EXTERNAL_STORAGE
+        Manifest.permission.READ_PHONE_STATE
     )
 
     //请求状态码，请求码的作用是与回调函数进行匹配的，这样就可以对不同权限操作进行不同的提示
@@ -65,9 +67,33 @@ class TitleBarActivity : AppCompatActivity() {
         statusBar.setColor(R.color.transparent)
 
         setContentView(R.layout.activity_title_bar)
-        ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE)
+        if (lacksPermissions()){
+            ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE)
+        }
         initView()
         initClick()
+    }
+
+
+    /**
+     * 判断权限集合
+     * permissions 权限数组
+     * return true-表示没有改权限  false-表示权限已开启
+     */
+    fun lacksPermissions(): Boolean {
+        for (permission in PERMISSIONS_STORAGE) {
+            if (lacksPermission(permission)) {
+                return true
+            }
+        }
+        return false
+    }
+
+    /**
+     * 判断是否缺少权限
+     */
+    private fun lacksPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED
     }
 
     private fun initView(){
@@ -76,7 +102,7 @@ class TitleBarActivity : AppCompatActivity() {
         val commonTitle = findViewById<RelativeLayout>(R.id.common_title)
         val viewStatus = findViewById<View>(R.id.view_status)
         val layoutParams = viewStatus.layoutParams
-        layoutParams.height = DeviceUtils.getStatusBarHeight()
+        layoutParams.height = ScreenUtils.getStatusBarHeight()
         viewStatus.layoutParams = layoutParams
 
         when(intent.getStringExtra(JUMP_TO)){

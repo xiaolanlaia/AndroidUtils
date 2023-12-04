@@ -1,10 +1,11 @@
-package com.wjf.androidutils.ui.fileUtils
+package com.wjf.androidutils.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentFileBinding
+import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.androidutils.utils.FILE_TYPE_2
 import com.wjf.androidutils.utils.FileUtils
 import com.wjf.androidutils.utils.LogUtils
@@ -16,9 +17,9 @@ import com.wjf.androidutils.utils.LogUtils
  *
  */
 
-class FileFragment : MVVMBaseFragment<FileViewModel,FragmentFileBinding>() {
+class FileFragment : MVVMBaseFragment<HomeViewModel,FragmentFileBinding>() {
 
-    override fun initViewModel() = ViewModelProviders.of(this).get(FileViewModel::class.java)
+    override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentFileBinding {
         return FragmentFileBinding.inflate(inflater,container,false)

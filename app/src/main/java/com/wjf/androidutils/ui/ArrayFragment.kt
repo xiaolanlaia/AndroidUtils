@@ -1,4 +1,4 @@
-package com.wjf.androidutils.ui.arrayUtils
+package com.wjf.androidutils.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentArrayBinding
+import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.androidutils.utils.ArrayUtils
 import com.wjf.androidutils.utils.LogUtils
 
@@ -16,9 +17,9 @@ import com.wjf.androidutils.utils.LogUtils
  *
  */
 
-class ArrayFragment : MVVMBaseFragment<ArrayViewModel,FragmentArrayBinding>(), View.OnClickListener {
+class ArrayFragment : MVVMBaseFragment<HomeViewModel,FragmentArrayBinding>(), View.OnClickListener {
 
-    override fun initViewModel() = ViewModelProviders.of(this).get(ArrayViewModel::class.java)
+    override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentArrayBinding {
         return FragmentArrayBinding.inflate(inflater,container,false)
