@@ -1,6 +1,8 @@
 package com.wjf.androidutils.utils
 
 import android.content.ContentValues
+import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
 import com.wjf.androidutils.MyApplication
@@ -241,14 +244,20 @@ object FileUtils {
     /**
      * 删除文件夹
      */
-    fun deleteFolder(folderPath: String): Boolean{
+    fun deleteFolder(context: Context, folderPath: String, result: (Boolean) -> Unit){
+
         //传入指定的路径，然后判断路径是否存在
         val folder = File(folderPath)
-
-        return if (folder.exists()){
-            folder.deleteRecursively()
+        if (folder.exists()){
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
+                result(folder.deleteRecursively())
+            } else {
+                ToastUtils.show("请授予所有文件的管理权限")
+                val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                context.startActivity(intent)
+            }
         }else{
-            true
+            result(true)
         }
     }
 

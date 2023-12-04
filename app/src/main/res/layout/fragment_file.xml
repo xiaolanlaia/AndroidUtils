@@ -15,5 +15,10 @@
         android:text="读取 ByteArray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_delete_folder"
+        android:text="删除公共目录下的文件夹"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

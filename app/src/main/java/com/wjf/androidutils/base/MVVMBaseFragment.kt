@@ -16,10 +16,12 @@ import androidx.viewbinding.ViewBinding
 abstract class MVVMBaseFragment<VM : ViewModel, VB: ViewBinding> : Fragment() {
     lateinit var vm: VM
     lateinit var binding: VB
+    lateinit var mView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = initViewBinding(inflater,container)
         vm = initViewModel()
-        return binding.root
+        mView = binding.root
+        return mView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
