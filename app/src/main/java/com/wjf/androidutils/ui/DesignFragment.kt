@@ -186,12 +186,12 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel,FragmentDesignBinding>(), 
             R.id.strategy_pattern -> {
                 val calculator = TrafficCalculator()
                 Thread {
-                    calculator.setCalculateStrategy(BusStrategy())
-                    Log.d("__price-bus", "" + calculator.calculatePrice(16))
+
+                    Log.d("__price-bus", "" + calculator.setCalculateStrategy(BusStrategy()).calculatePrice(16))
                 }.start()
                 Thread {
-                    calculator.setCalculateStrategy(CarStrategy())
-                    Log.d("__price-car", "" + calculator.calculatePrice(16))
+
+                    Log.d("__price-car", "" + calculator.setCalculateStrategy(CarStrategy()).calculatePrice(16))
                 }.start()
             }
 

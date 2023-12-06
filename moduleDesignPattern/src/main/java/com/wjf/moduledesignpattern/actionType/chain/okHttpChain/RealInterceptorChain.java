@@ -2,7 +2,7 @@ package com.wjf.moduledesignpattern.actionType.chain.okHttpChain;
 
 import java.util.ArrayList;
 
-public class RealInterceptorChain implements InterceptorCallBack.Chain {
+public class RealInterceptorChain implements Chain {
     private ArrayList<InterceptorCallBack> interceptorList = new ArrayList<>();
     private int index = 0;
     private String lastResponse = "";
@@ -18,8 +18,12 @@ public class RealInterceptorChain implements InterceptorCallBack.Chain {
     @Override
     public String proceed(String requestStr) {
         lastResponse = requestStr;
-        if (interceptorList == null || interceptorList.size() == 0) return lastResponse;
-        if (index >= interceptorList.size()) return lastResponse;
+        if (interceptorList == null || interceptorList.size() == 0) {
+            return lastResponse;
+        }
+        if (index >= interceptorList.size()) {
+            return lastResponse;
+        }
         InterceptorCallBack nextInterceptor = interceptorList.get(index);
         index ++;
 

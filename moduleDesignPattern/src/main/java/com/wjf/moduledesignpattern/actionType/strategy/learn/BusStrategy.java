@@ -15,40 +15,6 @@ public class BusStrategy implements CalculateStrategy {
 
         int price = 1 + extraFactor * 1;
         Log.d("__price-bus-4","price = "+price);
-
-//        FutureTask<Integer> futureTask = new FutureTask<Integer>(new Callable<Integer>() {
-//            @Override
-//            public Integer call() throws Exception {
-//
-//                try {
-//                    Log.d("__price-bus-5","sleep pre ");
-//
-//                    Thread.sleep(5000);
-//                    Log.d("__price-bus-6","sleep after ");
-//
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                }
-//                return 0;
-//            }
-//        });
-//        Log.d("__price-bus-7","1");
-//
-//        Thread thread = new Thread(futureTask);
-//        thread.start();
-//        Log.d("__price-bus-8","1");
-//
-//        try {
-//            Log.d("__price-bus-9","1");
-//
-//            futureTask.get(1000, TimeUnit.SECONDS);
-//            Log.d("__price-bus-10","1");
-//
-//        }catch (Exception e){
-//            Log.d("__price-bus-11",""+e.getMessage());
-//
-//            e.printStackTrace();
-//        }
         Log.d("__price-bus-12","1");
 
         return fraction > 0 ? ++price : price;
