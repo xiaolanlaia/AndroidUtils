@@ -12,6 +12,7 @@ import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
+import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.LogUtils
 import com.wjf.androidutils.utils.handler.HandlerCallback
@@ -38,6 +39,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnArray.setOnClickListener(this)
         binding.btnFile.setOnClickListener(this)
         binding.btnException.setOnClickListener(this)
+        binding.btnReflect.setOnClickListener(this)
 
     }
 
@@ -72,6 +74,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
 
             binding.btnException -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_ExceptionFragment)
+            }
+
+            binding.btnReflect -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_ReflectFragment)
             }
         }
     }
