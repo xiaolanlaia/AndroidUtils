@@ -133,17 +133,6 @@ object DeviceUtils {
      * 获取当前系统上的语言列表(Locale列表)
      */
     fun getSupportLanguage(): String {
-        LogUtils.d("wangjie", "Local:" + Locale.GERMAN)
-        LogUtils.d("wangjie", "Local:" + Locale.ENGLISH)
-        LogUtils.d("wangjie", "Local:" + Locale.US)
-        LogUtils.d("wangjie", "Local:" + Locale.CHINESE)
-        LogUtils.d("wangjie", "Local:" + Locale.TAIWAN)
-        LogUtils.d("wangjie", "Local:" + Locale.FRANCE)
-        LogUtils.d("wangjie", "Local:" + Locale.FRENCH)
-        LogUtils.d("wangjie", "Local:" + Locale.GERMANY)
-        LogUtils.d("wangjie", "Local:" + Locale.ITALIAN)
-        LogUtils.d("wangjie", "Local:" + Locale.JAPAN)
-        LogUtils.d("wangjie", "Local:" + Locale.JAPANESE)
         return Locale.getAvailableLocales().toString()
     }
 
