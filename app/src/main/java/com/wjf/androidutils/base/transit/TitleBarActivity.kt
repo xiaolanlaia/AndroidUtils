@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
 import com.wjf.androidutils.ui.ArrayFragment
 import com.wjf.androidutils.ui.DesignFragment
+import com.wjf.androidutils.ui.ExceptionFragment
 import com.wjf.androidutils.ui.FileFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.PersistentFragment
@@ -24,6 +25,7 @@ import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
@@ -130,6 +132,11 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_FileFragment -> {
                 tvPageTitle.text = "FileFragment"
                 fragment = FileFragment()
+            }
+
+            JUMP_TO_ExceptionFragment -> {
+                tvPageTitle.text = "ExceptionFragment"
+                fragment = ExceptionFragment()
             }
 
             else -> {

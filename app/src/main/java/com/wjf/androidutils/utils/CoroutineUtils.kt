@@ -11,7 +11,11 @@ object CoroutineUtils {
      * 返回job
      */
     fun launch(block: suspend () -> Unit) = CoroutineScope(Dispatchers.Main).launch {
-        block()
+        try {
+            block()
+        } catch (error: Throwable) {
+            print(error.message)
+        }
     }
 
     /**
@@ -21,6 +25,7 @@ object CoroutineUtils {
         try {
             block()
         } catch (error: Throwable) {
+            print(error.message)
             error(error)
         }
     }

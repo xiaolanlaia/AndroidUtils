@@ -84,4 +84,8 @@ object LogUtils {
             Log.e(tag, msg)
         }
     }
+
+    fun getStackTraceString(throwable : Throwable) : String{
+        return Log.getStackTraceString(throwable)
+    }
 }

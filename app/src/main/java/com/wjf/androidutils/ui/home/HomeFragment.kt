@@ -9,6 +9,7 @@ import com.wjf.androidutils.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentHomeBinding
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
@@ -36,6 +37,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnToast.setOnClickListener(this)
         binding.btnArray.setOnClickListener(this)
         binding.btnFile.setOnClickListener(this)
+        binding.btnException.setOnClickListener(this)
 
     }
 
@@ -66,6 +68,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
 
             binding.btnFile -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_FileFragment)
+            }
+
+            binding.btnException -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_ExceptionFragment)
             }
         }
     }
