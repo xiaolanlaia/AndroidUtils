@@ -3,7 +3,6 @@ package com.wjf.androidutils.utils
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -13,6 +12,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
+import androidx.core.content.FileProvider
 import com.wjf.androidutils.MyApplication
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -40,6 +40,11 @@ const val FILE_TYPE_1_N = -1
 const val FILE_TYPE_0 = 0
 const val FILE_TYPE_1 = 1
 const val FILE_TYPE_2 = 2
+
+/**
+ * delete ： 删除文件和空文件夹，文件夹不为空时，删除失败
+ * deleteRecursively：递归删除，即使返回失败，也可能已经删除部分文件
+ */
 object FileUtils {
 
 
@@ -290,7 +295,7 @@ object FileUtils {
         }
         val contentValues = ContentValues()
         // 指定文件保存的文件夹名称
-        // 如果想获取上述文件夹的真实地址可以通过这样的方式 getAbsolutePath() 获取，他返回的值类似 /storage/emulated/0/Pictures
+        // 如果想获取上述文件夹的真实地址可以通过这样的方式 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() 获取，他返回的值类似 /storage/emulated/0/Pictures
         if (!TextUtils.isEmpty(folderName)){
             contentValues.put(
                 MediaStore.Images.ImageColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/${folderName}")
@@ -330,21 +335,23 @@ object FileUtils {
      * uri转path
      */
     fun uri2RealPath(contentUri: Uri): String? {
-        var cursor: Cursor? = null
-        try {
-            val proj = arrayOf(MediaStore.Images.Media.DATA)
-            cursor = MyApplication.instance.contentResolver.query(contentUri, proj, null, null, null)
-            if (cursor != null && cursor.columnCount > 0) {
-                cursor.moveToFirst()
-                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                return cursor.getString(columnIndex)
-            }
-        } catch (e: java.lang.Exception) {
 
-        } finally {
-            cursor?.close()
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
+    }
+
+    /**
+     * path转uri
+     */
+    fun path2Uri(filePath: String?): Uri? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            val appid = "${MyApplication.instance.applicationInfo.packageName}.fileprovider"
+            val appid = "com.wjf.androidutils.fileprovider"
+//            val appid = "com.wjf.androidutils.fileProvider"
+            LogUtils.d("__appid",appid)
+            FileProvider.getUriForFile(MyApplication.instance, "com.wjf.androidutils.fileprovider", File(filePath))
+        } else {
+            Uri.fromFile(File(filePath))
         }
-        return ""
     }
 
     /**

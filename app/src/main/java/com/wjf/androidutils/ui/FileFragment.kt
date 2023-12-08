@@ -49,8 +49,11 @@ class FileFragment : MVVMBaseFragment<HomeViewModel,FragmentFileBinding>() {
                 LogUtils.d("__delete-result","${it}")
 
             }
+        }
 
-
+        binding.btnPath2Uri.setOnClickListener {
+            val uri = FileUtils.path2Uri(FileUtils.getFolderPath("SocketImg/002", FILE_TYPE_2))
+            LogUtils.d("__path2Uri","path = ${uri?.path}")
         }
     }
 
