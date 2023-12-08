@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentFileBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.androidutils.utils.FILE_TYPE_2
-import com.wjf.androidutils.utils.FileUtils
-import com.wjf.androidutils.utils.LogUtils
+import com.wjf.moduleutils.FILE_TYPE_2
+import com.wjf.moduleutils.FileUtils
+import com.wjf.moduleutils.LogUtils
 
 /**
  * @Description

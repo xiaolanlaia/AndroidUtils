@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentPersistentBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.androidutils.utils.persistent.DataStoreUtils
-import com.wjf.androidutils.utils.persistent.MMKVUtils
-import com.wjf.androidutils.utils.persistent.SPUtils
+import com.wjf.moduleutils.persistent.DataStoreUtils
+import com.wjf.moduleutils.persistent.MMKVUtils
+import com.wjf.moduleutils.persistent.SPUtils
 
 /**
  * @Description

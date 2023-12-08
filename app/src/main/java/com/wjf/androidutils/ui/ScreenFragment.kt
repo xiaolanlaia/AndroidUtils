@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentScreenBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.androidutils.utils.LogUtils
-import com.wjf.androidutils.utils.ScreenUtils
-import com.wjf.androidutils.utils.singleClick
+import com.wjf.moduleutils.LogUtils
+import com.wjf.moduleutils.ScreenUtils
+import com.wjf.moduleutils.singleClick
 
 /**
  * @Description

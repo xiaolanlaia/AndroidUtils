@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentToastBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.androidutils.utils.ToastUtils
-import com.wjf.androidutils.utils.singleClick
+import com.wjf.moduleutils.ToastUtils
+import com.wjf.moduleutils.singleClick
 
 /**
  * @Description

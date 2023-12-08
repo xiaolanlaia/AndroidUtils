@@ -1,10 +1,11 @@
 package com.wjf.androidutils
 
 import android.app.Application
-import com.tencent.mmkv.MMKV
-import com.wjf.androidutils.utils.ExceptionUtils
-import com.wjf.androidutils.utils.LogUtils
-import com.wjf.androidutils.utils.ToastUtils
+import com.wjf.moduleutils.ExceptionUtils
+import com.wjf.moduleutils.LogUtils
+import com.wjf.moduleutils.ModuleUtilsConstant
+import com.wjf.moduleutils.ToastUtils
+import com.wjf.moduleutils.persistent.MMKVUtils
 
 /**
  * @Description
@@ -22,15 +23,14 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-
+        ModuleUtilsConstant.moduleUtilsContext = this
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
                 LogUtils.d("__unCatchException-1", LogUtils.getStackTraceString(e))
             }
         })
 
-        // 初始化
-        MMKV.initialize(this)
+        MMKVUtils.init()
         ToastUtils.setToastTextSize()
     }
 }

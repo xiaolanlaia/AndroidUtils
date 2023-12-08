@@ -4,9 +4,10 @@ package com.wjf.androidutils.utils
 import org.junit.Before
 import org.junit.Test
 import com.google.common.truth.Truth.assertThat
-import com.wjf.androidutils.utils.ArrayUtils.deleteArray
-import com.wjf.androidutils.utils.ArrayUtils.findSubArray
-import com.wjf.androidutils.utils.ArrayUtils.subArray
+import com.wjf.moduleutils.ArrayUtils
+import com.wjf.moduleutils.ArrayUtils.deleteArray
+import com.wjf.moduleutils.ArrayUtils.findSubArray
+import com.wjf.moduleutils.ArrayUtils.subArray
 
 /**
  * @Description

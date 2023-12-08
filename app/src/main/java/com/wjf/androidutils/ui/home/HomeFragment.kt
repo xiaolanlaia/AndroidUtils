@@ -14,8 +14,8 @@ import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
-import com.wjf.androidutils.utils.LogUtils
-import com.wjf.androidutils.utils.handler.HandlerCallback
+import com.wjf.moduleutils.LogUtils
+import com.wjf.moduleutils.handler.HandlerCallback
 
 class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , HandlerCallback, View.OnClickListener {
 

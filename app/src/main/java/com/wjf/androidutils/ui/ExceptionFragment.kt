@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentExceptionBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.androidutils.utils.CoroutineUtils.launch
-import com.wjf.androidutils.utils.ExceptionUtils
-import com.wjf.androidutils.utils.singleClick
+import com.wjf.moduleutils.CoroutineUtils.launch
+import com.wjf.moduleutils.ExceptionUtils
+import com.wjf.moduleutils.singleClick
 import java.lang.IllegalArgumentException
 
 /**

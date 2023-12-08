@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentArrayBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.androidutils.utils.ArrayUtils
-import com.wjf.androidutils.utils.LogUtils
+import com.wjf.moduleutils.ArrayUtils
+import com.wjf.moduleutils.LogUtils
 
 /**
  * @Description

@@ -31,9 +31,9 @@ import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
-import com.wjf.androidutils.utils.ScreenUtils
-import com.wjf.androidutils.utils.StatusBar
-import com.wjf.androidutils.utils.singleClick
+import com.wjf.moduleutils.ScreenUtils
+import com.wjf.moduleutils.StatusBar
+import com.wjf.moduleutils.singleClick
 
 class TitleBarActivity : AppCompatActivity() {
 

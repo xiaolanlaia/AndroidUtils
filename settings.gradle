@@ -30,3 +30,4 @@ dependencyResolutionManagement {
 rootProject.name = "AndroidUtils"
 include ':app'
 include ':moduleDesignPattern'
+include ':moduleUtils'
