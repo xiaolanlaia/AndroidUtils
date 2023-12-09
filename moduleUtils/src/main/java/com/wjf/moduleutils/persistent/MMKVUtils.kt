@@ -19,12 +19,13 @@ import com.wjf.moduleutils.ModuleUtilsConstant
  */
 object MMKVUtils{
 
-    private val MMKVInstance = MMKV.defaultMMKV()
+    lateinit var MMKVInstance : MMKV
 
     // 初始化
     fun init(){
 
         MMKV.initialize(ModuleUtilsConstant.moduleUtilsContext)
+        MMKVInstance = MMKV.defaultMMKV()
     }
     /**
      * 写入数据
