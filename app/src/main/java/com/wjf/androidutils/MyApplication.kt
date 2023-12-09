@@ -1,6 +1,7 @@
 package com.wjf.androidutils
 
 import android.app.Application
+import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.ModuleUtilsConstant
@@ -24,6 +25,7 @@ class MyApplication : Application() {
         super.onCreate()
         instance = this
         ModuleUtilsConstant.moduleUtilsContext = this
+        ImgLoaderConstant.imgLoaderContext = this
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
                 LogUtils.d("__unCatchException-1", LogUtils.getStackTraceString(e))

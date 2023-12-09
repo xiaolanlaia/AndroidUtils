@@ -34,5 +34,7 @@ ext {
             runner                       :      "1.4.0",
             rules                        :      "1.1.0",
             fragment_testing             :      "1.5.5",
+            glide                        :      "4.11.0",
+            glide_compiler               :      "4.11.0",
     ]
 }

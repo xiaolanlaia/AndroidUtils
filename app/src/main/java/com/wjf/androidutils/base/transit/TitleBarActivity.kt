@@ -18,6 +18,7 @@ import com.wjf.androidutils.ui.ArrayFragment
 import com.wjf.androidutils.ui.DesignFragment
 import com.wjf.androidutils.ui.ExceptionFragment
 import com.wjf.androidutils.ui.FileFragment
+import com.wjf.androidutils.ui.ImgLoaderFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.PersistentFragment
 import com.wjf.androidutils.ui.ToastFragment
@@ -28,6 +29,7 @@ import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
+import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
@@ -144,6 +146,11 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_ReflectFragment -> {
                 tvPageTitle.text = "ReflectFragment"
                 fragment = ReflectFragment()
+            }
+
+            JUMP_TO_ImgLoaderFragment -> {
+                tvPageTitle.text = "ImgLoaderFragment"
+                fragment = ImgLoaderFragment()
             }
 
             else -> {

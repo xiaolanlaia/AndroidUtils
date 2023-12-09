@@ -21,6 +21,7 @@ const val JUMP_TO_ArrayFragment         = "jump_to_ArrayFragment"
 const val JUMP_TO_FileFragment          = "jump_to_FileFragment"
 const val JUMP_TO_ExceptionFragment     = "jump_to_ExceptionFragment"
 const val JUMP_TO_ReflectFragment       = "jump_to_ReflectFragment"
+const val JUMP_TO_ImgLoaderFragment     = "jump_to_ImgLoaderFragment"
 
 
 const val LABEL = "label"

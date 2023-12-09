@@ -49,11 +49,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$supportDependencies.ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$supportDependencies.espresso_core"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$supportDependencies.kotlinx_coroutines_android"
-    implementation "com.google.code.gson:gson:$supportDependencies.gson"
     implementation "androidx.lifecycle:lifecycle-extensions:$supportDependencies.lifecycle_extensions"
-    implementation "androidx.datastore:datastore-preferences:$supportDependencies.datastore_preferences"
-    implementation "androidx.datastore:datastore:$supportDependencies.datastore"
-    implementation "com.tencent:mmkv:$supportDependencies.mmkv"
 
     // Local unit tests
     testImplementation "androidx.test:core:$supportDependencies.test_core"
@@ -74,6 +70,8 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$supportDependencies.fragment_testing"
 
 
+    implementation project(":moduleUtils")
     implementation project(":moduleDesignPattern")
+    implementation project(":moduleImgLoader")
 
 }
