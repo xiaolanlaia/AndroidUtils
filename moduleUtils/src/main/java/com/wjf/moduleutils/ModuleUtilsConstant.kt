@@ -9,6 +9,12 @@ import android.content.Context
  *
  */
 
+/**
+ * JS调用Android方法的接口名
+ */
+const val H5_RETURN_TO_MAIN = "JavascriptReturnToMain"
+
+
 object ModuleUtilsConstant {
 
     lateinit var moduleUtilsContext: Context

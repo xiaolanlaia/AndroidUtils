@@ -22,6 +22,7 @@ import com.wjf.androidutils.ui.ImgLoaderFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.PersistentFragment
 import com.wjf.androidutils.ui.ToastFragment
+import com.wjf.androidutils.ui.WebViewFragment
 import com.wjf.androidutils.ui.reflect.ReflectFragment
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
@@ -33,6 +34,7 @@ import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
+import com.wjf.androidutils.utils.JUMP_TO_WebViewFragment
 import com.wjf.moduleutils.ScreenUtils
 import com.wjf.moduleutils.StatusBar
 import com.wjf.moduleutils.singleClick
@@ -151,6 +153,11 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_ImgLoaderFragment -> {
                 tvPageTitle.text = "ImgLoaderFragment"
                 fragment = ImgLoaderFragment()
+            }
+
+            JUMP_TO_WebViewFragment -> {
+                tvPageTitle.text = "WebViewFragment"
+                fragment = WebViewFragment()
             }
 
             else -> {
