@@ -8,7 +8,7 @@ import android.widget.Toast
 
 
 object ToastUtils {
-    var mToast: Toast? = null
+    private var mToast: Toast? = null
 
     fun setToastTextSize() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R){

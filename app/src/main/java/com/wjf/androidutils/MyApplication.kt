@@ -28,6 +28,7 @@ class MyApplication : Application() {
         ImgLoaderConstant.imgLoaderContext = this
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
+                ToastUtils.show("报错了")
                 LogUtils.d("__unCatchException-1", LogUtils.getStackTraceString(e))
             }
         })
