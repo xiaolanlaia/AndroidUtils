@@ -23,6 +23,7 @@ const val JUMP_TO_ExceptionFragment     = "jump_to_ExceptionFragment"
 const val JUMP_TO_ReflectFragment       = "jump_to_ReflectFragment"
 const val JUMP_TO_ImgLoaderFragment     = "jump_to_ImgLoaderFragment"
 const val JUMP_TO_WebViewFragment       = "jump_to_WebViewFragment"
+const val JUMP_TO_AnimFragment          = "jump_to_AnimFragment"
 
 
 const val LABEL = "label"

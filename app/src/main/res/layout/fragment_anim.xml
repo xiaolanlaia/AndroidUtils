@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/tv_anim_1"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center"
+        android:text="ObjectAnimator"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-120dp"
+        android:layout_marginTop="@dimen/dp50"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_anim_2"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center"
+        android:text="ViewPropertyAnimator"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-120dp"
+        android:layout_marginTop="@dimen/dp120"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_anim_3"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center"
+        android:text="自定义估值器"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-120dp"
+        android:layout_marginTop="@dimen/dp180"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_Keyframe"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center"
+        android:text="Keyframe"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/dp240"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+</RelativeLayout>

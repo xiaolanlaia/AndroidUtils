@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
+import com.wjf.androidutils.ui.AnimFragment
 import com.wjf.androidutils.ui.ArrayFragment
 import com.wjf.androidutils.ui.DesignFragment
 import com.wjf.androidutils.ui.ExceptionFragment
@@ -26,6 +27,7 @@ import com.wjf.androidutils.ui.WebViewFragment
 import com.wjf.androidutils.ui.reflect.ReflectFragment
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
+import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
@@ -158,6 +160,11 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_WebViewFragment -> {
                 tvPageTitle.text = "WebViewFragment"
                 fragment = WebViewFragment()
+            }
+
+            JUMP_TO_AnimFragment -> {
+                tvPageTitle.text = "AnimFragment"
+                fragment = AnimFragment()
             }
 
             else -> {
