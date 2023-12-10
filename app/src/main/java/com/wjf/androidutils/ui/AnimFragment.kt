@@ -96,5 +96,9 @@ class AnimFragment : MVVMBaseFragment<HomeViewModel, FragmentAnimBinding>() {
             }
 
         }
+
+        binding.roundMenu.singleClick {
+            binding.roundMenu.startAnim()
+        }
     }
 }

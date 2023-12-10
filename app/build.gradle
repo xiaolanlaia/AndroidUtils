@@ -73,5 +73,6 @@ dependencies {
     implementation project(":moduleUtils")
     implementation project(":moduleDesignPattern")
     implementation project(":moduleImgLoader")
+    implementation project(":moduleWidget")
 
 }
