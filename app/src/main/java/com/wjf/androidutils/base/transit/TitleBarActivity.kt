@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -56,11 +57,10 @@ class TitleBarActivity : AppCompatActivity() {
     }
 
     //首先定义请求变量
-    var PERMISSIONS_STORAGE = arrayOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.READ_PHONE_STATE
-    )
+    private var permissionList = ArrayList<String>().apply {
+        add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        add(Manifest.permission.READ_PHONE_STATE)
+    }
 
     //请求状态码，请求码的作用是与回调函数进行匹配的，这样就可以对不同权限操作进行不同的提示
     val REQUEST_EXTERNAL_STORAGE = 1
@@ -75,10 +75,16 @@ class TitleBarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val statusBar = StatusBar(this)
         statusBar.setColor(R.color.transparent)
-
         setContentView(R.layout.activity_title_bar)
         if (lacksPermissions()){
-            ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU){
+                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }else{
+                permissionList.add(Manifest.permission.READ_MEDIA_AUDIO)
+                permissionList.add(Manifest.permission.READ_MEDIA_IMAGES)
+                permissionList.add(Manifest.permission.READ_MEDIA_VIDEO)
+            }
+            ActivityCompat.requestPermissions(this, permissionList.toTypedArray(), REQUEST_EXTERNAL_STORAGE)
         }
         initView()
         initClick()
@@ -91,7 +97,7 @@ class TitleBarActivity : AppCompatActivity() {
      * return true-表示没有改权限  false-表示权限已开启
      */
     fun lacksPermissions(): Boolean {
-        for (permission in PERMISSIONS_STORAGE) {
+        for (permission in permissionList) {
             if (lacksPermission(permission)) {
                 return true
             }
