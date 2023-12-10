@@ -52,7 +52,7 @@ class FileFragment : MVVMBaseFragment<HomeViewModel,FragmentFileBinding>() {
         }
 
         binding.btnPath2Uri.setOnClickListener {
-            val uri = FileUtils.path2Uri(FileUtils.getFolderPath("SocketImg/002", FILE_TYPE_2))
+            val uri = FileUtils.path2Uri(FileUtils.getFolderPath("SocketImg/002/success/0.jpeg", FILE_TYPE_2))
             LogUtils.d("__path2Uri","path = ${uri?.path}")
         }
     }

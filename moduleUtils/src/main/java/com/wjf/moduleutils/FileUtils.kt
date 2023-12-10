@@ -341,16 +341,8 @@ object FileUtils {
     /**
      * path转uri
      */
-    fun path2Uri(filePath: String?): Uri? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            val appid = "${ModuleUtilsConstant.moduleUtilsContext.applicationInfo.packageName}.fileprovider"
-            val appid = "com.wjf.androidutils.fileprovider"
-//            val appid = "com.wjf.androidutils.fileProvider"
-            LogUtils.d("__appid",appid)
-            FileProvider.getUriForFile(ModuleUtilsConstant.moduleUtilsContext, "com.wjf.androidutils.fileprovider", File(filePath))
-        } else {
-            Uri.fromFile(File(filePath))
-        }
+    fun path2Uri(filePath: String): Uri? {
+        return Uri.fromFile(File(filePath))
     }
 
     /**
