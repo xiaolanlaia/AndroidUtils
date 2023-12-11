@@ -55,8 +55,23 @@
         android:textColor="@color/black"
         android:textSize="14sp" />
 
-    <com.example.modulewidget.RoundMenu
+    <com.example.modulewidget.widget.RoundMenu
         android:id="@+id/round_menu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_feixing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_feixing"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_xinhao"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_wifi"/>
+    </com.example.modulewidget.widget.RoundMenu>
 </RelativeLayout>

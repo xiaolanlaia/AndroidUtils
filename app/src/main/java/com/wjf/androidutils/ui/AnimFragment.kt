@@ -13,6 +13,7 @@ import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentAnimBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.moduleutils.ScreenUtils
+import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.anim.PointEvaluator
 import com.wjf.moduleutils.singleClick
 
@@ -97,8 +98,9 @@ class AnimFragment : MVVMBaseFragment<HomeViewModel, FragmentAnimBinding>() {
 
         }
 
-        binding.roundMenu.singleClick {
-            binding.roundMenu.startAnim()
+        binding.ivFeixing.singleClick {
+            ToastUtils.show("ivFeixing")
+
         }
     }
 }

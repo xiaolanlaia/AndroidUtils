@@ -39,4 +39,7 @@ dependencies {
     testImplementation "junit:junit:$supportDependencies.junit"
     androidTestImplementation "androidx.test.ext:junit:$supportDependencies.ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$supportDependencies.espresso_core"
+
+    implementation project(":moduleUtils")
+
 }
