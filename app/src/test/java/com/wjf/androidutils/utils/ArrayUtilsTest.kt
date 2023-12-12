@@ -5,9 +5,9 @@ import org.junit.Before
 import org.junit.Test
 import com.google.common.truth.Truth.assertThat
 import com.wjf.moduleutils.ArrayUtils
-import com.wjf.moduleutils.ArrayUtils.deleteArray
-import com.wjf.moduleutils.ArrayUtils.findSubArray
-import com.wjf.moduleutils.ArrayUtils.subArray
+import com.wjf.moduleutils.deleteArray
+import com.wjf.moduleutils.findSubArray
+import com.wjf.moduleutils.subArray
 
 /**
  * @Description
@@ -41,17 +41,17 @@ class ArrayUtilsTest {
 
     @Test
     fun `test mergeArray`(){
-        assertThat(ArrayUtils.mergeArray(byteArray1,byteArray2)).isEqualTo(byteArray)
+        assertThat(ArrayUtils.instance.mergeArray(byteArray1,byteArray2)).isEqualTo(byteArray)
     }
 
     @Test
     fun `test mergeArrayObject`() {
-        assertThat(ArrayUtils.mergeArrayObject(strArr1,strArr2)).isEqualTo(strArr)
+        assertThat(ArrayUtils.instance.mergeArrayObject(strArr1,strArr2)).isEqualTo(strArr)
     }
 
     @Test
     fun `test splitByteArray`() {
-        val split = ArrayUtils.splitByteArray(byteArray,3)
+        val split = ArrayUtils.instance.splitByteArray(byteArray,3)
         split.forEach {
             print(it.contentToString())
         }
@@ -59,7 +59,7 @@ class ArrayUtilsTest {
 
     @Test
     fun `test splitByteArray2`() {
-        val split = ArrayUtils.splitByteArray2(byteArray,3)
+        val split = ArrayUtils.instance.splitByteArray2(byteArray,3)
         split.forEach {
             print(it.contentToString())
         }

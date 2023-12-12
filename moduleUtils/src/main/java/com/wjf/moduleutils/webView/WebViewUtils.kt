@@ -18,7 +18,11 @@ import com.wjf.moduleutils.ModuleUtilsConstant.moduleUtilsContext
  */
 
 @SuppressLint("StaticFieldLeak")
-object WebViewUtils {
+class WebViewUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { WebViewUtils() }
+    }
 
     var mVebView: WebView? = null
     private var context: Context? = null
@@ -57,9 +61,9 @@ object WebViewUtils {
     }
 
     fun loadUrl(context: Context?, url: String = "") {
-        WebViewUtils.context = context
+        this.context = context
 
-        if (WebViewUtils.context !=null){
+        if (this.context !=null){
             try {
                 getWebView().loadUrl(url)
             }catch (e:Exception){

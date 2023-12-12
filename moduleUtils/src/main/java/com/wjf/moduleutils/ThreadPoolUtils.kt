@@ -14,7 +14,11 @@ import java.util.concurrent.TimeUnit
  *
  */
 
-object ThreadPoolUtils {
+class ThreadPoolUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { ThreadPoolUtils() }
+    }
 
     /**
      * 固定大小线程池：可控制并发的线程数，超出的线程会在队列中等待

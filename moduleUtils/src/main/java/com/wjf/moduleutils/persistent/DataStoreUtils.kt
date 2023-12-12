@@ -11,7 +11,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.wjf.moduleutils.CoroutineUtils.launch
+import com.wjf.moduleutils.CoroutineUtils
 import com.wjf.moduleutils.ModuleUtilsConstant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -26,10 +26,13 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-object DataStoreUtils {
+class DataStoreUtils {
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { DataStoreUtils() }
+    }
 
     fun putValue(key: String, value: Any) {
-        launch {
+        CoroutineUtils.instance.launch {
             when (value) {
                 is Int -> {
                     val keyValue = intPreferencesKey(key)
@@ -75,7 +78,7 @@ object DataStoreUtils {
 
     fun getInt(key: String, result: (Int) -> Unit) {
 
-        launch {
+        CoroutineUtils.instance.launch {
             val valueFlow: Flow<Int> = ModuleUtilsConstant.moduleUtilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
@@ -88,7 +91,7 @@ object DataStoreUtils {
 
     fun getDouble(key: String, result: (Double) -> Unit) {
 
-        launch {
+        CoroutineUtils.instance.launch {
             val valueFlow: Flow<Double> = ModuleUtilsConstant.moduleUtilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
@@ -101,7 +104,7 @@ object DataStoreUtils {
 
     fun getString(key: String, result: (String) -> Unit) {
 
-        launch {
+        CoroutineUtils.instance.launch {
             val valueFlow: Flow<String> = ModuleUtilsConstant.moduleUtilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
@@ -113,7 +116,7 @@ object DataStoreUtils {
 
     fun getBoolean(key: String, result: (Boolean) -> Unit) {
 
-        launch {
+        CoroutineUtils.instance.launch {
             val valueFlow: Flow<Boolean> = ModuleUtilsConstant.moduleUtilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.

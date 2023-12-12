@@ -44,9 +44,12 @@ const val FILE_TYPE_2 = 2
  * delete ： 删除文件和空文件夹，文件夹不为空时，删除失败
  * deleteRecursively：递归删除，即使返回失败，也可能已经删除部分文件
  */
-object FileUtils {
+class FileUtils {
 
 
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { FileUtils() }
+    }
     /**
      * txt -> 写入字符串
      * Android 11及以上不能在根目录下创建文件夹
@@ -55,7 +58,7 @@ object FileUtils {
 
         val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
         if (folderExistOrCreate(folderPath)){
-            ThreadPoolUtils.cachedThreadPool.execute {
+            ThreadPoolUtils.instance.cachedThreadPool.execute {
                 val file = File(folderPath,fileName)
                 if (!file.exists()) { file.createNewFile() }
                 //追加模式
@@ -79,7 +82,7 @@ object FileUtils {
         val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
 
         if (folderExistOrCreate(folderPath)){
-            ThreadPoolUtils.cachedThreadPool.execute {
+            ThreadPoolUtils.instance.cachedThreadPool.execute {
                 val file = File(folderPath,fileName)
 
                 if (file.exists()) {
@@ -161,7 +164,7 @@ object FileUtils {
 
 
         if (folderExistOrCreate(folderPath)){
-            ThreadPoolUtils.cachedThreadPool.execute {
+            ThreadPoolUtils.instance.cachedThreadPool.execute {
                 val file = File(folderPath,"${fileName}.png")
                 if (file.exists()){
                     file.delete()
@@ -186,7 +189,7 @@ object FileUtils {
     fun getImg(fileName: String = "MyImg", fileType: Int = FILE_TYPE_1, result:(Bitmap?)->Unit){
         val folderPath = getFolderPath(folderName = "", fileType = fileType)
         val file = File(folderPath,"${fileName}.png")
-        ThreadPoolUtils.cachedThreadPool.execute {
+        ThreadPoolUtils.instance.cachedThreadPool.execute {
             var bitmap: Bitmap? = null
             try {
                 val inputStream = FileInputStream(file)
@@ -256,7 +259,7 @@ object FileUtils {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
                 result(folder.deleteRecursively())
             } else {
-                ToastUtils.show("请授予所有文件的管理权限")
+                ToastUtils.instance.show("请授予所有文件的管理权限")
                 val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
                 context.startActivity(intent)
             }
@@ -310,7 +313,7 @@ object FileUtils {
         // 可以通过 MediaStore 保存文件的公共目录有：Images、Audio、Video、Downloads
         val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues) ?: return
 
-        ThreadPoolUtils.cachedThreadPool.execute {
+        ThreadPoolUtils.instance.cachedThreadPool.execute {
             // 写入图片数据
             var outputStream: OutputStream? = null
             try {

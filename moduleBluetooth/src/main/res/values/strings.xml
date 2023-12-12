@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_tip">请开启蓝牙权限</string>
+    <string name="blue_closed_tip">请开启蓝牙</string>
+</resources>

@@ -73,7 +73,7 @@ class AnimFragment : MVVMBaseFragment<HomeViewModel, FragmentAnimBinding>() {
             val animator = ValueAnimator.ofObject(
                 PointEvaluator(),
                 Point(0,0),
-                Point(ScreenUtils.getDeviceWidth(),ScreenUtils.getDeviceHeight())
+                Point(ScreenUtils.instance.getDeviceWidth(),ScreenUtils.instance.getDeviceHeight())
             )
 
             animator.addUpdateListener {
@@ -99,7 +99,7 @@ class AnimFragment : MVVMBaseFragment<HomeViewModel, FragmentAnimBinding>() {
         }
 
         binding.ivFeixing.singleClick {
-            ToastUtils.show("ivFeixing")
+            ToastUtils.instance.show("ivFeixing")
 
         }
     }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentExceptionBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
-import com.wjf.moduleutils.CoroutineUtils.launch
+import com.wjf.moduleutils.CoroutineUtils
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.singleClick
 import java.lang.IllegalArgumentException
@@ -31,14 +31,14 @@ class ExceptionFragment : MVVMBaseFragment<HomeViewModel, FragmentExceptionBindi
     override fun initView() {
         binding.btnUncaught.singleClick {
 
-            launch({
+            CoroutineUtils.instance.launch({
                 throw NullPointerException()
 
             },{
 
             })
 
-            launch({
+            CoroutineUtils.instance.launch({
                 throw IllegalArgumentException()
 
             },{

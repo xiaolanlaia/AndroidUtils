@@ -83,7 +83,7 @@ object ImgLoaderUtils {
      * bitmap
      */
     fun loadBitmap(bitmap : Bitmap, iv : ImageView){
-        GlideApp.with(iv.context).load(BitmapUtils.bitmap2ByteArray(bitmap)).into(iv)
+        GlideApp.with(iv.context).load(BitmapUtils.instance.bitmap2ByteArray(bitmap)).into(iv)
     }
 
     /**

@@ -27,7 +27,7 @@ class ToastFragment : MVVMBaseFragment<HomeViewModel,FragmentToastBinding>() {
 
     override fun initView() {
         binding.tvToast.singleClick {
-            ToastUtils.show("测试字体大小")
+            ToastUtils.instance.show("测试字体大小")
         }
     }
 

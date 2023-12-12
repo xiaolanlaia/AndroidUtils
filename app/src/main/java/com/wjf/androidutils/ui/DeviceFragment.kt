@@ -29,30 +29,30 @@ class DeviceFragment : MVVMBaseFragment<HomeViewModel, FragmentDeviceBinding>() 
 
     override fun initView() {
         binding.btnManufacturer.singleClick {
-            LogUtils.d("__DeviceUtils-getManufacturer","${DeviceUtils.getManufacturer()}")
+            LogUtils.d("__DeviceUtils-getManufacturer","${DeviceUtils.instance.getManufacturer()}")
         }
         binding.btnProduct.singleClick {
-            LogUtils.d("__DeviceUtils-getProduct","${DeviceUtils.getProduct()}")
+            LogUtils.d("__DeviceUtils-getProduct","${DeviceUtils.instance.getProduct()}")
 
         }
         binding.btnBrand.singleClick {
-            LogUtils.d("__DeviceUtils-getBrand","${DeviceUtils.getBrand()}")
+            LogUtils.d("__DeviceUtils-getBrand","${DeviceUtils.instance.getBrand()}")
 
         }
         binding.btnModel.singleClick {
-            LogUtils.d("__DeviceUtils-getModel","${DeviceUtils.getModel()}")
+            LogUtils.d("__DeviceUtils-getModel","${DeviceUtils.instance.getModel()}")
         }
         binding.btnBoard.singleClick {
-            LogUtils.d("__DeviceUtils-getBoard","${DeviceUtils.getBoard()}")
+            LogUtils.d("__DeviceUtils-getBoard","${DeviceUtils.instance.getBoard()}")
         }
         binding.btnDevice.singleClick {
-            LogUtils.d("__DeviceUtils-getDevice","${DeviceUtils.getDevice()}")
+            LogUtils.d("__DeviceUtils-getDevice","${DeviceUtils.instance.getDevice()}")
         }
         binding.btnFingerprint.singleClick {
-            LogUtils.d("__DeviceUtils-getFingerprint","${DeviceUtils.getFingerprint()}")
+            LogUtils.d("__DeviceUtils-getFingerprint","${DeviceUtils.instance.getFingerprint()}")
         }
         binding.btnRam.singleClick {
-            LogUtils.d("__DeviceUtils-getRAMInfo","${DeviceUtils.getRAMInfo()}")
+            LogUtils.d("__DeviceUtils-getRAMInfo","${DeviceUtils.instance.getRAMInfo()}")
         }
     }
 }

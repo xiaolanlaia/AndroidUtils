@@ -7,7 +7,59 @@ package com.wjf.moduleutils
  *
  */
 
-object ArrayUtils {
+
+/**
+ * 截取指定位置范围内数组数组
+ * startIndex: inclusive
+ * endIndex: exclusive
+ */
+fun ByteArray.subArray(startIndex: Int, endIndex: Int): ByteArray{
+    val newBytes = copyOfRange(startIndex, endIndex)
+    return newBytes
+}
+
+/**
+ * 删除指定位置数组
+ * startIndex: inclusive
+ * endIndex: exclusive
+ */
+fun ByteArray.deleteArray(startIndex: Int, endIndex: Int): ByteArray{
+    val newBytes = ByteArray(size - (endIndex - startIndex)) { 0 }
+    System.arraycopy(this, 0, newBytes, 0, startIndex)
+    System.arraycopy(this, endIndex, newBytes, startIndex, size - endIndex)
+    return newBytes
+}
+
+/**
+ * 查找子数组的起始位置
+ * reverse:
+ *      true: 查找最后一个
+ *      false：查找第一个
+ */
+fun ByteArray.findSubArray(subArray: ByteArray, reverse: Boolean = false): Int {
+    val n = size
+    val m = subArray.size
+    if (reverse) {
+        for (i in n - m downTo 0) {
+            if (subArray contentEquals sliceArray(i until i + m)) {
+                return i
+            }
+        }
+    }else{
+        for (i in 0 until n - m + 1) {
+            if (subArray contentEquals sliceArray(i until i + m)) {
+                return i
+            }
+        }
+    }
+    return -1
+}
+
+class ArrayUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { ArrayUtils() }
+    }
 
     /**
      * byte数组合并
@@ -98,50 +150,4 @@ object ArrayUtils {
 
 
 
-    /**
-     * 截取指定位置范围内数组数组
-     * startIndex: inclusive
-     * endIndex: exclusive
-     */
-    fun ByteArray.subArray(startIndex: Int, endIndex: Int): ByteArray{
-        val newBytes = copyOfRange(startIndex, endIndex)
-        return newBytes
-    }
-
-    /**
-     * 删除指定位置数组
-     * startIndex: inclusive
-     * endIndex: exclusive
-     */
-    fun ByteArray.deleteArray(startIndex: Int, endIndex: Int): ByteArray{
-        val newBytes = ByteArray(size - (endIndex - startIndex)) { 0 }
-        System.arraycopy(this, 0, newBytes, 0, startIndex)
-        System.arraycopy(this, endIndex, newBytes, startIndex, size - endIndex)
-        return newBytes
-    }
-
-    /**
-     * 查找子数组的起始位置
-     * reverse:
-     *      true: 查找最后一个
-     *      false：查找第一个
-     */
-    fun ByteArray.findSubArray(subArray: ByteArray, reverse: Boolean = false): Int {
-        val n = size
-        val m = subArray.size
-        if (reverse) {
-            for (i in n - m downTo 0) {
-                if (subArray contentEquals sliceArray(i until i + m)) {
-                    return i
-                }
-            }
-        }else{
-            for (i in 0 until n - m + 1) {
-                if (subArray contentEquals sliceArray(i until i + m)) {
-                    return i
-                }
-            }
-        }
-        return -1
-    }
 }

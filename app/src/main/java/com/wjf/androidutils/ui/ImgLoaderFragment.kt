@@ -33,7 +33,7 @@ class ImgLoaderFragment : MVVMBaseFragment<HomeViewModel, FragmentImgLoaderBindi
         ImgLoaderUtils.loadImg(R.mipmap.test_0,binding.ivImg)
         ImgLoaderUtils.loadGif(R.mipmap.duck,binding.ivGif,1)
         ImgLoaderUtils.loadGif(R.mipmap.duck,binding.ivGifLoop)
-        ImgLoaderUtils.loadBitmap(BitmapUtils.resource2Bitmap(R.mipmap.ic_launcher),binding.ivBitmap)
+        ImgLoaderUtils.loadBitmap(BitmapUtils.instance.resource2Bitmap(R.mipmap.ic_launcher),binding.ivBitmap)
         ImgLoaderUtils.loadCircle(R.mipmap.test_0,binding.ivCircle)
         ImgLoaderUtils.loadCircleWithBorder(R.mipmap.test_0,binding.ivCircleBorder,1f)
         ImgLoaderUtils.loadCorner(R.mipmap.test_0,binding.ivCorner)

@@ -36,7 +36,7 @@ class ArrayFragment : MVVMBaseFragment<HomeViewModel,FragmentArrayBinding>(), Vi
 
             binding.btnSplit -> {
                 val originArr = byteArrayOf(1,2,3,4,5,6,7,8,9)
-                val splitArr = ArrayUtils.splitByteArray(originArr,2)
+                val splitArr = ArrayUtils.instance.splitByteArray(originArr,2)
 
                 splitArr.forEach {
                     LogUtils.d("__splitArr",it.contentToString())

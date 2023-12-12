@@ -17,7 +17,11 @@ import com.wjf.moduleutils.ModuleUtilsConstant
  * 开启多进程访问。默认是单线程
  * val mmkv = MMKV.mmkvWithID("ID",MMKV.MULTI_PROCESS_MODE)
  */
-object MMKVUtils{
+class MMKVUtils{
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { MMKVUtils() }
+    }
 
     lateinit var MMKVInstance : MMKV
 

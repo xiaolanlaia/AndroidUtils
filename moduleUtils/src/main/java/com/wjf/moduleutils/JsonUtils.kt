@@ -5,8 +5,11 @@ import com.google.gson.JsonParser
 import com.wjf.moduleutils.entity.User
 
 
-object JsonUtils {
+class JsonUtils {
 
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { JsonUtils() }
+    }
     /**
      * 将字符串解析成实体类
      */

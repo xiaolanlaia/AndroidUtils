@@ -39,12 +39,12 @@ class PersistentFragment : MVVMBaseFragment<HomeViewModel,FragmentPersistentBind
     val key = "test"
     override fun onClick(v: View?) {
         when(v){
-            binding.btnSpSet -> { SPUtils.commit(key,1)}
-            binding.btnSpGet -> { binding.tvSpShow.text = SPUtils.getInt(key).toString()}
-            binding.btnDatastoreSet -> { DataStoreUtils.putValue(key,2)}
-            binding.btnDatastoreGet -> { DataStoreUtils.getInt(key){ binding.tvDatastoreShow.text = it.toString()}}
-            binding.btnMmkvSet -> { MMKVUtils.putValue(key,3)}
-            binding.btnMmkvGet -> { binding.tvMmkvShow.text = MMKVUtils.getInt(key).toString()}
+            binding.btnSpSet -> { SPUtils.instance.commit(key,1)}
+            binding.btnSpGet -> { binding.tvSpShow.text = SPUtils.instance.getInt(key).toString()}
+            binding.btnDatastoreSet -> { DataStoreUtils.instance.putValue(key,2)}
+            binding.btnDatastoreGet -> { DataStoreUtils.instance.getInt(key){ binding.tvDatastoreShow.text = it.toString()}}
+            binding.btnMmkvSet -> { MMKVUtils.instance.putValue(key,3)}
+            binding.btnMmkvGet -> { binding.tvMmkvShow.text = MMKVUtils.instance.getInt(key).toString()}
         }
     }
 }

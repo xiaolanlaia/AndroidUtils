@@ -14,7 +14,11 @@ import java.util.Locale
  *
  */
 
-object DeviceUtils {
+class DeviceUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { DeviceUtils() }
+    }
 
     /**
      * 获取厂商名

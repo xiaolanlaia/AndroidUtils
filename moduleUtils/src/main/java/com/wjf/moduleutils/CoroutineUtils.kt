@@ -5,7 +5,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-object CoroutineUtils {
+class CoroutineUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { CoroutineUtils() }
+    }
 
     /**
      * 返回job

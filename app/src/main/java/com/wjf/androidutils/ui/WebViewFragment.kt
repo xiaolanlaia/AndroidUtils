@@ -30,7 +30,7 @@ class WebViewFragment : MVVMBaseFragment<HomeViewModel, FragmentWebViewBinding>(
 
     override fun initView() {
         if (activity != null && !requireActivity().isDestroyed){
-            binding.frameWenView.addView(WebViewUtils.getWebView())
+            binding.frameWenView.addView(WebViewUtils.instance.getWebView())
             val returnToMainInterface = ReturnToMainInterface(object : ReturnToMainCallback {
                 override fun returnToMain() {
                     //h5调用了返回首页
@@ -38,8 +38,8 @@ class WebViewFragment : MVVMBaseFragment<HomeViewModel, FragmentWebViewBinding>(
                 }
 
             })
-            WebViewUtils.addJavascriptInterface(returnToMainInterface, H5_RETURN_TO_MAIN)
-            WebViewUtils.loadUrl(mView.context,"https://www.baidu.com")
+            WebViewUtils.instance.addJavascriptInterface(returnToMainInterface, H5_RETURN_TO_MAIN)
+            WebViewUtils.instance.loadUrl(mView.context,"https://www.baidu.com")
 
         }
     }

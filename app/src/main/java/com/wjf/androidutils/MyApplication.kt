@@ -1,6 +1,7 @@
 package com.wjf.androidutils
 
 import android.app.Application
+import com.wjf.modulebluetooth.utils.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.LogUtils
@@ -26,14 +27,15 @@ class MyApplication : Application() {
         instance = this
         ModuleUtilsConstant.moduleUtilsContext = this
         ImgLoaderConstant.imgLoaderContext = this
+        BlueConstant.blueContext = this
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
-                ToastUtils.show("报错了")
+                ToastUtils.instance.show("报错了")
                 LogUtils.d("__unCatchException-1", LogUtils.getStackTraceString(e))
             }
         })
 
-        MMKVUtils.init()
-        ToastUtils.setToastTextSize()
+        MMKVUtils.instance.init()
+        ToastUtils.instance.setToastTextSize()
     }
 }

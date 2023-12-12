@@ -10,7 +10,11 @@ import java.io.ByteArrayOutputStream
  *
  */
 
-object BitmapUtils {
+class BitmapUtils {
+
+    companion object{
+        val instance by lazy (LazyThreadSafetyMode.SYNCHRONIZED) { BitmapUtils() }
+    }
 
     /**
      * 从resource中获取图片资源转为bitmap

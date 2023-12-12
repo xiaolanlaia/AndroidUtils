@@ -31,16 +31,16 @@ class ScreenFragment : MVVMBaseFragment<HomeViewModel, FragmentScreenBinding>() 
 
     override fun initView() {
         binding.btnStatusBar.singleClick {
-            LogUtils.d("__ScreenUtils-1","${ScreenUtils.getStatusBarHeight()}")
+            LogUtils.d("__ScreenUtils-1","${ScreenUtils.instance.getStatusBarHeight()}")
         }
         binding.btnDeviceWidth.singleClick {
-            LogUtils.d("__ScreenUtils-2","${ScreenUtils.getDeviceWidth()}")
+            LogUtils.d("__ScreenUtils-2","${ScreenUtils.instance.getDeviceWidth()}")
         }
         binding.btnDeviceHeight.singleClick {
-            LogUtils.d("__ScreenUtils-3","${ScreenUtils.getDeviceHeight()}")
+            LogUtils.d("__ScreenUtils-3","${ScreenUtils.instance.getDeviceHeight()}")
         }
         binding.btnImei.singleClick {
-            LogUtils.d("__ScreenUtils-4","${ScreenUtils.getIMEI()}")
+            LogUtils.d("__ScreenUtils-4","${ScreenUtils.instance.getIMEI()}")
         }
     }
 }

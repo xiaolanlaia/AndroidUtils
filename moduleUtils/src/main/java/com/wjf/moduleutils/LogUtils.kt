@@ -12,46 +12,46 @@ import android.util.Log
 object LogUtils {
 
     private const val isDebug = true
-    private val fileName = "${TimeUtil.getTime(pattern = "yyyy-MM-dd")}.txt"
+    private val fileName = "${TimeUtils.instance.getTime(pattern = "yyyy-MM-dd")}.txt"
     private const val folderName = "Log"
 
     fun vw(tag: String, msg: String) {
         if (isDebug) {
             Log.v(tag, msg)
-            val content = "\n${TimeUtil.getTime()} \n v $tag $msg"
-            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
+            val content = "\n${TimeUtils.instance.getTime()} \n v $tag $msg"
+            FileUtils.instance.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
     fun iw(tag: String, msg: String) {
         if (isDebug) {
             Log.i(tag, msg)
-            val content = "\n${TimeUtil.getTime()} \n i $tag $msg"
-            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
+            val content = "\n${TimeUtils.instance.getTime()} \n i $tag $msg"
+            FileUtils.instance.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
     fun dw(tag: String, msg: String) {
         if (isDebug) {
             Log.d(tag, msg)
-            val content = "\n${TimeUtil.getTime()} \n d $tag $msg"
-            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
+            val content = "\n${TimeUtils.instance.getTime()} \n d $tag $msg"
+            FileUtils.instance.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
     fun ww(tag: String, msg: String) {
         if (isDebug) {
             Log.w(tag, msg)
-            val content = "\n${TimeUtil.getTime()} \n w $tag $msg"
-            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
+            val content = "\n${TimeUtils.instance.getTime()} \n w $tag $msg"
+            FileUtils.instance.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 
     fun ew(tag: String, msg: String) {
         if (isDebug) {
             Log.e(tag, msg)
-            val content = "\n${TimeUtil.getTime()} \n e $tag $msg"
-            FileUtils.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
+            val content = "\n${TimeUtils.instance.getTime()} \n e $tag $msg"
+            FileUtils.instance.writeStr2Txt(content = content, folderName = folderName,fileName = fileName)
         }
     }
 

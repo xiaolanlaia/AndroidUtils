@@ -3,11 +3,14 @@ package com.wjf.moduleutils
 import android.annotation.SuppressLint
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 
 @SuppressLint("SimpleDateFormat")
-object TimeUtil {
+class TimeUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { TimeUtils() }
+    }
 
     /**
      * Y表示这周的年份，y表示标准的年份，若本周过年，Y会算入下一年

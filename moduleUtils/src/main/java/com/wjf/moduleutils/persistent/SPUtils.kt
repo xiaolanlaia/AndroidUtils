@@ -20,7 +20,11 @@ import com.wjf.moduleutils.ModuleUtilsConstant
  *
  *  不需要考虑提交结果的情况下，优先考虑apply
  */
-object SPUtils {
+class SPUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { SPUtils() }
+    }
 
     private var mPreferences = ModuleUtilsConstant.moduleUtilsContext.getSharedPreferences("SPUtils", Context.MODE_PRIVATE)
     private var mEditor = mPreferences.edit()

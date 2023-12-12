@@ -12,7 +12,11 @@ import android.telephony.TelephonyManager
  *
  */
 
-object ScreenUtils {
+class ScreenUtils {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { ScreenUtils() }
+    }
 
     /**
      * 获取状态栏高度

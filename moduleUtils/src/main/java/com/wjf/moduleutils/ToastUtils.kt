@@ -7,7 +7,11 @@ import android.widget.TextView
 import android.widget.Toast
 
 
-object ToastUtils {
+class ToastUtils {
+
+    companion object{
+        val instance by lazy (LazyThreadSafetyMode.SYNCHRONIZED) { ToastUtils() }
+    }
     private var mToast: Toast? = null
 
     fun setToastTextSize() {

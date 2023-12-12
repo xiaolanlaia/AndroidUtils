@@ -31,28 +31,28 @@ class FileFragment : MVVMBaseFragment<HomeViewModel,FragmentFileBinding>() {
 
         binding.btnInByte.setOnClickListener {
             val byteArray = byteArrayOf(1,2,3,4,5,6,7,89)
-            FileUtils.writeByteArray2Txt(byteArray,"ByteArray","ByteArray.txt", FILE_TYPE_2)
+            FileUtils.instance.writeByteArray2Txt(byteArray,"ByteArray","ByteArray.txt", FILE_TYPE_2)
         }
 
         binding.btnOutByte.setOnClickListener {
-            val byteArray = FileUtils.readByteArrayFromTxt("ByteArray","ByteArray.txt", FILE_TYPE_2)
+            val byteArray = FileUtils.instance.readByteArrayFromTxt("ByteArray","ByteArray.txt", FILE_TYPE_2)
         }
 
         binding.btnDeleteFolder.setOnClickListener {
-            val folderPath = FileUtils.getFolderPath(
+            val folderPath = FileUtils.instance.getFolderPath(
                 folderName = "SocketImg/005",
                 fileType = FILE_TYPE_2
             )
             LogUtils.d("__delete-path",folderPath)
 
-            FileUtils.deleteFolder(context = it.context, folderPath = folderPath){
+            FileUtils.instance.deleteFolder(context = it.context, folderPath = folderPath){
                 LogUtils.d("__delete-result","${it}")
 
             }
         }
 
         binding.btnPath2Uri.setOnClickListener {
-            val uri = FileUtils.path2Uri(FileUtils.getFolderPath("SocketImg/002/success/0.jpeg", FILE_TYPE_2))
+            val uri = FileUtils.instance.path2Uri(FileUtils.instance.getFolderPath("SocketImg/002/success/0.jpeg", FILE_TYPE_2))
             LogUtils.d("__path2Uri","path = ${uri?.path}")
         }
     }

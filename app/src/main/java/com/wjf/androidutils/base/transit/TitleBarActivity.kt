@@ -3,7 +3,6 @@ package com.wjf.androidutils.base.transit
 import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
 import com.wjf.androidutils.ui.AnimFragment
@@ -21,7 +19,6 @@ import com.wjf.androidutils.ui.DesignFragment
 import com.wjf.androidutils.ui.ExceptionFragment
 import com.wjf.androidutils.ui.FileFragment
 import com.wjf.androidutils.ui.ImgLoaderFragment
-import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.PersistentFragment
 import com.wjf.androidutils.ui.ToastFragment
 import com.wjf.androidutils.ui.WebViewFragment
@@ -38,6 +35,7 @@ import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.JUMP_TO_WebViewFragment
+import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ScreenUtils
 import com.wjf.moduleutils.StatusBar
 import com.wjf.moduleutils.singleClick
@@ -63,7 +61,7 @@ class TitleBarActivity : AppCompatActivity() {
     }
 
     //请求状态码，请求码的作用是与回调函数进行匹配的，这样就可以对不同权限操作进行不同的提示
-    val REQUEST_EXTERNAL_STORAGE = 1
+    val REQUEST_CODE = 1
 
     lateinit var linearBack: LinearLayout
     lateinit var fragment: Fragment
@@ -76,40 +74,17 @@ class TitleBarActivity : AppCompatActivity() {
         val statusBar = StatusBar(this)
         statusBar.setColor(R.color.transparent)
         setContentView(R.layout.activity_title_bar)
-        if (lacksPermissions()){
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU){
-                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }else{
-                permissionList.add(Manifest.permission.READ_MEDIA_AUDIO)
-                permissionList.add(Manifest.permission.READ_MEDIA_IMAGES)
-                permissionList.add(Manifest.permission.READ_MEDIA_VIDEO)
-            }
-            ActivityCompat.requestPermissions(this, permissionList.toTypedArray(), REQUEST_EXTERNAL_STORAGE)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU){
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }else{
+            permissionList.add(Manifest.permission.READ_MEDIA_AUDIO)
+            permissionList.add(Manifest.permission.READ_MEDIA_IMAGES)
+            permissionList.add(Manifest.permission.READ_MEDIA_VIDEO)
         }
+        PermissionUtil.instance.requestPermissions(this,permissionList,REQUEST_CODE)
+
         initView()
         initClick()
-    }
-
-
-    /**
-     * 判断权限集合
-     * permissions 权限数组
-     * return true-表示没有改权限  false-表示权限已开启
-     */
-    fun lacksPermissions(): Boolean {
-        for (permission in permissionList) {
-            if (lacksPermission(permission)) {
-                return true
-            }
-        }
-        return false
-    }
-
-    /**
-     * 判断是否缺少权限
-     */
-    private fun lacksPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED
     }
 
     private fun initView(){
@@ -118,7 +93,7 @@ class TitleBarActivity : AppCompatActivity() {
         val commonTitle = findViewById<RelativeLayout>(R.id.common_title)
         val viewStatus = findViewById<View>(R.id.view_status)
         val layoutParams = viewStatus.layoutParams
-        layoutParams.height = ScreenUtils.getStatusBarHeight()
+        layoutParams.height = ScreenUtils.instance.getStatusBarHeight()
         viewStatus.layoutParams = layoutParams
 
         when(intent.getStringExtra(JUMP_TO)){
