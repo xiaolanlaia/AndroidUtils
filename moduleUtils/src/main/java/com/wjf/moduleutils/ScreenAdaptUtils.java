@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 /**
- * 使用 ScreenAdaptation(this, 1920f).register()
+ * 使用 ScreenAdaptUtils(this, 1920f).register()
  */
 public class ScreenAdaptUtils {
 
