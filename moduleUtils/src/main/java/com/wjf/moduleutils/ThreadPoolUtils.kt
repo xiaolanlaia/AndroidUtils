@@ -1,9 +1,11 @@
 package com.wjf.moduleutils
 
+import android.os.Build
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
@@ -16,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class ThreadPoolUtils {
 
-    companion object{
+    companion object {
         val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { ThreadPoolUtils() }
     }
 
@@ -26,10 +28,17 @@ class ThreadPoolUtils {
      * 2、最大线程数等于核心线程数
      * 3、等待队列无界
      */
-    fun fixedThreadPool(size: Int = 10): ExecutorService{
-        val fixedThreadPool by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Executors.newFixedThreadPool(size) }
-        return fixedThreadPool
+    var mFixedThreadPool: ExecutorService? = null
+    fun getFixedThreadPool(size: Int = 10): ExecutorService {
+        if (mFixedThreadPool == null) {
+            mFixedThreadPool = Executors.newFixedThreadPool(size)
+        }
+        return mFixedThreadPool!!
+    }
 
+    fun shutdownFixedThreadPool() {
+        mFixedThreadPool?.shutdownNow()
+        mFixedThreadPool = null
     }
 
     /**
@@ -38,10 +47,17 @@ class ThreadPoolUtils {
      * 2、最大线程数无限大
      * 3、等待队列优先队列 -> 有优先级
      */
-    fun scheduledThreadPool(size: Int = 10): ExecutorService{
-        val fixedThreadPool by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Executors.newScheduledThreadPool(size) }
-        return fixedThreadPool
+    private var mScheduledThreadPool: ExecutorService? = null
+    fun scheduledThreadPool(size: Int = 10): ExecutorService {
+        if (mScheduledThreadPool == null) {
+            mScheduledThreadPool = Executors.newScheduledThreadPool(size)
+        }
+        return mScheduledThreadPool!!
+    }
 
+    fun shutdownScheduledThreadPool() {
+        mScheduledThreadPool?.shutdownNow()
+        mScheduledThreadPool = null
     }
 
     /**
@@ -50,12 +66,39 @@ class ThreadPoolUtils {
      * 2、最大线程数：无限大
      * 3、等待队列 SynchronousQueue
      */
-    val cachedThreadPool by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Executors.newCachedThreadPool() }
+    private var mCachedThreadPool: ExecutorService? = null
+    fun getCachedThreadPool(): ExecutorService {
+        if (mCachedThreadPool == null) {
+            mCachedThreadPool = Executors.newCachedThreadPool()
+        }
+        return mCachedThreadPool!!
+    }
+
+    fun shutdownCachedThreadPool() {
+        mCachedThreadPool?.shutdownNow()
+        mCachedThreadPool = null
+    }
 
     /**
      * 抢占式执行的线程池（执行顺序不确定）
      */
-    val workStealingPool by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Executors.newWorkStealingPool() }
+    private var mWorkStealingPool: ExecutorService? = null
+    fun getWorkStealingPool(): ExecutorService? {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            return null
+        }
+        if (mWorkStealingPool == null) {
+
+            mWorkStealingPool = Executors.newWorkStealingPool()
+        }
+        return mWorkStealingPool!!
+    }
+
+    fun shutdownWorkStealingPool() {
+        mWorkStealingPool?.shutdownNow()
+        mWorkStealingPool = null
+    }
+
 
     /**
      * 单线程线程池：保证先进先出的执行顺序
@@ -63,7 +106,18 @@ class ThreadPoolUtils {
      * 2、最大线程数：1
      * 3、等待队列：无界
      */
-    val singleThreadExecutor by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Executors.newSingleThreadExecutor() }
+    private var mSingleThreadExecutor: ExecutorService? = null
+    fun getSingleThreadExecutor(): ExecutorService {
+        if (mSingleThreadExecutor == null) {
+            mSingleThreadExecutor = Executors.newSingleThreadExecutor()
+        }
+        return mSingleThreadExecutor!!
+    }
+
+    fun shutdownSingleThreadExecutor() {
+        mSingleThreadExecutor?.shutdownNow()
+        mSingleThreadExecutor = null
+    }
 
     /**
      * 单线程的可执行延迟任务的线程池
@@ -74,7 +128,18 @@ class ThreadPoolUtils {
      * scheduleAtFixedRate: 若上一个任务执行时间大于 period ，则任务执行完毕后会立即执行下一个任务
      * scheduleWithFixedDelay: 无论上一个任务执行时间是否大于period，任务执行完毕后都会等待 period 再去执行下一个任务
      */
-    val singleThreadScheduledExecutor by lazy(LazyThreadSafetyMode.NONE) { Executors.newSingleThreadScheduledExecutor() }
+    private var mSingleThreadScheduledExecutor: ScheduledExecutorService? = null
+    fun getSingleThreadScheduledExecutor(): ScheduledExecutorService {
+        if (mSingleThreadScheduledExecutor == null) {
+            mSingleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor()
+        }
+        return mSingleThreadScheduledExecutor!!
+    }
+
+    fun shutdownSingleThreadScheduledExecutor() {
+        mSingleThreadScheduledExecutor?.shutdownNow()
+        mSingleThreadScheduledExecutor = null
+    }
 
     /**
      * 自定义线程池
@@ -84,18 +149,28 @@ class ThreadPoolUtils {
      * timeUnit：时间单位
      * workQueue：阻塞队列
      */
+    private var mThreadPoolExecutor: ThreadPoolExecutor? = null
     fun threadPoolExecutor(
         corePoolSize: Int = 1,
         maximumPoolSize: Int = 1,
         keepAliveTime: Long = 60,
-        timeUnit : TimeUnit = TimeUnit.SECONDS,
+        timeUnit: TimeUnit = TimeUnit.SECONDS,
         workQueue: BlockingQueue<Runnable> = LinkedBlockingQueue(1)
-    ){
-        val threadPoolExecutor by lazy(LazyThreadSafetyMode.NONE) {
-            ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime,timeUnit,workQueue)
+    ): ThreadPoolExecutor {
+        if (mThreadPoolExecutor == null) {
+            mThreadPoolExecutor = ThreadPoolExecutor(
+                corePoolSize,
+                maximumPoolSize,
+                keepAliveTime,
+                timeUnit,
+                workQueue
+            )
         }
+        return mThreadPoolExecutor!!
     }
 
-
-
+    fun shutdownThreadPoolExecutor() {
+        mThreadPoolExecutor?.shutdownNow()
+        mThreadPoolExecutor = null
+    }
 }

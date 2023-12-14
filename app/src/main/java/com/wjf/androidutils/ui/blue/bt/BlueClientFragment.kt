@@ -20,6 +20,7 @@ import com.wjf.moduleutils.singleClick
 import com.wjf.modulebluetooth.bt.callback.BlueCallback
 import com.wjf.modulebluetooth.bt.callback.BlueCallbackImpl
 import com.wjf.modulebluetooth.bt.receiver.BlueReceiver
+import com.wjf.moduleutils.ThreadPoolUtils
 
 /**
  * @Description
@@ -75,6 +76,7 @@ class BlueClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueClientBin
         activity?.unregisterReceiver(mBlueReceiver)
         BlueUtils.instance.close()
         socketNotify(BLUE_DISCONNECTED, null)
+        ThreadPoolUtils.instance.shutdownCachedThreadPool()
     }
 
     override fun scanStarted() {
