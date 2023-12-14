@@ -1,4 +1,4 @@
-package com.wjf.modulebluetooth.receiver
+package com.wjf.modulebluetooth.bt.receiver
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothA2dp
@@ -9,8 +9,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import com.wjf.modulebluetooth.callback.BlueCallback
-import com.wjf.moduleutils.ExceptionUtils
+import com.wjf.modulebluetooth.bt.callback.BlueCallback
 
 
 /**
@@ -95,7 +94,6 @@ class BlueReceiver(context: Context, private val blueCallback : BlueCallback) : 
                         val removeBondMethod = device.javaClass.getMethod("setPin", ByteArray::class.java)
                         removeBondMethod.invoke(device, pin)
                     } catch (e: Exception) {
-                        ExceptionUtils.instance.getCashHandler().uncaughtException(Thread.currentThread(),e.fillInStackTrace())
                     }
 
                 }

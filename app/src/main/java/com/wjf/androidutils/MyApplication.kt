@@ -1,7 +1,7 @@
 package com.wjf.androidutils
 
 import android.app.Application
-import com.wjf.modulebluetooth.utils.BlueConstant
+import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.LogUtils

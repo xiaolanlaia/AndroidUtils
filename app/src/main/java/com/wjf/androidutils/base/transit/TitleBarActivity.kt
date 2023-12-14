@@ -22,11 +22,18 @@ import com.wjf.androidutils.ui.ImgLoaderFragment
 import com.wjf.androidutils.ui.PersistentFragment
 import com.wjf.androidutils.ui.ToastFragment
 import com.wjf.androidutils.ui.WebViewFragment
+import com.wjf.androidutils.ui.blue.bt.BlueClientFragment
+import com.wjf.androidutils.ui.blue.bt.BlueFragment
+import com.wjf.androidutils.ui.blue.bt.BlueServiceFragment
+import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.reflect.ReflectFragment
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
+import com.wjf.androidutils.utils.JUMP_TO_BlueClientFragment
+import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
+import com.wjf.androidutils.utils.JUMP_TO_BlueServiceFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
@@ -148,6 +155,21 @@ class TitleBarActivity : AppCompatActivity() {
                 fragment = AnimFragment()
             }
 
+            JUMP_TO_BlueFragment -> {
+                tvPageTitle.text = "BlueFragment"
+                fragment = BlueFragment()
+            }
+
+            JUMP_TO_BlueClientFragment -> {
+                tvPageTitle.text = "BlueClientFragment"
+                fragment = BlueClientFragment()
+            }
+
+            JUMP_TO_BlueServiceFragment -> {
+                tvPageTitle.text = "BlueServiceFragment"
+                fragment = BlueServiceFragment()
+            }
+
             else -> {
                 commonTitle.visibility = View.GONE
                 fragment = HomeFragment()
@@ -166,5 +188,13 @@ class TitleBarActivity : AppCompatActivity() {
 
             onBackPressed()
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }

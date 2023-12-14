@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <!-- 使用蓝牙的权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <!-- 扫描蓝牙设备或者操作蓝牙设置 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <!--模糊定位权限，仅作用于6.0+-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!--精准定位权限，仅作用于6.0+-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--建立蓝牙连接和传输权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--扫描蓝牙设备或修改蓝牙设置权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--Android 6.0及后续版本扫描蓝牙,需要定位权限(进入GPS设置,可以看到蓝牙定位)-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

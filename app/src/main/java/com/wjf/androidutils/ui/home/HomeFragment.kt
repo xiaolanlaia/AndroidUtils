@@ -9,6 +9,7 @@ import com.wjf.androidutils.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentHomeBinding
 import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
+import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
@@ -46,6 +47,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnImgLoader.setOnClickListener(this)
         binding.btnWebView.setOnClickListener(this)
         binding.btnAnim.setOnClickListener(this)
+        binding.btnBlue.setOnClickListener(this)
 
     }
 
@@ -96,6 +98,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
 
             binding.btnAnim -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_AnimFragment)
+            }
+
+            binding.btnBlue -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_BlueFragment)
             }
         }
     }

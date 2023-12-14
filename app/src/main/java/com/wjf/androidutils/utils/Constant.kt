@@ -24,6 +24,9 @@ const val JUMP_TO_ReflectFragment       = "jump_to_ReflectFragment"
 const val JUMP_TO_ImgLoaderFragment     = "jump_to_ImgLoaderFragment"
 const val JUMP_TO_WebViewFragment       = "jump_to_WebViewFragment"
 const val JUMP_TO_AnimFragment          = "jump_to_AnimFragment"
+const val JUMP_TO_BlueFragment          = "jump_to_BlueFragment"
+const val JUMP_TO_BlueClientFragment    = "jump_to_BlueClientFragment"
+const val JUMP_TO_BlueServiceFragment   = "jump_to_BlueServiceFragment"
 
 
 const val LABEL = "label"
