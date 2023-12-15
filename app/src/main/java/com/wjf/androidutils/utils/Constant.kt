@@ -29,6 +29,10 @@ const val JUMP_TO_BlueClientFragment    = "jump_to_BlueClientFragment"
 const val JUMP_TO_BlueServiceFragment   = "jump_to_BlueServiceFragment"
 const val JUMP_TO_BleClientFragment     = "jump_to_BleClientFragment"
 const val JUMP_TO_BleServiceFragment    = "jump_to_BleServiceFragment"
+const val JUMP_TO_DialogFragment        = "jump_to_DialogFragment"
+const val JUMP_TO_SelectTypeFragment    = "jump_to_SelectTypeFragment"
+const val JUMP_TO_SocketClientFragment  = "jump_to_SocketClientFragment"
+const val JUMP_TO_SocketServiceFragment = "jump_to_SocketServiceFragment"
 
 
 const val LABEL = "label"

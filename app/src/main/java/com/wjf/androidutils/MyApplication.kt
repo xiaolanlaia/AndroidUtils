@@ -3,6 +3,7 @@ package com.wjf.androidutils
 import android.app.Application
 import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
+import com.wjf.modulesocket.utils.SocketConstant
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.UtilsConstant
@@ -28,6 +29,7 @@ class MyApplication : Application() {
         UtilsConstant.moduleUtilsContext = this
         ImgLoaderConstant.imgLoaderContext = this
         BlueConstant.blueContext = this
+        SocketConstant.socketContext = this
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
                 ToastUtils.instance.show("报错了")

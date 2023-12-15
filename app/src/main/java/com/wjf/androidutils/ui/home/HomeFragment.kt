@@ -11,11 +11,13 @@ import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.utils.JUMP_TO_DialogFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
+import com.wjf.androidutils.utils.JUMP_TO_SelectTypeFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.JUMP_TO_WebViewFragment
 import com.wjf.moduleutils.LogUtils
@@ -48,6 +50,8 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnWebView.setOnClickListener(this)
         binding.btnAnim.setOnClickListener(this)
         binding.btnBlue.setOnClickListener(this)
+        binding.btnDialog.setOnClickListener(this)
+        binding.btnSocket.setOnClickListener(this)
 
     }
 
@@ -102,6 +106,14 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
 
             binding.btnBlue -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_BlueFragment)
+            }
+
+            binding.btnDialog -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_DialogFragment)
+            }
+
+            binding.btnSocket -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_SelectTypeFragment)
             }
         }
     }

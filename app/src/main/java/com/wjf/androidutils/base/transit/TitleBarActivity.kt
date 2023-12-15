@@ -25,8 +25,12 @@ import com.wjf.androidutils.ui.blue.BlueFragment
 import com.wjf.androidutils.ui.blue.ble.BleClientFragment
 import com.wjf.androidutils.ui.blue.ble.BleServiceFragment
 import com.wjf.androidutils.ui.blue.bt.BlueServiceFragment
+import com.wjf.androidutils.ui.dialog.DialogFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.reflect.ReflectFragment
+import com.wjf.androidutils.ui.socket.SelectTypeFragment
+import com.wjf.androidutils.ui.socket.SocketClientFragment
+import com.wjf.androidutils.ui.socket.SocketServiceFragment
 import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
@@ -37,11 +41,15 @@ import com.wjf.androidutils.utils.JUMP_TO_BlueClientFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueServiceFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.utils.JUMP_TO_DialogFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
+import com.wjf.androidutils.utils.JUMP_TO_SelectTypeFragment
+import com.wjf.androidutils.utils.JUMP_TO_SocketClientFragment
+import com.wjf.androidutils.utils.JUMP_TO_SocketServiceFragment
 import com.wjf.androidutils.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.utils.JUMP_TO_WebViewFragment
 import com.wjf.moduleutils.PermissionUtil
@@ -155,6 +163,22 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel,ActivityTitleBarBind
 
             JUMP_TO_BleServiceFragment -> {
                 fragment = BleServiceFragment()
+            }
+
+            JUMP_TO_DialogFragment -> {
+                fragment = DialogFragment()
+            }
+
+            JUMP_TO_SelectTypeFragment -> {
+                fragment = SelectTypeFragment()
+            }
+
+            JUMP_TO_SocketClientFragment -> {
+                fragment = SocketClientFragment()
+            }
+
+            JUMP_TO_SocketServiceFragment -> {
+                fragment = SocketServiceFragment()
             }
 
             else -> {
