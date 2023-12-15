@@ -5,7 +5,7 @@ import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.LogUtils
-import com.wjf.moduleutils.ModuleUtilsConstant
+import com.wjf.moduleutils.UtilsConstant
 import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.persistent.MMKVUtils
 
@@ -25,7 +25,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        ModuleUtilsConstant.moduleUtilsContext = this
+        UtilsConstant.moduleUtilsContext = this
         ImgLoaderConstant.imgLoaderContext = this
         BlueConstant.blueContext = this
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {

@@ -8,7 +8,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.LinearLayout
-import com.wjf.moduleutils.ModuleUtilsConstant.moduleUtilsContext
+import com.wjf.moduleutils.UtilsConstant.moduleUtilsContext
 
 /**
  * @Description

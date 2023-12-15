@@ -147,11 +147,11 @@ class DeviceUtils {
     fun getRAMInfo(): String {
         var totalSize: Long = 0
         var availableSize: Long = 0
-        val activityManager = ModuleUtilsConstant.moduleUtilsContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val activityManager = UtilsConstant.moduleUtilsContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryInfo = ActivityManager.MemoryInfo()
         activityManager.getMemoryInfo(memoryInfo)
         totalSize = memoryInfo.totalMem
         availableSize = memoryInfo.availMem
-        return "可用/总共：" + Formatter.formatFileSize(ModuleUtilsConstant.moduleUtilsContext, availableSize) + "/" + Formatter.formatFileSize(ModuleUtilsConstant.moduleUtilsContext, totalSize)
+        return "可用/总共：" + Formatter.formatFileSize(UtilsConstant.moduleUtilsContext, availableSize) + "/" + Formatter.formatFileSize(UtilsConstant.moduleUtilsContext, totalSize)
     }
 }

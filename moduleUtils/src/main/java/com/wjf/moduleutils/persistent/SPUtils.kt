@@ -1,7 +1,7 @@
 package com.wjf.moduleutils.persistent
 
 import android.content.Context
-import com.wjf.moduleutils.ModuleUtilsConstant
+import com.wjf.moduleutils.UtilsConstant
 
 /**
  * @Description
@@ -26,7 +26,7 @@ class SPUtils {
         val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { SPUtils() }
     }
 
-    private var mPreferences = ModuleUtilsConstant.moduleUtilsContext.getSharedPreferences("SPUtils", Context.MODE_PRIVATE)
+    private var mPreferences = UtilsConstant.moduleUtilsContext.getSharedPreferences("SPUtils", Context.MODE_PRIVATE)
     private var mEditor = mPreferences.edit()
 
 

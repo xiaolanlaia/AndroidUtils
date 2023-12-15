@@ -10,7 +10,7 @@ import android.os.Looper
  *
  */
 
-class ExceptionUtils private constructor(){
+class ExceptionUtils{
 
     private lateinit var cashHandler : CrashHandler
     companion object{

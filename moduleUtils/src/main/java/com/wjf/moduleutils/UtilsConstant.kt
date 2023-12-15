@@ -15,8 +15,9 @@ import android.content.Context
 const val H5_RETURN_TO_MAIN = "JavascriptReturnToMain"
 
 
-object ModuleUtilsConstant {
+object UtilsConstant {
 
     lateinit var moduleUtilsContext: Context
+
 
 }

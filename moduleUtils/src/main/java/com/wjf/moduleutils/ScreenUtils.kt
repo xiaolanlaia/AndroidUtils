@@ -24,9 +24,9 @@ class ScreenUtils {
     fun getStatusBarHeight(): Int {
         var result = 0
         val resourceId =
-            ModuleUtilsConstant.moduleUtilsContext.resources.getIdentifier("status_bar_height", "dimen", "android")
+            UtilsConstant.moduleUtilsContext.resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {
-            result = ModuleUtilsConstant.moduleUtilsContext.resources.getDimensionPixelSize(resourceId)
+            result = UtilsConstant.moduleUtilsContext.resources.getDimensionPixelSize(resourceId)
         }
         return result
     }
@@ -36,14 +36,14 @@ class ScreenUtils {
      * 获取设备宽度（px）
      */
     fun getDeviceWidth(): Int {
-        return ModuleUtilsConstant.moduleUtilsContext.resources.displayMetrics.widthPixels
+        return UtilsConstant.moduleUtilsContext.resources.displayMetrics.widthPixels
     }
 
     /**
      * 获取设备高度（px）
      */
     fun getDeviceHeight(): Int {
-        return ModuleUtilsConstant.moduleUtilsContext.resources.displayMetrics.heightPixels
+        return UtilsConstant.moduleUtilsContext.resources.displayMetrics.heightPixels
     }
 
     /**
@@ -53,7 +53,7 @@ class ScreenUtils {
     fun getIMEI(): String {
         return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             val tm =
-                ModuleUtilsConstant.moduleUtilsContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+                UtilsConstant.moduleUtilsContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val deviceId = tm.deviceId
             deviceId
         } else {

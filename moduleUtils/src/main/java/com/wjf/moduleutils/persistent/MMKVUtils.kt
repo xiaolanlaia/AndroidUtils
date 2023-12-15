@@ -1,7 +1,7 @@
 package com.wjf.moduleutils.persistent
 
 import com.tencent.mmkv.MMKV
-import com.wjf.moduleutils.ModuleUtilsConstant
+import com.wjf.moduleutils.UtilsConstant
 
 /**
  * @Description
@@ -28,7 +28,7 @@ class MMKVUtils{
     // 初始化
     fun init(){
 
-        MMKV.initialize(ModuleUtilsConstant.moduleUtilsContext)
+        MMKV.initialize(UtilsConstant.moduleUtilsContext)
         MMKVInstance = MMKV.defaultMMKV()
     }
     /**

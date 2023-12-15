@@ -26,8 +26,7 @@ import com.wjf.modulebluetooth.bt.callback.BlueCallbackImpl
  */
 
 @SuppressLint("MissingPermission")
-class BlueServiceFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueServiceBinding>(),
-    BlueCallback {
+class BlueServiceFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueServiceBinding>(), BlueCallback {
 
     lateinit var layoutSendBinding : LayoutSendBinding
 
