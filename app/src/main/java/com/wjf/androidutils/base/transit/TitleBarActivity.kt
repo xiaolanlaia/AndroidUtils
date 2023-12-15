@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.wjf.androidutils.R
 import com.wjf.androidutils.ui.AnimFragment
@@ -23,7 +22,9 @@ import com.wjf.androidutils.ui.PersistentFragment
 import com.wjf.androidutils.ui.ToastFragment
 import com.wjf.androidutils.ui.WebViewFragment
 import com.wjf.androidutils.ui.blue.bt.BlueClientFragment
-import com.wjf.androidutils.ui.blue.bt.BlueFragment
+import com.wjf.androidutils.ui.blue.BlueFragment
+import com.wjf.androidutils.ui.blue.ble.BleClientFragment
+import com.wjf.androidutils.ui.blue.ble.BleServiceFragment
 import com.wjf.androidutils.ui.blue.bt.BlueServiceFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.reflect.ReflectFragment
@@ -31,6 +32,8 @@ import com.wjf.androidutils.utils.IMG_POSITION
 import com.wjf.androidutils.utils.JUMP_TO
 import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
+import com.wjf.androidutils.utils.JUMP_TO_BleClientFragment
+import com.wjf.androidutils.utils.JUMP_TO_BleServiceFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueClientFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueServiceFragment
@@ -168,6 +171,17 @@ class TitleBarActivity : AppCompatActivity() {
             JUMP_TO_BlueServiceFragment -> {
                 tvPageTitle.text = "BlueServiceFragment"
                 fragment = BlueServiceFragment()
+            }
+
+
+            JUMP_TO_BleClientFragment -> {
+                tvPageTitle.text = "BleClientFragment"
+                fragment = BleClientFragment()
+            }
+
+            JUMP_TO_BleServiceFragment -> {
+                tvPageTitle.text = "BleServiceFragment"
+                fragment = BleServiceFragment()
             }
 
             else -> {

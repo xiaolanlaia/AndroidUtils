@@ -31,4 +31,10 @@ object BlueConstant {
     val SPP_UUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
     val FILE_PATH = Environment.getExternalStorageDirectory().absolutePath + "/bluetooth/"
 
+
+    val UUID_SERVICE = UUID.fromString("10000000-0000-0000-0000-000000000000") //自定义UUID
+    val UUID_CHAR_READ_NOTIFY = UUID.fromString("11000000-0000-0000-0000-000000000000")
+    val UUID_DESC_NOTITY = UUID.fromString("11100000-0000-0000-0000-000000000000")
+    val UUID_CHAR_WRITE = UUID.fromString("12000000-0000-0000-0000-000000000000")
+
 }

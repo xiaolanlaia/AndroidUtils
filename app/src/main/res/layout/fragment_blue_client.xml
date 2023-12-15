@@ -9,7 +9,6 @@
         android:id="@+id/btn_scan"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:onClick="reScan"
         android:text="@string/reScan" />
 
     <androidx.recyclerview.widget.RecyclerView

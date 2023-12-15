@@ -1,4 +1,4 @@
-package com.wjf.androidutils.ui.blue.bt
+package com.wjf.androidutils.ui.blue
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,8 @@ import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentBlueBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
+import com.wjf.androidutils.utils.JUMP_TO_BleClientFragment
+import com.wjf.androidutils.utils.JUMP_TO_BleServiceFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueClientFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueServiceFragment
 import com.wjf.modulebluetooth.bt.BlueUtils
@@ -41,6 +43,14 @@ class BlueFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueBinding>() {
 
         binding.btnBtServer.singleClick {
             TitleBarActivity.newInstance(it.context,JUMP_TO_BlueServiceFragment)
+        }
+
+        binding.btnBleClient.singleClick {
+            TitleBarActivity.newInstance(it.context,JUMP_TO_BleClientFragment)
+        }
+
+        binding.btnBleServer.singleClick {
+            TitleBarActivity.newInstance(it.context, JUMP_TO_BleServiceFragment)
         }
     }
 
