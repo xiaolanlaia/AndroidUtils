@@ -8,7 +8,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.LinearLayout
-import com.wjf.moduleutils.UtilsConstant.moduleUtilsContext
+import com.wjf.moduleutils.UtilsConstant.utilsContext
 
 /**
  * @Description
@@ -43,7 +43,7 @@ class WebViewUtils {
     }
 
     fun initWebView() {
-        mVebView = WebView(moduleUtilsContext)
+        mVebView = WebView(utilsContext)
         val params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT

@@ -1,9 +1,7 @@
 package com.wjf.moduleutils
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.os.Build
-import android.telephony.TelephonyManager
+import android.provider.Settings
+import com.wjf.moduleutils.UtilsConstant.utilsContext
 
 /**
  * @Description
@@ -24,9 +22,9 @@ class ScreenUtils {
     fun getStatusBarHeight(): Int {
         var result = 0
         val resourceId =
-            UtilsConstant.moduleUtilsContext.resources.getIdentifier("status_bar_height", "dimen", "android")
+            utilsContext.resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {
-            result = UtilsConstant.moduleUtilsContext.resources.getDimensionPixelSize(resourceId)
+            result = utilsContext.resources.getDimensionPixelSize(resourceId)
         }
         return result
     }
@@ -36,28 +34,30 @@ class ScreenUtils {
      * 获取设备宽度（px）
      */
     fun getDeviceWidth(): Int {
-        return UtilsConstant.moduleUtilsContext.resources.displayMetrics.widthPixels
+        return utilsContext.resources.displayMetrics.widthPixels
     }
 
     /**
      * 获取设备高度（px）
      */
     fun getDeviceHeight(): Int {
-        return UtilsConstant.moduleUtilsContext.resources.displayMetrics.heightPixels
+        return utilsContext.resources.displayMetrics.heightPixels
     }
 
+
     /**
-     * 获取设备的唯一标识， 需要 “android.permission.READ_Phone_STATE”权限
+     * 获取系统屏幕亮度(0-255)
      */
-    @SuppressLint("MissingPermission")
-    fun getIMEI(): String {
-        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            val tm =
-                UtilsConstant.moduleUtilsContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-            val deviceId = tm.deviceId
-            deviceId
-        } else {
-            "UNKNOWN"
+    fun getScreenBrightness(): Int {
+        try {
+            return Settings.System.getInt(utilsContext.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
+        } catch (e: Settings.SettingNotFoundException) {
+            e.printStackTrace()
         }
+        return 0
     }
+
+
+
+
 }

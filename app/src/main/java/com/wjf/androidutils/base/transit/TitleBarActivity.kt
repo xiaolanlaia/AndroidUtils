@@ -18,6 +18,7 @@ import com.wjf.androidutils.ui.ExceptionFragment
 import com.wjf.androidutils.ui.FileFragment
 import com.wjf.androidutils.ui.ImgLoaderFragment
 import com.wjf.androidutils.ui.PersistentFragment
+import com.wjf.androidutils.ui.ScreenFragment
 import com.wjf.androidutils.ui.ToastFragment
 import com.wjf.androidutils.ui.WebViewFragment
 import com.wjf.androidutils.ui.blue.bt.BlueClientFragment
@@ -47,6 +48,7 @@ import com.wjf.androidutils.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
+import com.wjf.androidutils.utils.JUMP_TO_ScreenFragment
 import com.wjf.androidutils.utils.JUMP_TO_SelectTypeFragment
 import com.wjf.androidutils.utils.JUMP_TO_SocketClientFragment
 import com.wjf.androidutils.utils.JUMP_TO_SocketServiceFragment
@@ -179,6 +181,10 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel,ActivityTitleBarBind
 
             JUMP_TO_SocketServiceFragment -> {
                 fragment = SocketServiceFragment()
+            }
+
+            JUMP_TO_ScreenFragment -> {
+                fragment = ScreenFragment()
             }
 
             else -> {

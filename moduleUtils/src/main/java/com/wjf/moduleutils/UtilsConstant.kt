@@ -17,7 +17,7 @@ const val H5_RETURN_TO_MAIN = "JavascriptReturnToMain"
 
 object UtilsConstant {
 
-    lateinit var moduleUtilsContext: Context
+    lateinit var utilsContext: Context
 
 
 }

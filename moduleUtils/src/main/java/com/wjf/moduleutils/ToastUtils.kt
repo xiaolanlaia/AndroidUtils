@@ -16,7 +16,7 @@ class ToastUtils {
 
     fun setToastTextSize() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R){
-            mToast = Toast.makeText(UtilsConstant.moduleUtilsContext, null, Toast.LENGTH_SHORT)
+            mToast = Toast.makeText(UtilsConstant.utilsContext, null, Toast.LENGTH_SHORT)
             val linearLayout = mToast!!.view as LinearLayout
             val messageTextView = linearLayout.getChildAt(0) as TextView
             messageTextView.textSize = 30f
@@ -30,7 +30,7 @@ class ToastUtils {
      */
     fun show(text: String) {
         if (mToast == null){
-            mToast = Toast.makeText(UtilsConstant.moduleUtilsContext, null, Toast.LENGTH_SHORT)
+            mToast = Toast.makeText(UtilsConstant.utilsContext, null, Toast.LENGTH_SHORT)
         }
         mToast?.setText(text)
         mToast?.show()
@@ -42,7 +42,7 @@ class ToastUtils {
      */
     fun show(text: String, gravity: Int) {
         if (mToast == null){
-            mToast = Toast.makeText(UtilsConstant.moduleUtilsContext, null, Toast.LENGTH_SHORT)
+            mToast = Toast.makeText(UtilsConstant.utilsContext, null, Toast.LENGTH_SHORT)
         }
         mToast?.setGravity(gravity,0,0)
         mToast?.setText(text)
@@ -56,7 +56,7 @@ class ToastUtils {
      */
     fun showLong(text: String) {
         if (mToast == null){
-            mToast = Toast.makeText(UtilsConstant.moduleUtilsContext, null, Toast.LENGTH_LONG)
+            mToast = Toast.makeText(UtilsConstant.utilsContext, null, Toast.LENGTH_LONG)
         }
         mToast?.duration = Toast.LENGTH_LONG
         mToast?.setText(text)
@@ -70,7 +70,7 @@ class ToastUtils {
      */
     fun showLong(text: String, gravity: Int) {
         if (mToast == null){
-            mToast = Toast.makeText(UtilsConstant.moduleUtilsContext, null, Toast.LENGTH_LONG)
+            mToast = Toast.makeText(UtilsConstant.utilsContext, null, Toast.LENGTH_LONG)
         }
         mToast?.setGravity(gravity,0,0)
         mToast?.duration = Toast.LENGTH_LONG

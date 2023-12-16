@@ -26,7 +26,7 @@ class SPUtils {
         val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { SPUtils() }
     }
 
-    private var mPreferences = UtilsConstant.moduleUtilsContext.getSharedPreferences("SPUtils", Context.MODE_PRIVATE)
+    private var mPreferences = UtilsConstant.utilsContext.getSharedPreferences("SPUtils", Context.MODE_PRIVATE)
     private var mEditor = mPreferences.edit()
 
 

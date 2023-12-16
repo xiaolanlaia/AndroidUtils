@@ -25,5 +25,20 @@
         android:text="IMEI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_bright_get"
+        android:text="屏幕亮度获取"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_bright_set"
+        android:text="屏幕亮度设置"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_bright_set_all"
+        android:text="所有屏幕亮度设置"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

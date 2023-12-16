@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentScreenBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
+import com.wjf.moduleutils.DeviceUtils
 import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.ScreenUtils
+import com.wjf.moduleutils.SystemSettingUtils
 import com.wjf.moduleutils.singleClick
 
 /**
@@ -40,7 +42,16 @@ class ScreenFragment : MVVMBaseFragment<HomeViewModel, FragmentScreenBinding>() 
             LogUtils.d("__ScreenUtils-3","${ScreenUtils.instance.getDeviceHeight()}")
         }
         binding.btnImei.singleClick {
-            LogUtils.d("__ScreenUtils-4","${ScreenUtils.instance.getIMEI()}")
+            LogUtils.d("__ScreenUtils-4","${DeviceUtils.instance.getIMEI()}")
+        }
+        binding.btnBrightGet.singleClick {
+            LogUtils.d("__ScreenUtils-btnBright","${ScreenUtils.instance.getScreenBrightness()}")
+        }
+        binding.btnBrightSet.singleClick {
+            LogUtils.d("__ScreenUtils-btnBright","${SystemSettingUtils.instance.setCurrentBrightness(20,activity)}")
+        }
+        binding.btnBrightSetAll.singleClick {
+            LogUtils.d("__ScreenUtils-btnBright","${SystemSettingUtils.instance.setAllBrightness(20,activity,20)}")
         }
     }
 }

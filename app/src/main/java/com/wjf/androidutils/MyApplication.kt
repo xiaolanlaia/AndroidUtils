@@ -26,7 +26,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        UtilsConstant.moduleUtilsContext = this
+        UtilsConstant.utilsContext = this
         ImgLoaderConstant.imgLoaderContext = this
         BlueConstant.blueContext = this
         SocketConstant.socketContext = this

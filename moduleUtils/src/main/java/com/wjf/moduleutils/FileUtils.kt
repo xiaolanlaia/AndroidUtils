@@ -307,7 +307,7 @@ class FileUtils {
         contentValues.put(MediaStore.Images.ImageColumns.MIME_TYPE, "image/png")
         contentValues.put(MediaStore.Images.ImageColumns.WIDTH, bitmap.width)
         contentValues.put(MediaStore.Images.ImageColumns.HEIGHT, bitmap.height)
-        val contentResolver = UtilsConstant.moduleUtilsContext.contentResolver
+        val contentResolver = UtilsConstant.utilsContext.contentResolver
         // 通过 ContentResolver 在指定的公共目录下按照指定的 ContentValues 创建文件，会返回文件的 content uri（类似这样的地址 content://media/external/images/media/102）
         // 可以通过 MediaStore 保存文件的公共目录有：Images、Audio、Video、Downloads
         val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues) ?: return
@@ -354,10 +354,10 @@ class FileUtils {
 
         return when(fileType){
             FILE_TYPE_0 -> {
-                "${UtilsConstant.moduleUtilsContext.filesDir.absolutePath}/${folderName}"
+                "${UtilsConstant.utilsContext.filesDir.absolutePath}/${folderName}"
             }
             FILE_TYPE_1 -> {
-                "${UtilsConstant.moduleUtilsContext.getExternalFilesDir(null)?.absolutePath}/${folderName}"
+                "${UtilsConstant.utilsContext.getExternalFilesDir(null)?.absolutePath}/${folderName}"
 
             }
             FILE_TYPE_2 -> {

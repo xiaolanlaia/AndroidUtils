@@ -28,7 +28,7 @@ class MMKVUtils{
     // 初始化
     fun init(){
 
-        MMKV.initialize(UtilsConstant.moduleUtilsContext)
+        MMKV.initialize(UtilsConstant.utilsContext)
         MMKVInstance = MMKV.defaultMMKV()
     }
     /**

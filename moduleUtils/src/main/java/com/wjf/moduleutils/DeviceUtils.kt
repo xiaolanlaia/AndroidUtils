@@ -1,9 +1,11 @@
 package com.wjf.moduleutils
 
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
+import android.telephony.TelephonyManager
 import android.text.format.Formatter
 import java.util.Locale
 
@@ -147,11 +149,27 @@ class DeviceUtils {
     fun getRAMInfo(): String {
         var totalSize: Long = 0
         var availableSize: Long = 0
-        val activityManager = UtilsConstant.moduleUtilsContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val activityManager = UtilsConstant.utilsContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val memoryInfo = ActivityManager.MemoryInfo()
         activityManager.getMemoryInfo(memoryInfo)
         totalSize = memoryInfo.totalMem
         availableSize = memoryInfo.availMem
-        return "可用/总共：" + Formatter.formatFileSize(UtilsConstant.moduleUtilsContext, availableSize) + "/" + Formatter.formatFileSize(UtilsConstant.moduleUtilsContext, totalSize)
+        return "可用/总共：" + Formatter.formatFileSize(UtilsConstant.utilsContext, availableSize) + "/" + Formatter.formatFileSize(UtilsConstant.utilsContext, totalSize)
+    }
+
+
+    /**
+     * 获取设备的唯一标识， 需要 “android.permission.READ_Phone_STATE”权限
+     */
+    @SuppressLint("MissingPermission")
+    fun getIMEI(): String {
+        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            val tm =
+                UtilsConstant.utilsContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            val deviceId = tm.deviceId
+            deviceId
+        } else {
+            "UNKNOWN"
+        }
     }
 }

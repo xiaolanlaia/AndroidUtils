@@ -36,39 +36,39 @@ class DataStoreUtils {
             when (value) {
                 is Int -> {
                     val keyValue = intPreferencesKey(key)
-                    UtilsConstant.moduleUtilsContext.dataStore.edit { settings ->
+                    UtilsConstant.utilsContext.dataStore.edit { settings ->
                         settings[keyValue] = value
                     }
                 }
 
                 is Double -> {
                     val keyValue = doublePreferencesKey(key)
-                    UtilsConstant.moduleUtilsContext.dataStore.edit { settings ->
+                    UtilsConstant.utilsContext.dataStore.edit { settings ->
                         settings[keyValue] = value
                     }
                 }
 
                 is String -> {
                     val keyValue = stringPreferencesKey(key)
-                    UtilsConstant.moduleUtilsContext.dataStore.edit { settings ->
+                    UtilsConstant.utilsContext.dataStore.edit { settings ->
                         settings[keyValue] = value
                     }
                 }
                 is Boolean -> {
                     val keyValue = booleanPreferencesKey(key)
-                    UtilsConstant.moduleUtilsContext.dataStore.edit { settings ->
+                    UtilsConstant.utilsContext.dataStore.edit { settings ->
                         settings[keyValue] = value
                     }
                 }
                 is Float -> {
                     val keyValue = floatPreferencesKey(key)
-                    UtilsConstant.moduleUtilsContext.dataStore.edit { settings ->
+                    UtilsConstant.utilsContext.dataStore.edit { settings ->
                         settings[keyValue] = value
                     }
                 }
                 is Long -> {
                     val keyValue = longPreferencesKey(key)
-                    UtilsConstant.moduleUtilsContext.dataStore.edit { settings ->
+                    UtilsConstant.utilsContext.dataStore.edit { settings ->
                         settings[keyValue] = value
                     }
                 }
@@ -79,7 +79,7 @@ class DataStoreUtils {
     fun getInt(key: String, result: (Int) -> Unit) {
 
         CoroutineUtils.instance.launch {
-            val valueFlow: Flow<Int> = UtilsConstant.moduleUtilsContext.dataStore.data
+            val valueFlow: Flow<Int> = UtilsConstant.utilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
                     preferences[intPreferencesKey(key)] ?: 0
@@ -92,7 +92,7 @@ class DataStoreUtils {
     fun getDouble(key: String, result: (Double) -> Unit) {
 
         CoroutineUtils.instance.launch {
-            val valueFlow: Flow<Double> = UtilsConstant.moduleUtilsContext.dataStore.data
+            val valueFlow: Flow<Double> = UtilsConstant.utilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
                     preferences[doublePreferencesKey(key)] ?: 0.00
@@ -105,7 +105,7 @@ class DataStoreUtils {
     fun getString(key: String, result: (String) -> Unit) {
 
         CoroutineUtils.instance.launch {
-            val valueFlow: Flow<String> = UtilsConstant.moduleUtilsContext.dataStore.data
+            val valueFlow: Flow<String> = UtilsConstant.utilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
                     preferences[stringPreferencesKey(key)] ?: ""
@@ -117,7 +117,7 @@ class DataStoreUtils {
     fun getBoolean(key: String, result: (Boolean) -> Unit) {
 
         CoroutineUtils.instance.launch {
-            val valueFlow: Flow<Boolean> = UtilsConstant.moduleUtilsContext.dataStore.data
+            val valueFlow: Flow<Boolean> = UtilsConstant.utilsContext.dataStore.data
                 .map { preferences ->
                     // No type safety.
                     preferences[booleanPreferencesKey(key)] ?: false

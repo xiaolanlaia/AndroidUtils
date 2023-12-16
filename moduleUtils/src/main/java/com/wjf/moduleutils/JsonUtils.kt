@@ -22,7 +22,7 @@ class JsonUtils {
      * 将assets中的json文件解析成实体类
      */
     fun parseAssets(fileName: String){
-        val json = UtilsConstant.moduleUtilsContext.assets.open("${fileName}.json").bufferedReader().use { it.readText() }
+        val json = UtilsConstant.utilsContext.assets.open("${fileName}.json").bufferedReader().use { it.readText() }
         val user = Gson().fromJson(json, User::class.java)
     }
 

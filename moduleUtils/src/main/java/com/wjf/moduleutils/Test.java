@@ -53,7 +53,7 @@ public class Test {
     public static String setRootDir() {
         String rootPath = "";
 //        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        rootPath = UtilsConstant.moduleUtilsContext.getExternalFilesDir(null) + "/setRootDir/";
+        rootPath = UtilsConstant.utilsContext.getExternalFilesDir(null) + "/setRootDir/";
 //        rootPath = Environment.getDataDirectory() + "/setRootDir/";
         Log.d("__setRootDir",rootPath + "result = "+createRootDir(rootPath));
         createRootDir(rootPath);
@@ -77,7 +77,7 @@ public class Test {
         if (file.isFile()) {
             String filePath = file.getPath();
             if(filePath.endsWith(".mp4")){
-                int res = UtilsConstant.moduleUtilsContext.getContentResolver().delete(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                int res = UtilsConstant.utilsContext.getContentResolver().delete(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                         MediaStore.Audio.Media.DATA + "= \"" + filePath+"\"",
                         null);
                 if (res>0){
@@ -85,7 +85,7 @@ public class Test {
                 }else{
                 }
             }else if (filePath.endsWith(".jpg")||filePath.endsWith(".png")||filePath.endsWith(".bmp")){
-                int res = UtilsConstant.moduleUtilsContext.getContentResolver().delete(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                int res = UtilsConstant.utilsContext.getContentResolver().delete(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                         MediaStore.Audio.Media.DATA + "= \"" + filePath+"\"",
                         null);
                 if (res>0){

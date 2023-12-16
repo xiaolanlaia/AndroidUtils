@@ -25,7 +25,7 @@ class BitmapUtils {
      * 2、mipmap中是否存在xml的同名资源
      */
     fun resource2Bitmap(id: Int): Bitmap {
-        return BitmapFactory.decodeResource(UtilsConstant.moduleUtilsContext?.resources, id)
+        return BitmapFactory.decodeResource(UtilsConstant.utilsContext?.resources, id)
     }
 
     /**
