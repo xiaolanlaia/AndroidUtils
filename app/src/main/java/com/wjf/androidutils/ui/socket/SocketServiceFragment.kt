@@ -1,5 +1,6 @@
 package com.wjf.androidutils.ui.socket
 
+import com.wjf.modulesocket.terminal.SocketServer
 import com.wjf.moduleutils.ToastUtils
 
 /**
@@ -13,7 +14,7 @@ class SocketServiceFragment : BaseSocketFragment() {
 
     override fun initView() {
         super.initView()
-
+        lifecycle.addObserver(SocketServer.instance)
         //开启服务/停止服务
         setServerTitle { if (openSocket) stopServer() else startServer() }
 

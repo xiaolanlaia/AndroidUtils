@@ -2,22 +2,31 @@ package com.wjf.modulesocket.terminal
 
 import android.os.Handler
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import com.wjf.modulesocket.terminal.callback.MessageCallback
 import com.wjf.modulesocket.utils.SOCKET_PORT
+import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.ThreadPoolUtils
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.io.OutputStream
-import java.net.*
+import java.net.Socket
 
 /**
  * Socket客户端
  */
-object SocketClient {
+class SocketClient : LifecycleEventObserver {
+
+    companion object{
+        val instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { SocketClient() }
+    }
 
     private var socket: Socket? = null
 
-    var outputStream: OutputStream? = null
+    private var outputStream: OutputStream? = null
     private var inputStream: InputStream? = null
 
     private var inputStreamReader: InputStreamReader? = null
@@ -25,7 +34,7 @@ object SocketClient {
     private var mCallback: MessageCallback? = null
 
     //心跳发送间隔
-    private const val HEART_SPACETIME = 3 * 1000L
+    private val HEART_SPACETIME = 3 * 1000L
 
     private var mHandler: Handler? = null
 
@@ -153,24 +162,19 @@ object SocketClient {
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
-                when (e) {
-                    is SocketTimeoutException -> {
-                        Log.e("__SocketClient-4", "连接超时，正在重连")
-                    }
-                    is NoRouteToHostException -> {
-                        Log.e("__SocketClient-5", "该地址不存在，请检查")
-                    }
-                    is ConnectException -> {
-                        Log.e("__SocketClient-7", "连接异常或被拒绝，请检查")
-                    }
-                    is SocketException -> {
-                        when (e.message) {
-                            "Already connected" -> Log.e("__SocketClient-8", "连接异常或被拒绝，请检查")
-                            "Socket closed" -> Log.e("__SocketClient-9", "连接已关闭")
-                        }
-                    }
-                }
             }
+        }
+    }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+
+        when(event){
+            Lifecycle.Event.ON_DESTROY ->{
+                LogUtils.d("__event-DESTROY","1")
+                closeConnect()
+            }
+
+            else -> {}
         }
     }
 

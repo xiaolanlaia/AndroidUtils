@@ -1,18 +1,26 @@
 package com.wjf.modulesocket.terminal
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import com.wjf.modulesocket.terminal.callback.MessageCallback
 import com.wjf.modulesocket.utils.SOCKET_PORT
 import com.wjf.moduleutils.ThreadPoolUtils
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.net.*
+import java.net.ServerSocket
+import java.net.Socket
 
 /**
  * Socket服务端
  */
-object SocketServer {
+class SocketServer : LifecycleEventObserver {
 
+    companion object{
+        val instance by lazy (LazyThreadSafetyMode.SYNCHRONIZED) { SocketServer() }
+    }
 
     private var socket: Socket? = null
 
@@ -53,7 +61,7 @@ object SocketServer {
     /**
      * 关闭服务
      */
-    fun stopServer() {
+    fun close() {
         socket?.apply {
             shutdownInput()
             shutdownOutput()
@@ -147,23 +155,16 @@ object SocketServer {
             }
         } catch (e: IOException) {
             e.printStackTrace()
-            when (e) {
-                is SocketTimeoutException -> {
-                    Log.e("__SocketServer-2", "连接超时，正在重连")
-                }
-                is NoRouteToHostException -> {
-                    Log.e("__SocketServer-3", "该地址不存在，请检查")
-                }
-                is ConnectException -> {
-                    Log.e("__SocketServer-4", "连接异常或被拒绝，请检查")
-                }
-                is SocketException -> {
-                    when (e.message) {
-                        "Already connected" -> Log.e("__SocketServer-5", "连接异常或被拒绝，请检查")
-                        "Socket closed" -> Log.e("__SocketServer-6", "连接已关闭")
-                    }
-                }
+        }
+    }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        when(event){
+
+            Lifecycle.Event.ON_DESTROY -> {
+                close()
             }
+            else ->{}
         }
     }
 

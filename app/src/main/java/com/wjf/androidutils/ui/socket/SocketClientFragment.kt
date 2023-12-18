@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import com.wjf.androidutils.R
 import com.wjf.androidutils.databinding.DialogEditIpBinding
+import com.wjf.modulesocket.terminal.SocketClient
 import com.wjf.moduleutils.ToastUtils
 
 /**
@@ -17,6 +18,7 @@ class SocketClientFragment : BaseSocketFragment() {
 
     override fun initView() {
         super.initView()
+        lifecycle.addObserver(SocketClient.instance)
         //连接服务/关闭服务
         setClientTitle { if (connectSocket) closeConnect() else showEditDialog() }
         //发送消息给服务端

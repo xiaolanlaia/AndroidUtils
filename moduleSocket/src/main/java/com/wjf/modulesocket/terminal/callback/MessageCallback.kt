@@ -1,4 +1,4 @@
-package com.wjf.modulesocket.terminal
+package com.wjf.modulesocket.terminal.callback
 
 /**
  * 服务端回调

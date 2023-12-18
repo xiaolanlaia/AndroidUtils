@@ -17,7 +17,7 @@ import com.wjf.androidutils.databinding.FragmentBaseSocketBinding
 import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.androidutils.ui.socket.adapter.MsgAdapter
 import com.wjf.modulesocket.bean.Message
-import com.wjf.modulesocket.terminal.MessageCallback
+import com.wjf.modulesocket.terminal.callback.MessageCallback
 import com.wjf.modulesocket.terminal.SocketClient
 import com.wjf.modulesocket.utils.SocketUtils
 import com.wjf.moduleutils.ToastUtils
@@ -101,7 +101,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
      */
     fun startServer() {
         openSocket = true
-        SocketServer.startServer(this)
+        SocketServer.instance.startServer(this)
         ToastUtils.instance.show("开启服务")
         binding.tvFunc.text = "关闭服务"
     }
@@ -111,7 +111,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
      */
     fun stopServer() {
         openSocket = false
-        SocketServer.stopServer()
+        SocketServer.instance.close()
         ToastUtils.instance.show("关闭服务")
         binding.tvFunc.text = "开启服务"
     }
@@ -121,7 +121,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
      */
     fun connectServer(ipAddress: String) {
         connectSocket = true
-        SocketClient.connectServer(ipAddress, this)
+        SocketClient.instance.connectServer(ipAddress, this)
         ToastUtils.instance.show("连接服务")
         binding.tvFunc.text = "关闭连接"
     }
@@ -131,7 +131,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
      */
     fun closeConnect() {
         connectSocket = false
-        SocketClient.closeConnect()
+        SocketClient.instance.closeConnect()
         ToastUtils.instance.show("关闭连接")
         binding.tvFunc.text = "连接服务"
     }
@@ -140,7 +140,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
      * 发送到客户端
      */
     fun sendToClient(msg: String) {
-        SocketServer.sendToClient(msg)
+        SocketServer.instance.sendToClient(msg)
         etMsg.setText("")
         updateList(true, msg)
     }
@@ -149,7 +149,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
      * 发送到服务端
      */
     fun sendToServer(msg: String) {
-        SocketClient.sendToServer(msg)
+        SocketClient.instance.sendToServer(msg)
         etMsg.setText("")
         updateList(true, msg)
     }
