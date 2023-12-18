@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.llw.socket.terminal.SocketServer
+import com.wjf.modulesocket.terminal.SocketServer
 import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentBaseSocketBinding
 import com.wjf.androidutils.ui.home.HomeViewModel

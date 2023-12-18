@@ -2,6 +2,7 @@ package com.wjf.modulesocket.terminal
 
 import android.os.Handler
 import android.util.Log
+import com.wjf.modulesocket.utils.SOCKET_PORT
 import com.wjf.moduleutils.ThreadPoolUtils
 import java.io.IOException
 import java.io.InputStream
@@ -14,35 +15,33 @@ import java.net.*
  */
 object SocketClient {
 
-    private val TAG = SocketClient::class.java.simpleName
-
     private var socket: Socket? = null
 
-    private var outputStream: OutputStream? = null
+    var outputStream: OutputStream? = null
+    private var inputStream: InputStream? = null
 
     private var inputStreamReader: InputStreamReader? = null
 
     private var mCallback: MessageCallback? = null
 
-    private const val SOCKET_PORT = 9527
-
     //心跳发送间隔
     private const val HEART_SPACETIME = 3 * 1000L
 
-    private val mHandler: Handler = Handler()
+    private var mHandler: Handler? = null
 
     /**
      * 连接服务
      */
     fun connectServer(ipAddress: String, callback: MessageCallback) {
+        mHandler = Handler()
         mCallback = callback
         ThreadPoolUtils.instance.getCachedThreadPool().execute {
             try {
                 socket = Socket(ipAddress, SOCKET_PORT)
                 socket?.receiveBufferSize = 64 * 1024
                 //开启心跳,每隔3秒钟发送一次心跳
-                mHandler.post(mHeartRunnable)
-                clientLoop(socket!!)
+                mHandler?.post(mHeartRunnable)
+                clientLoop(socket)
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -53,11 +52,14 @@ object SocketClient {
      * 关闭连接
      */
     fun closeConnect() {
-        mHandler.removeMessages(HEART_SPACETIME.toInt())
+        mHandler?.removeMessages(HEART_SPACETIME.toInt())
+        mHandler = null
         inputStreamReader?.close()
         inputStreamReader = null
         outputStream?.close()
         outputStream = null
+        inputStream?.close()
+        inputStream = null
         socket?.close()
         socket = null
         mCallback = null
@@ -112,8 +114,8 @@ object SocketClient {
                 outputStream?.write(msg.toByteArray())
                 outputStream?.flush()
                 //发送成功以后，重新建立一个心跳消息
-                mHandler.postDelayed(mHeartRunnable, HEART_SPACETIME)
-                Log.i(TAG, msg)
+                mHandler?.postDelayed(mHeartRunnable, HEART_SPACETIME)
+                Log.i("__SocketClient-1", msg)
             } catch (e: IOException) {
                 e.printStackTrace()
                 mCallback?.otherMsg("向服务端发送消息: $msg 失败")
@@ -121,25 +123,26 @@ object SocketClient {
         }
     }
 
-    fun clientLoop(socket: Socket){
+    fun clientLoop(socket: Socket?){
+        if (socket == null) return
 
         ThreadPoolUtils.instance.getCachedThreadPool().execute {
 
-            val inputStream: InputStream?
             try {
                 inputStream = socket.getInputStream()
+                if (inputStream == null) return@execute
                 val buffer = ByteArray(1024)
                 var len: Int
                 var receiveStr = ""
-                if (inputStream.available() == 0) {
-                    Log.e(TAG, "inputStream.available() == 0")
+                if (inputStream!!.available() == 0) {
+                    Log.e("__SocketClient-2", "inputStream.available() == 0")
                 }
-                while (inputStream.read(buffer).also { len = it } != -1) {
+                while (inputStream!!.read(buffer).also { len = it } != -1) {
                     receiveStr += String(buffer, 0, len, Charsets.UTF_8)
                     if (len < 1024) {
                         socket.inetAddress.hostAddress?.let {
                             if (receiveStr == "洞拐收到，洞拐收到，Over!") {//收到来自服务端的心跳回复消息
-                                Log.i(TAG, "洞拐收到，洞拐收到，Over!")
+                                Log.i("__SocketClient-3", "洞拐收到，洞拐收到，Over!")
                                 //准备回复
                             } else {
                                 mCallback?.receiveMsg(it, receiveStr)
@@ -152,18 +155,18 @@ object SocketClient {
                 e.printStackTrace()
                 when (e) {
                     is SocketTimeoutException -> {
-                        Log.e(TAG, "连接超时，正在重连")
+                        Log.e("__SocketClient-4", "连接超时，正在重连")
                     }
                     is NoRouteToHostException -> {
-                        Log.e(TAG, "该地址不存在，请检查")
+                        Log.e("__SocketClient-5", "该地址不存在，请检查")
                     }
                     is ConnectException -> {
-                        Log.e(TAG, "连接异常或被拒绝，请检查")
+                        Log.e("__SocketClient-7", "连接异常或被拒绝，请检查")
                     }
                     is SocketException -> {
                         when (e.message) {
-                            "Already connected" -> Log.e(TAG, "连接异常或被拒绝，请检查")
-                            "Socket closed" -> Log.e(TAG, "连接已关闭")
+                            "Already connected" -> Log.e("__SocketClient-8", "连接异常或被拒绝，请检查")
+                            "Socket closed" -> Log.e("__SocketClient-9", "连接已关闭")
                         }
                     }
                 }

@@ -8,6 +8,7 @@ import android.content.Context
  * @Date 2023/12/15 18:01
  *
  */
+const val SOCKET_PORT = 9527
 
 object SocketConstant {
     lateinit var socketContext: Context
