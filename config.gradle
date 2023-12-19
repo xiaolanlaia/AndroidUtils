@@ -2,6 +2,12 @@ ext {
     android = [
             applicationId                :      "com.wjf.androidutils",
             namespace                    :      "com.wjf.androidutils",
+            namespaceBluetooth           :      "com.wjf.moduleBluetooth",
+            namespaceDesign              :      "com.wjf.moduleDesignPattern",
+            namespaceImgLoader           :      "com.wjf.moduleImgLoader",
+            namespaceSocket              :      "com.wjf.moduleSocket",
+            namespaceUtils               :      "com.wjf.moduleutils",
+            namespaceWidget              :      "com.wjf.moduleWidget",
             compileSdk                   :      33,
             minSdk                       :      24,
             versionCode                  :      1,

@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.wjf.androidutils.R
+import com.wjf.moduleImgLoader.R
 import com.wjf.moduleimgloader.transformation.CircleWithBorder
 import com.wjf.moduleimgloader.transformation.RoundedSpecifyCorners
 import com.wjf.moduleutils.BitmapUtils

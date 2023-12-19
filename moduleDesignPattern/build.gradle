@@ -6,7 +6,7 @@ plugins {
 def config = rootProject.ext.android
 def supportDependencies = rootProject.ext.supportDependencies
 android {
-    namespace config.namespace
+    namespace config.namespaceDesign
     compileSdk config.compileSdk
 
     defaultConfig {

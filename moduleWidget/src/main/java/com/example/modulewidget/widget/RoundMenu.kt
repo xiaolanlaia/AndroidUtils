@@ -21,7 +21,7 @@ import android.view.ViewOutlineProvider
 import android.view.animation.OvershootInterpolator
 import androidx.vectordrawable.graphics.drawable.ArgbEvaluator
 import com.example.modulewidget.utils.WidgetUtils
-import com.wjf.androidutils.R
+import com.wjf.moduleWidget.R
 import com.wjf.moduleutils.LogUtils
 
 class RoundMenu(context: Context?, attrs: AttributeSet?) : ViewGroup(context, attrs) {
