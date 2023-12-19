@@ -43,4 +43,9 @@ class WebViewFragment : MVVMBaseFragment<HomeViewModel, FragmentWebViewBinding>(
 
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        WebViewUtils.instance.recycler()
+    }
 }
