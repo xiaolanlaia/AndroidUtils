@@ -1,6 +1,13 @@
 package com.wjf.modulebluetooth.bt.callback
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
+import android.content.Context
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import com.wjf.modulebluetooth.bt.BlueUtils
+import com.wjf.modulebluetooth.bt.receiver.BlueReceiver
 import com.wjf.moduleutils.ExceptionUtils
 import java.lang.NullPointerException
 
@@ -10,18 +17,51 @@ import java.lang.NullPointerException
  * @Date 2023/12/11 17:29
  *
  */
-object BlueCallbackImpl{
-    var mBlueCallback : BlueCallback? = null
-    fun setBlueCallback(blueCallback : BlueCallback) : BlueCallback {
+@SuppressLint("StaticFieldLeak")
+object BlueCallbackImpl : LifecycleEventObserver{
+
+    private var mBlueCallback : BlueCallback? = null
+    private var mBlueReceiver: BlueReceiver? = null
+    private var context: Context? = null
+
+    operator fun invoke(context : Context, blueCallback : BlueCallback) : BlueCallbackImpl {
         mBlueCallback = blueCallback
-        return blueCallback
+        this.context = context
+        return this
     }
 
-    fun getBlueCallback() : BlueCallback {
+    operator fun invoke() : BlueCallback {
         if (mBlueCallback == null){
             ExceptionUtils.instance.getCashHandler().uncaughtException(Thread.currentThread(),Throwable(NullPointerException()))
         }
         return mBlueCallback!!
+    }
+
+    private fun clearBlueCallback(){
+        mBlueCallback = null
+        mBlueReceiver = null
+        context = null
+    }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        when(event){
+            Lifecycle.Event.ON_CREATE -> {
+
+                //注册蓝牙广播
+                mBlueReceiver = BlueReceiver(context!!, BlueCallbackImpl())
+                BlueUtils.instance.scan()
+
+            }
+
+            Lifecycle.Event.ON_DESTROY -> {
+                context?.unregisterReceiver(mBlueReceiver)
+                clearBlueCallback()
+                BlueUtils.instance.close()
+
+            }
+
+            else -> {}
+        }
     }
 }
 

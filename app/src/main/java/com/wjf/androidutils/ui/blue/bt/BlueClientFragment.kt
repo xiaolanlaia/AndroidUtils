@@ -19,7 +19,6 @@ import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.singleClick
 import com.wjf.modulebluetooth.bt.callback.BlueCallback
 import com.wjf.modulebluetooth.bt.callback.BlueCallbackImpl
-import com.wjf.modulebluetooth.bt.receiver.BlueReceiver
 import com.wjf.moduleutils.ThreadPoolUtils
 
 /**
@@ -33,16 +32,12 @@ import com.wjf.moduleutils.ThreadPoolUtils
 class BlueClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueClientBinding>(), BlueCallback {
 
 
-    private var mBlueReceiver: BlueReceiver? = null
     private val mBtDevAdapter = BtDevAdapter()
     lateinit var layoutSendBinding : LayoutSendBinding
 
     override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
-    override fun initViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentBlueClientBinding {
+    override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentBlueClientBinding {
         return FragmentBlueClientBinding.inflate(inflater,container,false)
     }
 
@@ -52,9 +47,8 @@ class BlueClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueClientBin
 
         binding.rvBt.layoutManager = LinearLayoutManager(mView.context)
         binding.rvBt.adapter = mBtDevAdapter
-        //注册蓝牙广播
-        mBlueReceiver = BlueReceiver(mView.context, BlueCallbackImpl.setBlueCallback(this))
-        BlueUtils.instance.scan()
+
+        lifecycle.addObserver(BlueCallbackImpl(mView.context,this))
 
 
         binding.btnScan.singleClick {
@@ -73,8 +67,6 @@ class BlueClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueClientBin
     override fun onDestroy() {
         super.onDestroy()
 
-        activity?.unregisterReceiver(mBlueReceiver)
-        BlueUtils.instance.close()
         socketNotify(BLUE_DISCONNECTED, null)
         ThreadPoolUtils.instance.shutdownCachedThreadPool()
     }

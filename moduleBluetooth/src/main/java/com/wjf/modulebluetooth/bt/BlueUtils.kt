@@ -111,7 +111,7 @@ class BlueUtils {
     //创建BluetoothSocket，建立连接
     fun bluetoothSocket(device: BluetoothDevice) {
         if (isConnected(device)) {
-            BlueCallbackImpl.getBlueCallback().notifyState("已经连接了")
+            BlueCallbackImpl().notifyState("已经连接了")
             return
         }
 
@@ -168,13 +168,13 @@ class BlueUtils {
      */
     fun sendMsg(msg: String) {
         if (!isConnected(null)) {
-            BlueCallbackImpl.getBlueCallback().notifyState("没有连接")
+            BlueCallbackImpl().notifyState("没有连接")
             return
         }
 
 
         if (TextUtils.isEmpty(msg)) {
-            BlueCallbackImpl.getBlueCallback().notifyState("消息不能空")
+            BlueCallbackImpl().notifyState("消息不能空")
             return
         }
 
@@ -187,7 +187,7 @@ class BlueUtils {
             dataOutputStream!!.writeInt(BLUE_FLAG_MSG)
             dataOutputStream!!.writeUTF(msg)
             dataOutputStream!!.flush()
-            BlueCallbackImpl.getBlueCallback().socketNotify(BLUE_MSG, "发送短消息：$msg")
+            BlueCallbackImpl().socketNotify(BLUE_MSG, "发送短消息：$msg")
         } catch (e: Throwable) {
             close()
         }
@@ -200,12 +200,12 @@ class BlueUtils {
     fun sendFile(filePath: String) {
 
         if (!isConnected(null)) {
-            BlueCallbackImpl.getBlueCallback().notifyState("没有连接")
+            BlueCallbackImpl().notifyState("没有连接")
             return
         }
 
         if (TextUtils.isEmpty(filePath) || !File(filePath).isFile) {
-            BlueCallbackImpl.getBlueCallback().notifyState("文件无效")
+            BlueCallbackImpl().notifyState("文件无效")
             return
         }
 
@@ -225,12 +225,12 @@ class BlueUtils {
                 dataOutputStream!!.writeLong(file.length())
                 var r: Int
                 val b = ByteArray(4 * 1024)
-                BlueCallbackImpl.getBlueCallback().socketNotify(BLUE_MSG, "正在发送文件($filePath),请稍后...")
+                BlueCallbackImpl().socketNotify(BLUE_MSG, "正在发送文件($filePath),请稍后...")
                 while ((fileInputStream.read(b).also { r = it }) != -1) {
                     dataOutputStream!!.write(b, 0, r)
                 }
                 dataOutputStream!!.flush()
-                BlueCallbackImpl.getBlueCallback().socketNotify(BLUE_MSG, "文件发送完成.")
+                BlueCallbackImpl().socketNotify(BLUE_MSG, "文件发送完成.")
             } catch (e: Throwable) {
                 close()
             }
@@ -240,7 +240,7 @@ class BlueUtils {
 
     private fun checkSend(): Boolean {
         if (isSending) {
-            BlueCallbackImpl.getBlueCallback().notifyState("正在发送其它数据,请稍后再发...")
+            BlueCallbackImpl().notifyState("正在发送其它数据,请稍后再发...")
             return true
         }
         return false
@@ -255,9 +255,12 @@ class BlueUtils {
         try {
             isRead = false
             isSending = false
-            bluetoothSocket?.close()
-            bluetoothServerSocket?.close()
             dataOutputStream?.close()
+            dataOutputStream = null
+            bluetoothSocket?.close()
+            bluetoothSocket = null
+            bluetoothServerSocket?.close()
+            bluetoothServerSocket = null
 
         } catch (e: Throwable) {
             e.printStackTrace()
@@ -272,7 +275,7 @@ class BlueUtils {
     fun loopRead() {
         val mSocket = getBluetoothSocket()
         try {
-            BlueCallbackImpl.getBlueCallback().socketNotify(BLUE_CONNECTED, mSocket?.remoteDevice)
+            BlueCallbackImpl().socketNotify(BLUE_CONNECTED, mSocket?.remoteDevice)
             val dataInputStream = DataInputStream(mSocket?.inputStream)
             isRead = true
             //死循环读取
@@ -280,7 +283,7 @@ class BlueUtils {
                 when (dataInputStream.readInt()) {
                     BLUE_FLAG_MSG -> {
                         val msg = dataInputStream.readUTF()
-                        BlueCallbackImpl.getBlueCallback().socketNotify(BLUE_MSG, "接收短消息：$msg")
+                        BlueCallbackImpl().socketNotify(BLUE_MSG, "接收短消息：$msg")
                     }
 
                     BLUE_FLAG_FILE -> {

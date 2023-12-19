@@ -41,7 +41,7 @@ class BlueServiceFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueServiceB
 
     override fun initView() {
         layoutSendBinding = LayoutSendBinding.bind(binding.root)
-        BlueCallbackImpl.setBlueCallback(this)
+        lifecycle.addObserver(BlueCallbackImpl(mView.context,this))
         BlueUtils.instance.bluetoothServerSocket()
 
         layoutSendBinding.btnSendMsg.singleClick {
