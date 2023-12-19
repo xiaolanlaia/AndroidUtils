@@ -69,8 +69,9 @@ class BleUtils private constructor(){
     fun closeConnect() {
         isConnected = false
         if (mBluetoothGatt != null) {
-            mBluetoothGatt!!.disconnect()
-            mBluetoothGatt!!.close()
+            mBluetoothGatt?.disconnect()
+            mBluetoothGatt?.close()
+            mBluetoothGatt = null
         }
     }
 
@@ -135,7 +136,7 @@ class BleUtils private constructor(){
         // 扫描Callback
         override fun onScanResult(callbackType: Int, result: ScanResult) {
 
-            BleCallbackImpl.getGattCallback().scanning(BleDev(result.device, result))
+            BleCallbackImpl().scanning(BleDev(result.device, result))
         }
     }
 
@@ -212,10 +213,12 @@ class BleUtils private constructor(){
     fun bleServiceClose(){
 
         if (mBluetoothLeAdvertiser != null) {
-            mBluetoothLeAdvertiser!!.stopAdvertising(GattCallbackUtils.instance.mAdvertiseCallback)
+            mBluetoothLeAdvertiser?.stopAdvertising(GattCallbackUtils.instance.mAdvertiseCallback)
+            mBluetoothLeAdvertiser = null
         }
         if (mBluetoothGattServer != null) {
-            mBluetoothGattServer!!.close()
+            mBluetoothGattServer?.close()
+            mBluetoothGattServer = null
         }
     }
 

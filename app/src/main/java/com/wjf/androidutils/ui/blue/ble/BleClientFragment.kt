@@ -33,7 +33,7 @@ class BleClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBleClientBindi
     }
 
     override fun initView() {
-        BleCallbackImpl.setGattCallback(this)
+        lifecycle.addObserver(BleCallbackImpl(this))
 
         binding.rvBle.layoutManager = LinearLayoutManager(mView.context)
         mBleDevAdapter = BleDevAdapter()

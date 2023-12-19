@@ -38,14 +38,14 @@ class GattCallbackUtils {
             val dev = gatt.device
             Log.i("__BleClient-1", String.format("onConnectionStateChange:%s,%s,%s,%s", dev.name, dev.address, status, newState))
             if (status == BluetoothGatt.GATT_SUCCESS && newState == BluetoothProfile.STATE_CONNECTED) {
-                BleCallbackImpl.getGattCallback().connected()
+                BleCallbackImpl().connected()
                 //启动服务发现
                 gatt.discoverServices()
             } else {
-                BleCallbackImpl.getGattCallback().disConnected()
+                BleCallbackImpl().disConnected()
             }
 
-            BleCallbackImpl.getGattCallback().notify(String.format(if (status == 0) (if (newState == 2) "与[%s]连接成功" else "与[%s]连接断开") else "与[%s]连接出错,错误码:$status", dev))
+            BleCallbackImpl().notify(String.format(if (status == 0) (if (newState == 2) "与[%s]连接成功" else "与[%s]连接断开") else "与[%s]连接出错,错误码:$status", dev))
         }
 
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
@@ -62,7 +62,7 @@ class GattCallbackUtils {
                     }
                     allUUIDs.append("}")
                     Log.i("__BleClient-3", "onServicesDiscovered:$allUUIDs")
-                    BleCallbackImpl.getGattCallback().notify("发现服务$allUUIDs")
+                    BleCallbackImpl().notify("发现服务$allUUIDs")
                 }
             }
         }
@@ -71,35 +71,35 @@ class GattCallbackUtils {
             val uuid = characteristic.uuid
             val valueStr = String(characteristic.value)
             Log.i("__BleClient-4", String.format("onCharacteristicRead:%s,%s,%s,%s,%s", gatt.device.name, gatt.device.address, uuid, valueStr, status))
-            BleCallbackImpl.getGattCallback().notify("读取Characteristic[$uuid]:\n$valueStr")
+            BleCallbackImpl().notify("读取Characteristic[$uuid]:\n$valueStr")
         }
 
         override fun onCharacteristicWrite(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, status: Int) {
             val uuid = characteristic.uuid
             val valueStr = String(characteristic.value)
             Log.i("__BleClient-5", String.format("onCharacteristicWrite:%s,%s,%s,%s,%s", gatt.device.name, gatt.device.address, uuid, valueStr, status))
-            BleCallbackImpl.getGattCallback().notify("写入Characteristic[$uuid]:\n$valueStr")
+            BleCallbackImpl().notify("写入Characteristic[$uuid]:\n$valueStr")
         }
 
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
             val uuid = characteristic.uuid
             val valueStr = String(characteristic.value)
             Log.i("__BleClient-6", String.format("onCharacteristicChanged:%s,%s,%s,%s", gatt.device.name, gatt.device.address, uuid, valueStr))
-            BleCallbackImpl.getGattCallback().notify("通知Characteristic[$uuid]:\n$valueStr")
+            BleCallbackImpl().notify("通知Characteristic[$uuid]:\n$valueStr")
         }
 
         override fun onDescriptorRead(gatt: BluetoothGatt, descriptor: BluetoothGattDescriptor, status: Int) {
             val uuid = descriptor.uuid
             val valueStr = Arrays.toString(descriptor.value)
             Log.i("__BleClient-7", String.format("onDescriptorRead:%s,%s,%s,%s,%s", gatt.device.name, gatt.device.address, uuid, valueStr, status))
-            BleCallbackImpl.getGattCallback().notify("读取Descriptor[$uuid]:\n$valueStr")
+            BleCallbackImpl().notify("读取Descriptor[$uuid]:\n$valueStr")
         }
 
         override fun onDescriptorWrite(gatt: BluetoothGatt, descriptor: BluetoothGattDescriptor, status: Int) {
             val uuid = descriptor.uuid
             val valueStr = Arrays.toString(descriptor.value)
             Log.i("__BleClient-8", String.format("onDescriptorWrite:%s,%s,%s,%s,%s", gatt.device.name, gatt.device.address, uuid, valueStr, status))
-            BleCallbackImpl.getGattCallback().notify("写入Descriptor[$uuid]:\n$valueStr")
+            BleCallbackImpl().notify("写入Descriptor[$uuid]:\n$valueStr")
         }
     }
 
@@ -110,19 +110,19 @@ class GattCallbackUtils {
 
         override fun onConnectionStateChange(device: BluetoothDevice, status: Int, newState: Int) {
             Log.i("__BleServer-1", String.format("onConnectionStateChange:%s,%s,%s,%s", device.name, device.address, status, newState))
-            BleCallbackImpl.getGattCallback().notify(String.format(if (status == 0) (if (newState == 2) "与[%s]连接成功" else "与[%s]连接断开") else "与[%s]连接出错,错误码:$status", device))
+            BleCallbackImpl().notify(String.format(if (status == 0) (if (newState == 2) "与[%s]连接成功" else "与[%s]连接断开") else "与[%s]连接出错,错误码:$status", device))
         }
 
         override fun onServiceAdded(status: Int, service: BluetoothGattService) {
             Log.i("__BleServer-2", String.format("onServiceAdded:%s,%s", status, service.uuid))
-            BleCallbackImpl.getGattCallback().notify(String.format(if (status == 0) "添加服务[%s]成功" else "添加服务[%s]失败,错误码:$status", service.uuid))
+            BleCallbackImpl().notify(String.format(if (status == 0) "添加服务[%s]成功" else "添加服务[%s]失败,错误码:$status", service.uuid))
         }
 
         override fun onCharacteristicReadRequest(device: BluetoothDevice, requestId: Int, offset: Int, characteristic: BluetoothGattCharacteristic) {
             Log.i("__BleServer-3", String.format("onCharacteristicReadRequest:%s,%s,%s,%s,%s", device.name, device.address, requestId, offset, characteristic.uuid))
             val response = "CHAR_" + (Math.random() * 100).toInt() //模拟数据
             BleUtils.instance.getBluetoothGattServer().sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, response.toByteArray()) // 响应客户端
-            BleCallbackImpl.getGattCallback().notify("客户端读取Characteristic[${characteristic.uuid}]:$response".trimIndent())
+            BleCallbackImpl().notify("客户端读取Characteristic[${characteristic.uuid}]:$response".trimIndent())
         }
 
         override fun onCharacteristicWriteRequest(device: BluetoothDevice, requestId: Int, characteristic: BluetoothGattCharacteristic, preparedWrite: Boolean, responseNeeded: Boolean, offset: Int, requestBytes: ByteArray) {
@@ -130,14 +130,14 @@ class GattCallbackUtils {
             val requestStr = String(requestBytes)
             Log.i("__BleServer-4", String.format("onCharacteristicWriteRequest:%s,%s,%s,%s,%s,%s,%s,%s", device.name, device.address, requestId, characteristic.uuid, preparedWrite, responseNeeded, offset, requestStr))
             BleUtils.instance.getBluetoothGattServer().sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, requestBytes) // 响应客户端
-            BleCallbackImpl.getGattCallback().notify("客户端写入Characteristic[${characteristic.uuid}]:$requestStr".trimIndent())
+            BleCallbackImpl().notify("客户端写入Characteristic[${characteristic.uuid}]:$requestStr".trimIndent())
         }
 
         override fun onDescriptorReadRequest(device: BluetoothDevice, requestId: Int, offset: Int, descriptor: BluetoothGattDescriptor) {
             Log.i("__BleServer-5", String.format("onDescriptorReadRequest:%s,%s,%s,%s,%s", device.name, device.address, requestId, offset, descriptor.uuid))
             val response = "DESC_" + (Math.random() * 100).toInt() //模拟数据
             BleUtils.instance.getBluetoothGattServer().sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, response.toByteArray()) // 响应客户端
-            BleCallbackImpl.getGattCallback().notify("客户端读取Descriptor[${descriptor.uuid}]:$response".trimIndent())
+            BleCallbackImpl().notify("客户端读取Descriptor[${descriptor.uuid}]:$response".trimIndent())
         }
 
         override fun onDescriptorWriteRequest(device: BluetoothDevice, requestId: Int, descriptor: BluetoothGattDescriptor, preparedWrite: Boolean, responseNeeded: Boolean, offset: Int, value: ByteArray) {
@@ -145,7 +145,7 @@ class GattCallbackUtils {
             val valueStr = Arrays.toString(value)
             Log.i("__BleServer-6", String.format("onDescriptorWriteRequest:%s,%s,%s,%s,%s,%s,%s,%s", device.name, device.address, requestId, descriptor.uuid, preparedWrite, responseNeeded, offset, valueStr))
             BleUtils.instance.getBluetoothGattServer().sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, value) // 响应客户端
-            BleCallbackImpl.getGattCallback().notify("客户端写入Descriptor[${descriptor.uuid}]:$valueStr".trimIndent())
+            BleCallbackImpl().notify("客户端写入Descriptor[${descriptor.uuid}]:$valueStr".trimIndent())
 
             // 简单模拟通知客户端Characteristic变化
             if (Arrays.toString(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE) == valueStr) { //是否开启通知
@@ -156,7 +156,7 @@ class GattCallbackUtils {
                         val response = "CHAR_" + (Math.random() * 100).toInt() //模拟数据
                         characteristic.setValue(response)
                         BleUtils.instance.getBluetoothGattServer().notifyCharacteristicChanged(device, characteristic, false)
-                        BleCallbackImpl.getGattCallback().notify(" 通知客户端改变Characteristic[${characteristic.uuid}]:$response".trimIndent())
+                        BleCallbackImpl().notify(" 通知客户端改变Characteristic[${characteristic.uuid}]:$response".trimIndent())
                     }
                 }.start()
             }
@@ -179,11 +179,11 @@ class GattCallbackUtils {
     // BLE广播Callback
     val mAdvertiseCallback: AdvertiseCallback = object : AdvertiseCallback() {
         override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
-            BleCallbackImpl.getGattCallback().notify("BLE广播开启成功")
+            BleCallbackImpl().notify("BLE广播开启成功")
         }
 
         override fun onStartFailure(errorCode: Int) {
-            BleCallbackImpl.getGattCallback().notify("BLE广播开启失败,错误码:$errorCode")
+            BleCallbackImpl().notify("BLE广播开启失败,错误码:$errorCode")
         }
     }
 

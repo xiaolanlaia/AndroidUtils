@@ -28,7 +28,7 @@ class BleServiceFragment : MVVMBaseFragment<HomeViewModel, FragmentBleServiceBin
     }
 
     override fun initView() {
-        BleCallbackImpl.setGattCallback(this)
+        lifecycle.addObserver(BleCallbackImpl(this))
         BleUtils.instance.bleServiceSetting()
 
     }
