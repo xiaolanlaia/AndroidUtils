@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+
+        <!-- USB状态检测(开机自动启动) -->
+        <receiver android:name=".receiver.usb.UsbStatusReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+    </application>
 </manifest>
