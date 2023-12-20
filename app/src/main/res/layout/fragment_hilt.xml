@@ -17,4 +17,11 @@
         android:layout_toEndOf="@id/btn_inject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_binds"
+        android:text="binds注入接口"
+        android:layout_below="@id/btn_inject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

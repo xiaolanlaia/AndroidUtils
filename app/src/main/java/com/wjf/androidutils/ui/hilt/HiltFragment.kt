@@ -7,6 +7,7 @@ import com.wjf.androidutils.base.MVVMBaseFragment
 import com.wjf.androidutils.databinding.FragmentHiltBinding
 import com.wjf.androidutils.ui.hilt.inject.InjectClass
 import com.wjf.androidutils.ui.hilt.inject.InjectClass2
+import com.wjf.androidutils.ui.hilt.module.binds.IBinds
 import com.wjf.androidutils.ui.home.HomeViewModel
 import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.singleClick
@@ -35,6 +36,9 @@ class HiltFragment : MVVMBaseFragment<HomeViewModel, FragmentHiltBinding>() {
     @Inject
     lateinit var injectClass2: InjectClass2
 
+    @Inject
+    lateinit var iBinds: IBinds
+
     override fun initViewModel() = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     override fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
@@ -45,8 +49,13 @@ class HiltFragment : MVVMBaseFragment<HomeViewModel, FragmentHiltBinding>() {
         binding.btnInject.singleClick {
             ToastUtils.instance.show(injectClass.toString())
         }
+
         binding.btnInject2.singleClick {
             ToastUtils.instance.show(injectClass2.toString())
+        }
+
+        binding.btnBinds.singleClick {
+            ToastUtils.instance.show(iBinds.getName())
         }
 
     }
