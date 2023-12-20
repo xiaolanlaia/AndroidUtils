@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 def config = rootProject.ext.android
@@ -68,6 +69,10 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$supportDependencies.rules"
 
     debugImplementation "androidx.fragment:fragment-testing:$supportDependencies.fragment_testing"
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
 
 
     implementation project(":moduleUtils")
