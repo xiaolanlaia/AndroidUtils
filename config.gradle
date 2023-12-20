@@ -12,6 +12,8 @@ ext {
             minSdk                       :      24,
             versionCode                  :      1,
             versionName                  :      "1.0",
+            compileOptions               :      JavaVersion.VERSION_17,
+            kotlinOptions                :      '17',
     ]
 
     supportDependencies = [
