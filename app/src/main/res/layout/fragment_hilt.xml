@@ -24,4 +24,12 @@
         android:layout_below="@id/btn_inject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_provides"
+        android:text="provides注入实例"
+        android:layout_toEndOf="@id/btn_binds"
+        android:layout_alignTop="@id/btn_binds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>
