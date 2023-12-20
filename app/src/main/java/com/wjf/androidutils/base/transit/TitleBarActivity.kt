@@ -13,6 +13,7 @@ import com.wjf.androidutils.databinding.ActivityTitleBarBinding
 import com.wjf.androidutils.databinding.CommonTitleBinding
 import com.wjf.androidutils.ui.AnimFragment
 import com.wjf.androidutils.ui.ArrayFragment
+import com.wjf.androidutils.ui.ConstraintLayoutFragment
 import com.wjf.androidutils.ui.DesignFragment
 import com.wjf.androidutils.ui.ExceptionFragment
 import com.wjf.androidutils.ui.FileFragment
@@ -42,6 +43,7 @@ import com.wjf.androidutils.utils.JUMP_TO_BleServiceFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueClientFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueServiceFragment
+import com.wjf.androidutils.utils.JUMP_TO_ConstraintLayoutFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_DialogFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
@@ -193,6 +195,10 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel,ActivityTitleBarBind
 
             JUMP_TO_HiltFragment -> {
                 fragment = HiltFragment()
+            }
+
+            JUMP_TO_ConstraintLayoutFragment -> {
+                fragment = ConstraintLayoutFragment()
             }
 
             else -> {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:text="两个大小不一样的"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@color/color_6b6b6b"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp50"/>
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:text="TextView文本对齐"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/white"
+        android:background="@color/color_6b6b6b"
+        app:layout_constraintStart_toEndOf="@id/tv_left"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_left"
+        android:layout_marginStart="@dimen/dp5"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp30"/>
+    <TextView
+        android:id="@+id/tv_angle"
+        android:text="角度定位"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/white"
+        android:background="@color/color_6b6b6b"
+        app:layout_constraintCircle="@id/tv_right"
+        app:layout_constraintCircleAngle="120"
+        app:layout_constraintCircleRadius="@dimen/dp100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import com.wjf.androidutils.databinding.FragmentHomeBinding
 import com.wjf.androidutils.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.utils.JUMP_TO_ArrayFragment
 import com.wjf.androidutils.utils.JUMP_TO_BlueFragment
+import com.wjf.androidutils.utils.JUMP_TO_ConstraintLayoutFragment
 import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_DialogFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
@@ -56,6 +57,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnSocket.setOnClickListener(this)
         binding.btnScreen.setOnClickListener(this)
         binding.btnHilt.setOnClickListener(this)
+        binding.btnConstrain.setOnClickListener(this)
 
     }
 
@@ -126,6 +128,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
 
             binding.btnHilt -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_HiltFragment)
+            }
+
+            binding.btnConstrain -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_ConstraintLayoutFragment)
             }
         }
     }

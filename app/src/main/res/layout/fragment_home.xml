@@ -102,5 +102,12 @@
         android:layout_below="@+id/btn_socket"
         android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_constrain"
+        android:text="Constraint"
+        android:layout_toEndOf="@id/btn_hilt"
+        android:layout_alignTop="@id/btn_hilt"
+        android:layout_width="@dimen/dp150"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
