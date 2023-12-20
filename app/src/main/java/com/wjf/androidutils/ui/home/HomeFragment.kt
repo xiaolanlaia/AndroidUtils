@@ -14,6 +14,7 @@ import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_DialogFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
+import com.wjf.androidutils.utils.JUMP_TO_HiltFragment
 import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
@@ -54,6 +55,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
         binding.btnDialog.setOnClickListener(this)
         binding.btnSocket.setOnClickListener(this)
         binding.btnScreen.setOnClickListener(this)
+        binding.btnHilt.setOnClickListener(this)
 
     }
 
@@ -120,6 +122,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel,FragmentHomeBinding>() , Han
 
             binding.btnScreen -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_ScreenFragment)
+            }
+
+            binding.btnHilt -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_HiltFragment)
             }
         }
     }

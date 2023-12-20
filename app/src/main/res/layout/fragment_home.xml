@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,72 +10,97 @@
     <Button
         android:id="@+id/btn_design"
         android:text="设计模式"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_persistent"
-        android:text="持久化存储"
-        android:layout_width="match_parent"
+        android:text="持久化"
+        android:layout_toEndOf="@id/btn_design"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_toast"
         android:text="Toast"
-        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_design"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_array"
         android:text="Array"
-        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/btn_toast"
+        android:layout_alignTop="@id/btn_toast"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_file"
         android:text="file"
-        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_toast"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_exception"
         android:text="exception"
-        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/btn_file"
+        android:layout_alignTop="@id/btn_file"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_reflect"
         android:text="reflect"
-        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_file"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_img_loader"
         android:text="img loader"
-        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/btn_reflect"
+        android:layout_alignTop="@id/btn_reflect"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_web_view"
         android:text="web view"
-        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_reflect"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_anim"
         android:text="anim"
-        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/btn_web_view"
+        android:layout_alignTop="@id/btn_web_view"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_blue"
         android:text="蓝牙"
-        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_web_view"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_dialog"
         android:text="弹窗"
-        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/btn_blue"
+        android:layout_alignTop="@id/btn_blue"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_socket"
         android:text="socket"
-        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_blue"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_screen"
         android:text="屏幕"
-        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/btn_socket"
+        android:layout_alignTop="@id/btn_socket"
+        android:layout_width="@dimen/dp150"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_hilt"
+        android:text="hilt"
+        android:layout_below="@+id/btn_socket"
+        android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</RelativeLayout>

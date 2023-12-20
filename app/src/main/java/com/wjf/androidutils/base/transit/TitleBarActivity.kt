@@ -27,6 +27,7 @@ import com.wjf.androidutils.ui.blue.ble.BleClientFragment
 import com.wjf.androidutils.ui.blue.ble.BleServiceFragment
 import com.wjf.androidutils.ui.blue.bt.BlueServiceFragment
 import com.wjf.androidutils.ui.dialog.DialogFragment
+import com.wjf.androidutils.ui.hilt.HiltFragment
 import com.wjf.androidutils.ui.home.HomeFragment
 import com.wjf.androidutils.ui.reflect.ReflectFragment
 import com.wjf.androidutils.ui.socket.SelectTypeFragment
@@ -45,6 +46,7 @@ import com.wjf.androidutils.utils.JUMP_TO_DesignFragment
 import com.wjf.androidutils.utils.JUMP_TO_DialogFragment
 import com.wjf.androidutils.utils.JUMP_TO_ExceptionFragment
 import com.wjf.androidutils.utils.JUMP_TO_FileFragment
+import com.wjf.androidutils.utils.JUMP_TO_HiltFragment
 import com.wjf.androidutils.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.utils.JUMP_TO_ReflectFragment
@@ -57,7 +59,9 @@ import com.wjf.androidutils.utils.JUMP_TO_WebViewFragment
 import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ScreenUtils
 import com.wjf.moduleutils.singleClick
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel,ActivityTitleBarBinding>() {
 
 
@@ -185,6 +189,10 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel,ActivityTitleBarBind
 
             JUMP_TO_ScreenFragment -> {
                 fragment = ScreenFragment()
+            }
+
+            JUMP_TO_HiltFragment -> {
+                fragment = HiltFragment()
             }
 
             else -> {

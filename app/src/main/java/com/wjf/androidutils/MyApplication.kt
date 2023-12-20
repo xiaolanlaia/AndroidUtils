@@ -9,6 +9,7 @@ import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.UtilsConstant
 import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.persistent.MMKVUtils
+import dagger.hilt.android.HiltAndroidApp
 
 /**
  * @Description
@@ -17,7 +18,11 @@ import com.wjf.moduleutils.persistent.MMKVUtils
  *
  * 记得在 AndroidManifest 中注册
  */
-
+/**
+ * 1、告知Hilt该应用程序将使用Hilt进行依赖注入
+ * 2、使用 Hilt 的应用都必须包含一个带有 @HiltAndroidApp 注解的 Application 类
+ */
+@HiltAndroidApp
 class MyApplication : Application() {
 
     companion object{
@@ -33,7 +38,7 @@ class MyApplication : Application() {
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
                 ToastUtils.instance.show("报错了")
-                LogUtils.d("__unCatchException-1", LogUtils.getStackTraceString(e))
+                LogUtils.d("__unCatchException-1", "${e.message}")
             }
         })
 
