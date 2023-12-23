@@ -9,6 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.wjf.androidutils.R
+import com.wjf.androidutils.origin.ui.home.HomeFragment
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
