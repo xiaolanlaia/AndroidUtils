@@ -24,12 +24,9 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 
 @ExperimentalPermissionsApi
 @Composable
-fun MultiplePermissions() {
+fun MultiplePermissions(permissionList : ArrayList<String>) {
     val permissionStates = rememberMultiplePermissionsState(
-        permissions = listOf(
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
+        permissions = permissionList
     )
     val lifecycleOwner = LocalLifecycleOwner.current
 

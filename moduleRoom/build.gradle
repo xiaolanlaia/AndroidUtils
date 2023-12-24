@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+def config = rootProject.ext.android
+def supportDependencies = rootProject.ext.supportDependencies
+android {
+    namespace config.namespaceRoom
+    compileSdk config.compileSdk
+
+    defaultConfig {
+        minSdk config.minSdk
+        targetSdk config.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility config.compileOptions
+        targetCompatibility config.compileOptions
+    }
+    kotlinOptions {
+        jvmTarget = config.kotlinOptions
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$supportDependencies.core_ktx"
+    implementation "androidx.appcompat:appcompat:$supportDependencies.appcompat"
+    implementation "com.google.android.material:material:$supportDependencies.material"
+    implementation "androidx.constraintlayout:constraintlayout:$supportDependencies.constraintlayout"
+    androidTestImplementation "androidx.test.ext:junit:$supportDependencies.ext_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$supportDependencies.espresso_core"
+
+    //room
+    implementation "androidx.room:room-runtime:$supportDependencies.room_version"
+    annotationProcessor "androidx.room:room-compiler:$supportDependencies.room_version"
+    // To use Kotlin annotation processing tool  kapt
+    kapt "androidx.room:room-compiler:$supportDependencies.room_version"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$supportDependencies.room_version"
+    // optional - RxJava3 support for Room
+    implementation "androidx.room:room-rxjava3:$supportDependencies.room_version"
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation "androidx.room:room-guava:$supportDependencies.room_version"
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$supportDependencies.room_version"
+    // optional - Paging 3 Integration
+    implementation "androidx.room:room-paging:$supportDependencies.room_version"
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$supportDependencies.hilt_android"
+    kapt "com.google.dagger:hilt-android-compiler:$supportDependencies.hilt_android_compiler"
+}

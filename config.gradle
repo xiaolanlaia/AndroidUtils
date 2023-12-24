@@ -8,6 +8,7 @@ ext {
             namespaceSocket              :      "com.wjf.moduleSocket",
             namespaceUtils               :      "com.wjf.moduleutils",
             namespaceWidget              :      "com.wjf.moduleWidget",
+            namespaceRoom                :      "com.wjf.moduleroom",
             compileSdk                   :      33,
             minSdk                       :      24,
             versionCode                  :      1,
@@ -57,6 +58,8 @@ ext {
             //hilt
             hilt_android                 :      "2.44",
             hilt_android_compiler        :      "2.44",
+
+            room_version                 :      "2.5.0",
 
     ]
 }

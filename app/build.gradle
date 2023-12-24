@@ -104,5 +104,6 @@ dependencies {
     implementation project(":moduleWidget")
     implementation project(":moduleBluetooth")
     implementation project(":moduleSocket")
+    implementation project(":moduleRoom")
 
 }

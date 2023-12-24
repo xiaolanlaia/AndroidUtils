@@ -1,6 +1,8 @@
 package com.wjf.androidutils
 
 import android.app.Application
+import android.content.Context
+import com.vision.moduleroom.RoomApplication
 import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.modulesocket.utils.SocketConstant
@@ -28,6 +30,9 @@ class MyApplication : Application() {
     companion object{
         lateinit var instance: MyApplication
     }
+
+    var roomApplication: RoomApplication? = null
+
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -35,6 +40,11 @@ class MyApplication : Application() {
         ImgLoaderConstant.imgLoaderContext = this
         BlueConstant.blueContext = this
         SocketConstant.socketContext = this
+
+        if (roomApplication != null) {
+            roomApplication?.onCreate()
+        }
+
         ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
             override fun uncaughtException(t: Thread, e: Throwable) {
                 ToastUtils.instance.show("报错了")
@@ -44,5 +54,37 @@ class MyApplication : Application() {
 
         MMKVUtils.instance.init()
         ToastUtils.instance.setToastTextSize()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        roomApplication = getRoomApplicationInstance(this)
+
+        try {
+
+            val method = this.javaClass.getDeclaredMethod("attach", Context::class.java)
+            if (method != null) {
+                method.isAccessible = true
+                method.invoke(roomApplication, baseContext)
+            }
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun getRoomApplicationInstance(context: Context) : RoomApplication?{
+        try {
+
+            if (roomApplication == null){
+                val classLoader = context.classLoader
+                if (classLoader != null){
+                    val mClass = classLoader.loadClass(RoomApplication::javaClass.name)
+                    if (mClass != null){
+                        roomApplication = mClass.newInstance() as RoomApplication
+                    }
+                }
+            }
+        } catch (e: Exception) {
+        }
+        return roomApplication
     }
 }
