@@ -49,6 +49,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".compose.ui.ComposeActivity"
+            android:exported="true">
+
+        </activity>
+
 
 
     </application>

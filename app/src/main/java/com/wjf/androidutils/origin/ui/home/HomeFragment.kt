@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.wjf.androidutils.compose.ui.ComposeActivity
 import com.wjf.androidutils.origin.base.MVVMBaseFragment
 import com.wjf.androidutils.origin.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentHomeBinding
@@ -58,6 +59,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, FragmentHomeBinding>() , Ha
         binding.btnScreen.setOnClickListener(this)
         binding.btnHilt.setOnClickListener(this)
         binding.btnConstrain.setOnClickListener(this)
+        binding.btnCompose.setOnClickListener(this)
 
     }
 
@@ -132,6 +134,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, FragmentHomeBinding>() , Ha
 
             binding.btnConstrain -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_ConstraintLayoutFragment)
+            }
+
+            binding.btnCompose -> {
+                ComposeActivity.newInstance(v.context)
             }
         }
     }
