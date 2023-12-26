@@ -36,9 +36,6 @@ import com.wjf.moduledesignpattern.actionType.template.MilitaryComputer
 import com.wjf.moduledesignpattern.actionType.visitor.learn.BusinessReport
 import com.wjf.moduledesignpattern.actionType.visitor.learn.CEOVisitor
 import com.wjf.moduledesignpattern.actionType.visitor.learn.CTOVisitor
-import com.wjf.moduledesignpattern.createType.Builder.example.TodayFool
-import com.wjf.moduledesignpattern.createType.Builder.learn.Director
-import com.wjf.moduledesignpattern.createType.Builder.learn.MacBuilder
 import com.wjf.moduledesignpattern.createType.Clone.WordDocument
 import com.wjf.moduledesignpattern.createType.Factory.example.FactoryAnimalConcrete
 import com.wjf.moduledesignpattern.createType.Factory.learn.FactoryConcrete
@@ -62,6 +59,8 @@ import com.wjf.moduledesignpattern.structureType.flyweight.TicketFactory
 import com.wjf.moduledesignpattern.structureType.proxy.ProxySubject
 import com.wjf.moduledesignpattern.structureType.proxy.RealSubject
 import com.wjf.androidutils.origin.ui.home.HomeViewModel
+import com.wjf.moduledesignpattern.createType.Builder.example.MilkTea
+import com.wjf.moduledesignpattern.createType.Builder.example.MilkTeaBuilder
 
 /**
  * @Description
@@ -127,18 +126,12 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel, FragmentDesignBinding>(),
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.builder_pattern -> {
-                val builder = MacBuilder()
-                val pcDirector = Director(builder)
-                pcDirector.construct("英特尔主板", "Retina显示器")
-                Log.d("__ComputerInfo", builder.create().toString())
-            }
+            R.id.builder_pattern -> {}
 
             R.id.builder_pattern_example -> {
-                TodayFool()
-                    .setEgg("egg")
-                    .setMeat("meat")
-                    .whatDayEat()
+
+                val milkTea: MilkTea = MilkTeaBuilder().type("").size("").build()
+
             }
 
             R.id.clone_pattern -> {
