@@ -1,4 +1,4 @@
-package com.wjf.moduledesignpattern.createType.Clone;
+package com.wjf.moduledesignpattern.createType.clone;
 
 import androidx.annotation.NonNull;
 

@@ -1,4 +1,4 @@
-package com.wjf.moduledesignpattern.createType.Builder.example;
+package com.wjf.moduledesignpattern.createType.builder.example;
 
 /**
  * @Description
