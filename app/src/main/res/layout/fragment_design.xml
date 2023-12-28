@@ -51,14 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
             <Button
-                android:id="@+id/factory_pattern"
-                android:text="factory_pattern"
+                android:id="@+id/factory_simple"
+                android:text="简单工厂"
                 android:textAllCaps="false"
                 android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"/>
             <Button
-                android:id="@+id/factory_pattern_example"
-                android:text="example 1"
+                android:id="@+id/method_factory"
+                android:text="工厂方法"
                 android:textAllCaps="false"
                 android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"/>
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
             <Button
-                android:id="@+id/factory_abstract_pattern"
+                android:id="@+id/abstract_factory"
                 android:text="factory_abstract"
                 android:textAllCaps="false"
                 android:layout_width="wrap_content"

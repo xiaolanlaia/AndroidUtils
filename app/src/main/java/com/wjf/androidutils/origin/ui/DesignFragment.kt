@@ -36,10 +36,7 @@ import com.wjf.moduledesignpattern.actionType.template.MilitaryComputer
 import com.wjf.moduledesignpattern.actionType.visitor.learn.BusinessReport
 import com.wjf.moduledesignpattern.actionType.visitor.learn.CEOVisitor
 import com.wjf.moduledesignpattern.actionType.visitor.learn.CTOVisitor
-import com.wjf.moduledesignpattern.createType.Clone.WordDocument
-import com.wjf.moduledesignpattern.createType.Factory.example.FactoryAnimalConcrete
-import com.wjf.moduledesignpattern.createType.Factory.learn.FactoryConcrete
-import com.wjf.moduledesignpattern.createType.FactoryAbstract.FactoryConcrete1
+import com.wjf.moduledesignpattern.createType.clone.WordDocument
 import com.wjf.moduledesignpattern.structureType.adapter.example.AudioPlayer
 import com.wjf.moduledesignpattern.structureType.adapter.learn.VoltAdapter
 import com.wjf.moduledesignpattern.structureType.bridge.example.CircleBridge
@@ -59,8 +56,11 @@ import com.wjf.moduledesignpattern.structureType.flyweight.TicketFactory
 import com.wjf.moduledesignpattern.structureType.proxy.ProxySubject
 import com.wjf.moduledesignpattern.structureType.proxy.RealSubject
 import com.wjf.androidutils.origin.ui.home.HomeViewModel
-import com.wjf.moduledesignpattern.createType.Builder.example.MilkTea
-import com.wjf.moduledesignpattern.createType.Builder.example.MilkTeaBuilder
+import com.wjf.moduledesignpattern.createType.builder.example.MilkTea
+import com.wjf.moduledesignpattern.createType.builder.example.MilkTeaBuilder
+import com.wjf.moduledesignpattern.createType.factory.abs.factory.CompleteLargeShoeFactory
+import com.wjf.moduledesignpattern.createType.factory.method.factory.MethodGameAFactory
+import com.wjf.moduledesignpattern.createType.factory.simple.GameFactory
 
 /**
  * @Description
@@ -83,9 +83,9 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel, FragmentDesignBinding>(),
         binding.builderPatternExample.setOnClickListener(this)
         binding.clonePattern.setOnClickListener(this)
         binding.clonePatternExample.setOnClickListener(this)
-        binding.factoryPattern.setOnClickListener(this)
-        binding.factoryPatternExample.setOnClickListener(this)
-        binding.factoryAbstractPattern.setOnClickListener(this)
+        binding.factorySimple.setOnClickListener(this)
+        binding.methodFactory.setOnClickListener(this)
+        binding.abstractFactory.setOnClickListener(this)
         binding.factoryAbstractPatternExample.setOnClickListener(this)
         binding.strategyPattern.setOnClickListener(this)
         binding.strategyPatternExample.setOnClickListener(this)
@@ -155,24 +155,25 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel, FragmentDesignBinding>(),
             }
 
             R.id.clone_pattern_example -> {}
-            R.id.factory_pattern -> {
-                val factory = FactoryConcrete()
-                val product = factory.createProduct()
-                product.method()
+            R.id.factory_simple -> {
+                val factory = GameFactory()
+                //不应该直接传入参数，使用配置文件能够适应变化
+                val game = factory.createGame(GameFactory.gameType)
+                binding.factorySimple.text = game.play()
             }
 
-            R.id.factory_pattern_example -> {
-                val factoryAnimal = FactoryAnimalConcrete()
-                val animal = factoryAnimal.createAnimal()
-                animal.animalType()
+            R.id.method_factory -> {
+
+                val methodGameFactory = MethodGameAFactory()
+                val methodGameA = methodGameFactory.createGame()
+                binding.methodFactory.text = methodGameA.play()
             }
 
-            R.id.factory_abstract_pattern -> {
-                val factoryAbstract = FactoryConcrete1()
-                val productAAbstract = factoryAbstract.createProductA()
-                val productBAbstract = factoryAbstract.createProductB()
-                productAAbstract.method()
-                productBAbstract.method()
+            R.id.abstract_factory -> {
+                val factory = CompleteLargeShoeFactory()
+                //大号的鞋子工厂所以创建的鞋子和鞋垫都是大号的
+                factory.createShoe()
+                factory.createInsole()
             }
 
             R.id.factory_abstract_pattern_example -> {}
