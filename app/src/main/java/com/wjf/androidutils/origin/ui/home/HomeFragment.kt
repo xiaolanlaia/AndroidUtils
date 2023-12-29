@@ -23,6 +23,7 @@ import com.wjf.androidutils.origin.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ScreenFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SelectTypeFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ToastFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ViewPageFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_WebViewFragment
 import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.handler.HandlerCallback
@@ -59,6 +60,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, FragmentHomeBinding>() , Ha
         binding.btnScreen.setOnClickListener(this)
         binding.btnHilt.setOnClickListener(this)
         binding.btnConstrain.setOnClickListener(this)
+        binding.btnViewPage.setOnClickListener(this)
         binding.btnCompose.setOnClickListener(this)
 
     }
@@ -134,6 +136,10 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, FragmentHomeBinding>() , Ha
 
             binding.btnConstrain -> {
                 TitleBarActivity.newInstance(v.context, JUMP_TO_ConstraintLayoutFragment)
+            }
+
+            binding.btnViewPage -> {
+                TitleBarActivity.newInstance(v.context, JUMP_TO_ViewPageFragment)
             }
 
             binding.btnCompose -> {

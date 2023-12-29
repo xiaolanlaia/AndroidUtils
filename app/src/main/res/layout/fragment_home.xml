@@ -112,8 +112,14 @@
     <Button
         android:id="@+id/btn_compose"
         android:text="Compose页面"
-        android:layout_toEndOf="@id/btn_hilt"
-        android:layout_alignTop="@id/btn_hilt"
+        android:layout_below="@+id/btn_hilt"
+        android:layout_width="@dimen/dp150"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_view_page"
+        android:text="ViewPage"
+        android:layout_toEndOf="@id/btn_compose"
+        android:layout_alignTop="@id/btn_compose"
         android:layout_width="@dimen/dp150"
         android:layout_height="wrap_content"/>
 

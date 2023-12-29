@@ -21,6 +21,7 @@ import com.wjf.androidutils.origin.ui.ImgLoaderFragment
 import com.wjf.androidutils.origin.ui.PersistentFragment
 import com.wjf.androidutils.origin.ui.ScreenFragment
 import com.wjf.androidutils.origin.ui.ToastFragment
+import com.wjf.androidutils.origin.ui.ViewPageFragment
 import com.wjf.androidutils.origin.ui.WebViewFragment
 import com.wjf.androidutils.origin.ui.blue.bt.BlueClientFragment
 import com.wjf.androidutils.origin.ui.blue.BlueFragment
@@ -57,6 +58,7 @@ import com.wjf.androidutils.origin.utils.JUMP_TO_SelectTypeFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SocketClientFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SocketServiceFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ToastFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ViewPageFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_WebViewFragment
 import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ScreenUtils
@@ -199,6 +201,10 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
 
             JUMP_TO_ConstraintLayoutFragment -> {
                 fragment = ConstraintLayoutFragment()
+            }
+
+            JUMP_TO_ViewPageFragment -> {
+                fragment = ViewPageFragment()
             }
 
             else -> {

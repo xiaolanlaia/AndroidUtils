@@ -36,6 +36,7 @@ const val JUMP_TO_SocketServiceFragment             = "jump_to_SocketServiceFrag
 const val JUMP_TO_ScreenFragment                    = "jump_to_ScreenFragment"
 const val JUMP_TO_HiltFragment                      = "jump_to_HiltFragment"
 const val JUMP_TO_ConstraintLayoutFragment          = "jump_to_ConstraintLayoutFragment"
+const val JUMP_TO_ViewPageFragment                  = "jump_to_ViewPageFragment"
 
 
 const val LABEL = "label"
