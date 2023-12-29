@@ -10,4 +10,7 @@ public class Invoker {
     public void action(){
         command.execute();
     }
+    public void undo(){
+        command.undo();
+    }
 }

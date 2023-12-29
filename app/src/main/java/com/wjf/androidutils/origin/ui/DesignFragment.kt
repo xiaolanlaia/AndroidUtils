@@ -16,10 +16,6 @@ import com.wjf.moduledesignpattern.actionType.chain.learn.ConcreteHandler2
 import com.wjf.moduledesignpattern.actionType.chain.okHttpChain.InterceptorOne
 import com.wjf.moduledesignpattern.actionType.chain.okHttpChain.InterceptorTwo
 import com.wjf.moduledesignpattern.actionType.chain.okHttpChain.RealInterceptorChain
-import com.wjf.moduledesignpattern.actionType.command.exam.Broker
-import com.wjf.moduledesignpattern.actionType.command.exam.BuyStock
-import com.wjf.moduledesignpattern.actionType.command.exam.ShellStock
-import com.wjf.moduledesignpattern.actionType.command.exam.Stock
 import com.wjf.moduledesignpattern.actionType.command.learn.ConcreteCommand
 import com.wjf.moduledesignpattern.actionType.command.learn.Invoker
 import com.wjf.moduledesignpattern.actionType.command.learn.Receiver
@@ -96,7 +92,6 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel, FragmentDesignBinding>(),
         binding.interpreterPattern.setOnClickListener(this)
         binding.interpreterPatternExample.setOnClickListener(this)
         binding.commandPattern.setOnClickListener(this)
-        binding.commandPatternExample.setOnClickListener(this)
         binding.observerPattern.setOnClickListener(this)
         binding.observerPatternExample.setOnClickListener(this)
         binding.memotoPattern.setOnClickListener(this)
@@ -231,16 +226,7 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel, FragmentDesignBinding>(),
                 val command = ConcreteCommand(receiver)
                 val invoker = Invoker(command)
                 invoker.action()
-            }
-
-            R.id.command_pattern_example -> {
-                val abcStock = Stock()
-                val buyStock = BuyStock(abcStock)
-                val shellStock = ShellStock(abcStock)
-                val broker = Broker()
-                broker.takeOrder(buyStock)
-                broker.takeOrder(shellStock)
-                broker.placeOrders()
+                invoker.undo()
             }
 
             R.id.observer_pattern -> {

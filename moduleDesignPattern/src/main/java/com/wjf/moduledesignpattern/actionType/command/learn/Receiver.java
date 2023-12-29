@@ -1,9 +1,13 @@
 package com.wjf.moduledesignpattern.actionType.command.learn;
 
-import android.util.Log;
 
 public class Receiver {
-    public void action(){
-        Log.d("__action","Receiver");
+
+    public void turnOn() {
+        System.out.println("Light is on");
+    }
+
+    public void turnOff() {
+        System.out.println("Light is off");
     }
 }

@@ -1,12 +1,20 @@
 package com.wjf.moduledesignpattern.actionType.command.learn;
 
 public class ConcreteCommand implements Command{
-    private Receiver receiver;
-    public ConcreteCommand(Receiver receiver){
-        this.receiver = receiver;
+    private final Receiver light;
+
+    public ConcreteCommand(Receiver light) {
+        this.light = light;
     }
+
     @Override
     public void execute() {
-        receiver.action();
+        light.turnOn();
+    }
+
+    @Override
+    public void undo() {
+        light.turnOff();
+
     }
 }
