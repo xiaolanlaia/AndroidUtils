@@ -1,5 +1,8 @@
 package com.wjf.moduledesignpattern.actionType.command.learn;
 
+/**
+ * 要求该命令执行这个请求
+ */
 public class Invoker {
     private Command command;
 
