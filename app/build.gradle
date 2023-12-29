@@ -97,6 +97,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$supportDependencies.hilt_android"
     kapt "com.google.dagger:hilt-android-compiler:$supportDependencies.hilt_android_compiler"
 
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$supportDependencies.leakcanary_android"
 
     implementation project(":moduleUtils")
     implementation project(":moduleDesignPattern")

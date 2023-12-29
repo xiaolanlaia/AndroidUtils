@@ -60,6 +60,7 @@ ext {
             hilt_android_compiler        :      "2.44",
 
             room_version                 :      "2.5.0",
+            leakcanary_android           :      "2.7",
 
     ]
 }
