@@ -1,386 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/builder_pattern"
-                android:text="BuilderPattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/builder_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/clone_pattern"
-                android:text="clone_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/clone_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/factory_simple"
-                android:text="简单工厂"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/method_factory"
-                android:text="工厂方法"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/abstract_factory"
-                android:text="factory_abstract"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/factory_abstract_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/strategy_pattern"
-                android:text="strategy_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/strategy_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/state_pattern"
-                android:text="state_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/state_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/chain_pattern"
-                android:text="chain_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/chain_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/interpreter_pattern"
-                android:text="interpreter_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/interpreter_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/command_pattern"
-                android:text="command_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/observer_pattern"
-                android:text="observer_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/observer_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/memoto_pattern"
-                android:text="memoto_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/memoto_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/template_pattern"
-                android:text="template_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/template_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/visitor_pattern"
-                android:text="visitor_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/visitor_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/mediator_pattern"
-                android:text="mediator_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/mediator_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/proxy_pattern"
-                android:text="proxy_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/proxy_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/composite_pattern"
-                android:text="composite_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/composite_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/adapter_pattern"
-                android:text="adapter_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/adapter_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/decorate_pattern"
-                android:text="decorate_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/decorate_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/flyweight_pattern"
-                android:text="flyweight_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/flyweight_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/faced_pattern"
-                android:text="faced_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/faced_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <Button
-                android:id="@+id/bridge_pattern"
-                android:text="bridge_pattern"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-            <Button
-                android:id="@+id/bridge_pattern_example"
-                android:text="example 1"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"/>
-
-        </LinearLayout>
+    <Button
+        android:id="@+id/builder_pattern"
+        android:text="建造者模式"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
 
 
-    </LinearLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/clone_pattern"
+        android:text="原型模式"
+        android:textAllCaps="false"
+        android:layout_toEndOf="@id/builder_pattern"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <Button
+        android:id="@+id/factory_simple"
+        android:text="简单工厂"
+        android:layout_below="@+id/builder_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/method_factory"
+        android:text="工厂方法"
+        android:layout_below="@+id/builder_pattern"
+        android:layout_toEndOf="@id/factory_simple"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <Button
+        android:id="@+id/abstract_factory"
+        android:text="抽象工厂"
+        android:layout_below="@+id/builder_pattern"
+        android:layout_toEndOf="@id/method_factory"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+
+    <Button
+        android:id="@+id/observer_pattern"
+        android:text="观察者模式"
+        android:textAllCaps="false"
+        android:layout_below="@+id/abstract_factory"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <Button
+        android:id="@+id/memoto_pattern"
+        android:text="备忘录模式"
+        android:layout_toEndOf="@id/observer_pattern"
+        android:layout_alignTop="@+id/observer_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <Button
+        android:id="@+id/interpreter_pattern"
+        android:text="解释器模式"
+        android:textAllCaps="false"
+        android:layout_toEndOf="@id/memoto_pattern"
+        android:layout_alignTop="@+id/memoto_pattern"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <Button
+        android:id="@+id/command_pattern"
+        android:text="命令模式"
+        android:layout_below="@+id/memoto_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/strategy_pattern"
+        android:text="策略模式"
+        android:layout_toEndOf="@id/command_pattern"
+        android:layout_alignTop="@+id/command_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <Button
+        android:id="@+id/visitor_pattern"
+        android:text="访问者模式"
+        android:layout_toEndOf="@id/strategy_pattern"
+        android:layout_alignTop="@+id/strategy_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/state_pattern"
+        android:text="状态模式"
+        android:layout_below="@+id/visitor_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <Button
+        android:id="@+id/mediator_pattern"
+        android:text="中介者模式"
+        android:layout_toEndOf="@id/state_pattern"
+        android:layout_alignTop="@+id/state_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <Button
+        android:id="@+id/template_pattern"
+        android:text="模板方法模式"
+        android:layout_toEndOf="@id/mediator_pattern"
+        android:layout_alignTop="@+id/mediator_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/chain_iterator"
+        android:text="迭代器模式"
+        android:layout_below="@+id/mediator_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/chain_pattern"
+        android:text="责任链模式"
+        android:layout_toEndOf="@id/chain_iterator"
+        android:layout_alignTop="@+id/chain_iterator"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+
+    <Button
+        android:id="@+id/bridge_pattern"
+        android:text="桥接模式"
+        android:layout_below="@+id/chain_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/bridge_pattern_example"
+        android:text="example 1"
+        android:layout_toEndOf="@id/bridge_pattern"
+        android:layout_alignTop="@+id/bridge_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+
+    <Button
+        android:id="@+id/faced_pattern"
+        android:text="外观模式"
+        android:layout_below="@+id/bridge_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/faced_pattern_example"
+        android:text="example 1"
+        android:layout_toEndOf="@id/faced_pattern"
+        android:layout_alignTop="@+id/faced_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+
+    <Button
+        android:id="@+id/composite_pattern"
+        android:text="组合模式"
+        android:layout_toEndOf="@id/faced_pattern_example"
+        android:layout_alignTop="@+id/faced_pattern_example"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <Button
+        android:id="@+id/decorate_pattern"
+        android:text="装饰着模式"
+        android:layout_below="@+id/composite_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <Button
+        android:id="@+id/decorate_pattern_example"
+        android:text="example 1"
+        android:layout_toEndOf="@id/decorate_pattern"
+        android:layout_alignTop="@+id/decorate_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/adapter_pattern"
+        android:text="适配器模式"
+        android:layout_below="@+id/decorate_pattern_example"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/adapter_pattern_example"
+        android:text="example 1"
+        android:layout_toEndOf="@id/adapter_pattern"
+        android:layout_alignTop="@+id/adapter_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/proxy_pattern"
+        android:text="代理模式"
+        android:layout_below="@+id/adapter_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+    <Button
+        android:id="@+id/flyweight_pattern"
+        android:text="享元模式"
+        android:layout_toEndOf="@id/proxy_pattern"
+        android:layout_alignTop="@+id/proxy_pattern"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+</RelativeLayout>
+
 

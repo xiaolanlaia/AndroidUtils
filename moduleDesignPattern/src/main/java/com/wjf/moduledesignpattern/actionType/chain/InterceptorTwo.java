@@ -1,4 +1,4 @@
-package com.wjf.moduledesignpattern.actionType.chain.okHttpChain;
+package com.wjf.moduledesignpattern.actionType.chain;
 
 public class InterceptorTwo implements InterceptorCallBack {
 
