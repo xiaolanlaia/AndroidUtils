@@ -2,7 +2,7 @@ package com.wjf.moduledesignpattern.actionType.template;
 
 import android.util.Log;
 
-public class AbstractComputer {
+public abstract class AbstractComputer {
 
     protected void powerOn(){
         Log.d("__AbstractComputer","powerOn");

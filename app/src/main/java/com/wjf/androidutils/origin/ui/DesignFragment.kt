@@ -16,6 +16,8 @@ import com.wjf.moduledesignpattern.actionType.command.learn.ConcreteCommand
 import com.wjf.moduledesignpattern.actionType.command.learn.Invoker
 import com.wjf.moduledesignpattern.actionType.command.learn.Receiver
 import com.wjf.moduledesignpattern.actionType.interpreter.InterpreterPattern
+import com.wjf.moduledesignpattern.actionType.iterator.ConcreteAggregate
+import com.wjf.moduledesignpattern.actionType.iterator.entity.Book
 import com.wjf.moduledesignpattern.actionType.mediator.ConcreteColleagueA
 import com.wjf.moduledesignpattern.actionType.mediator.ConcreteColleagueB
 import com.wjf.moduledesignpattern.actionType.memoto.CallOfDuty
@@ -56,6 +58,7 @@ import com.wjf.moduledesignpattern.structureType.flyweight.Ticket
 import com.wjf.moduledesignpattern.structureType.flyweight.TicketFactory
 import com.wjf.moduledesignpattern.structureType.proxy.ProxySubject
 import com.wjf.moduledesignpattern.structureType.proxy.RealSubject
+import com.wjf.moduleutils.LogUtils
 
 
 /**
@@ -244,6 +247,16 @@ class DesignFragment : MVVMBaseFragment<HomeViewModel, FragmentDesignBinding>(),
             }
 
             R.id.chain_iterator -> {
+                val concreteAggregate = ConcreteAggregate<Book>()
+                concreteAggregate.add(Book(bookName = "bookName"))
+                concreteAggregate.add(Book(bookName = "bookName", price = "price"))
+                concreteAggregate.add(Book(bookName = "bookName", price = "price", author = "author"))
+
+                val iterator = concreteAggregate.iterator()
+                while (iterator.hasNext()){
+                    val book = iterator.next()
+                    LogUtils.d("__Book",book.toString())
+                }
 
             }
             R.id.proxy_pattern -> {
