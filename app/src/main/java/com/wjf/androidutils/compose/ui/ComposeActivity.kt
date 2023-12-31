@@ -9,8 +9,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.wjf.androidutils.compose.nav.MyNavHost
 import com.wjf.androidutils.compose.theme.MyAppTheme
-import com.wjf.androidutils.compose.ui.component.ViewModelComponent
 
 /**
  * @Description
@@ -34,7 +34,7 @@ class ComposeActivity : ComponentActivity(){
         setContent {
             MyAppTheme{
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    ViewModelComponent()
+                    MyNavHost()
                 }
             }
         }
