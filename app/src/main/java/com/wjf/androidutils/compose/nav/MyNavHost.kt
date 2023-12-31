@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.wjf.androidutils.compose.ui.component.EnterComponent
+import com.wjf.androidutils.compose.ui.base.TitleBarComponent
 
 /**
  * @Description
@@ -18,14 +18,17 @@ import com.wjf.androidutils.compose.ui.component.EnterComponent
 fun MyNavHost(navHostController : NavHostController = rememberNavController()) {
 
 
+    //建立对应关系
     NavHost(
         navController = navHostController,
         startDestination = RouteConfig.ROUTE_ENTER
     ){
 
-        //建立对应关系
         composable(RouteConfig.ROUTE_ENTER){
-            EnterComponent(navHostController)
+            TitleBarComponent(navHostController, RouteConfig.ROUTE_ENTER)
+        }
+        composable(RouteConfig.ROUTE_WIDGET){
+            TitleBarComponent(navHostController, RouteConfig.ROUTE_WIDGET)
         }
 
 //        composable(
