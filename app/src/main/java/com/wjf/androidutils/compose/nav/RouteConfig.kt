@@ -14,4 +14,7 @@ object RouteConfig {
 
     //组件页
     const val ROUTE_WIDGET = "widget"
+
+    //Flow
+    const val ROUTE_FLOW = "flow"
 }

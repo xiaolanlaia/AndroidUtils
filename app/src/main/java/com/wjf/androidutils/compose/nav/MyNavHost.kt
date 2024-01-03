@@ -30,6 +30,9 @@ fun MyNavHost(navHostController : NavHostController = rememberNavController()) {
         composable(RouteConfig.ROUTE_WIDGET){
             TitleBarComponent(navHostController, RouteConfig.ROUTE_WIDGET)
         }
+        composable(RouteConfig.ROUTE_FLOW){
+            TitleBarComponent(navHostController, RouteConfig.ROUTE_FLOW)
+        }
 
 //        composable(
 //            route = "${RouteConfig.ROUTE_DETECT}/{$COMMON_FLAG}",
