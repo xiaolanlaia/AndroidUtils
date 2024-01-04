@@ -155,7 +155,7 @@ class FileUtils {
         if (bitmap == null){ return }
 
         if (fileType == FILE_TYPE_2 && Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
-            saveImgQ(bitmap)
+            saveImgQ(bitmap = bitmap, folderName = folderName, fileName = fileName)
             return
         }
 
