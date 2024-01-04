@@ -21,6 +21,7 @@ import com.wjf.androidutils.R
 import com.wjf.androidutils.compose.nav.RouteConfig
 import com.wjf.androidutils.compose.ui.component.EnterComponent
 import com.wjf.androidutils.compose.ui.component.FlowComponent
+import com.wjf.androidutils.compose.ui.component.FlowHotComponent
 import com.wjf.androidutils.compose.ui.component.WidgetComponent
 import com.wjf.androidutils.compose.widget.CommonTitle
 
@@ -96,6 +97,9 @@ fun getPage(
         }
         RouteConfig.ROUTE_FLOW -> {
             FlowComponent(navHostController, modifier)
+        }
+        RouteConfig.ROUTE_FLOW_HOT -> {
+            FlowHotComponent(navHostController, modifier)
         }
     }
 }

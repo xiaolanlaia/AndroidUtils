@@ -17,4 +17,7 @@ object RouteConfig {
 
     //Flow
     const val ROUTE_FLOW = "flow"
+
+    //Flow Hot
+    const val ROUTE_FLOW_HOT = "flow_hot"
 }
