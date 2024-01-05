@@ -35,7 +35,6 @@ import com.wjf.androidutils.origin.ui.reflect.ReflectFragment
 import com.wjf.androidutils.origin.ui.socket.SelectTypeFragment
 import com.wjf.androidutils.origin.ui.socket.SocketClientFragment
 import com.wjf.androidutils.origin.ui.socket.SocketServiceFragment
-import com.wjf.androidutils.origin.utils.IMG_POSITION
 import com.wjf.androidutils.origin.utils.JUMP_TO
 import com.wjf.androidutils.origin.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ArrayFragment
@@ -70,12 +69,9 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
 
 
     companion object{
-        fun newInstance(context: Context, jumpTo: String, position: Int = -1){
+        fun newInstance(context: Context, jumpTo: String){
             val intent = Intent(context, TitleBarActivity::class.java)
             intent.putExtra(JUMP_TO,jumpTo)
-            if (position != -1){
-                intent.putExtra(IMG_POSITION,position)
-            }
             context.startActivity(intent)
         }
     }
@@ -112,105 +108,55 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
         layoutParams.height = ScreenUtils.instance.getStatusBarHeight()
         binding.viewStatus.layoutParams = layoutParams
 
-        when(intent.getStringExtra(JUMP_TO)){
+        fragment = when(intent.getStringExtra(JUMP_TO)) {
 
-            JUMP_TO_DesignFragment -> {
-                fragment = DesignFragment()
-            }
+            JUMP_TO_DesignFragment -> { DesignFragment() }
 
-            JUMP_TO_PersistentFragment -> {
-                fragment = PersistentFragment()
-            }
+            JUMP_TO_PersistentFragment -> { PersistentFragment() }
 
-            JUMP_TO_ToastFragment -> {
-                fragment = ToastFragment()
-            }
+            JUMP_TO_ToastFragment -> { ToastFragment() }
 
-            JUMP_TO_ArrayFragment -> {
-                fragment = ArrayFragment()
-            }
+            JUMP_TO_ArrayFragment -> { ArrayFragment() }
 
-            JUMP_TO_FileFragment -> {
-                fragment = FileFragment()
-            }
+            JUMP_TO_FileFragment -> { FileFragment() }
 
-            JUMP_TO_ExceptionFragment -> {
-                fragment = ExceptionFragment()
-            }
+            JUMP_TO_ExceptionFragment -> { ExceptionFragment() }
 
-            JUMP_TO_ReflectFragment -> {
-                fragment = ReflectFragment()
-            }
+            JUMP_TO_ReflectFragment -> { ReflectFragment() }
 
-            JUMP_TO_ImgLoaderFragment -> {
-                fragment = ImgLoaderFragment()
-            }
+            JUMP_TO_ImgLoaderFragment -> { ImgLoaderFragment() }
 
-            JUMP_TO_WebViewFragment -> {
-                fragment = WebViewFragment()
-            }
+            JUMP_TO_WebViewFragment -> { WebViewFragment() }
 
-            JUMP_TO_AnimFragment -> {
-                fragment = AnimFragment()
-            }
+            JUMP_TO_AnimFragment -> { AnimFragment() }
 
-            JUMP_TO_BlueFragment -> {
-                fragment = BlueFragment()
-            }
+            JUMP_TO_BlueFragment -> { BlueFragment() }
 
-            JUMP_TO_BlueClientFragment -> {
-                fragment = BlueClientFragment()
-            }
+            JUMP_TO_BlueClientFragment -> { BlueClientFragment() }
 
-            JUMP_TO_BlueServiceFragment -> {
-                fragment = BlueServiceFragment()
-            }
+            JUMP_TO_BlueServiceFragment -> { BlueServiceFragment() }
 
+            JUMP_TO_BleClientFragment -> { BleClientFragment() }
 
-            JUMP_TO_BleClientFragment -> {
-                fragment = BleClientFragment()
-            }
+            JUMP_TO_BleServiceFragment -> { BleServiceFragment() }
 
-            JUMP_TO_BleServiceFragment -> {
-                fragment = BleServiceFragment()
-            }
+            JUMP_TO_DialogFragment -> { DialogFragment() }
 
-            JUMP_TO_DialogFragment -> {
-                fragment = DialogFragment()
-            }
+            JUMP_TO_SelectTypeFragment -> { SelectTypeFragment() }
 
-            JUMP_TO_SelectTypeFragment -> {
-                fragment = SelectTypeFragment()
-            }
+            JUMP_TO_SocketClientFragment -> { SocketClientFragment() }
 
-            JUMP_TO_SocketClientFragment -> {
-                fragment = SocketClientFragment()
-            }
+            JUMP_TO_SocketServiceFragment -> { SocketServiceFragment() }
 
-            JUMP_TO_SocketServiceFragment -> {
-                fragment = SocketServiceFragment()
-            }
+            JUMP_TO_ScreenFragment -> { ScreenFragment() }
 
-            JUMP_TO_ScreenFragment -> {
-                fragment = ScreenFragment()
-            }
+            JUMP_TO_HiltFragment -> { HiltFragment() }
 
-            JUMP_TO_HiltFragment -> {
-                fragment = HiltFragment()
-            }
+            JUMP_TO_ConstraintLayoutFragment -> { ConstraintLayoutFragment() }
 
-            JUMP_TO_ConstraintLayoutFragment -> {
-                fragment = ConstraintLayoutFragment()
-            }
+            JUMP_TO_ViewPageFragment -> { ViewPageFragment() }
 
-            JUMP_TO_ViewPageFragment -> {
-                fragment = ViewPageFragment()
-            }
-
-            else -> {
-                fragment = HomeFragment()
-            }
-
+            else -> { HomeFragment() }
         }
 
         commonTitleBinding.tvPageTitle.text = fragment.javaClass.simpleName
@@ -219,11 +165,7 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
     }
 
     override fun initClick(){
-
-        commonTitleBinding.linearBack.singleClick {
-
-            finish()
-        }
+        commonTitleBinding.linearBack.singleClick { finish() }
     }
 
 

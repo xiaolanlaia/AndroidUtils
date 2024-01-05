@@ -32,7 +32,7 @@ abstract class MVVMBaseFragment<VM : ViewModel, VB: ViewBinding> : Fragment() {
     }
     abstract fun initViewModel(): VM
     abstract fun initViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
-    abstract fun initView()
+    open fun initView(){}
     open fun initClick(){}
     open fun initData(){}
 }
