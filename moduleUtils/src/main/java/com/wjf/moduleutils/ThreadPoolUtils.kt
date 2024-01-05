@@ -47,8 +47,8 @@ class ThreadPoolUtils {
      * 2、最大线程数无限大
      * 3、等待队列优先队列 -> 有优先级
      */
-    private var mScheduledThreadPool: ExecutorService? = null
-    fun scheduledThreadPool(size: Int = 10): ExecutorService {
+    private var mScheduledThreadPool: ScheduledExecutorService? = null
+    fun scheduledThreadPool(size: Int = 10): ScheduledExecutorService {
         if (mScheduledThreadPool == null) {
             mScheduledThreadPool = Executors.newScheduledThreadPool(size)
         }
