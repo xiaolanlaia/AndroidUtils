@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_bind"
+        android:text="bind绑定"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_unbind"
+        android:text="bind解绑"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginStart="@dimen/dp20"
+        app:layout_constraintTop_toTopOf="@+id/tv_bind"
+        app:layout_constraintStart_toEndOf="@+id/tv_bind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_bind_get"
+        android:text="通信"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginStart="@dimen/dp20"
+        app:layout_constraintTop_toTopOf="@+id/tv_bind"
+        app:layout_constraintStart_toEndOf="@+id/tv_unbind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

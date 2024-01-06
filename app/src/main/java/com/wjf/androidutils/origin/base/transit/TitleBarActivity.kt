@@ -32,6 +32,11 @@ import com.wjf.androidutils.origin.ui.dialog.DialogFragment
 import com.wjf.androidutils.origin.ui.hilt.HiltFragment
 import com.wjf.androidutils.origin.ui.home.HomeFragment
 import com.wjf.androidutils.origin.ui.reflect.ReflectFragment
+import com.wjf.androidutils.origin.ui.service.ServiceBindFragment
+import com.wjf.androidutils.origin.ui.service.ServiceForegroundFragment
+import com.wjf.androidutils.origin.ui.service.ServiceMessageFragment
+import com.wjf.androidutils.origin.ui.service.ServiceSelectFragment
+import com.wjf.androidutils.origin.ui.service.ServiceStartFragment
 import com.wjf.androidutils.origin.ui.socket.SelectTypeFragment
 import com.wjf.androidutils.origin.ui.socket.SocketClientFragment
 import com.wjf.androidutils.origin.ui.socket.SocketServiceFragment
@@ -54,6 +59,11 @@ import com.wjf.androidutils.origin.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ScreenFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SelectTypeFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceBindFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceForegroundFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceMessageFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceSelectFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceStartFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SocketClientFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SocketServiceFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ToastFragment
@@ -155,6 +165,16 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
             JUMP_TO_ConstraintLayoutFragment -> { ConstraintLayoutFragment() }
 
             JUMP_TO_ViewPageFragment -> { ViewPageFragment() }
+
+            JUMP_TO_ServiceSelectFragment -> { ServiceSelectFragment() }
+
+            JUMP_TO_ServiceStartFragment -> { ServiceStartFragment() }
+
+            JUMP_TO_ServiceBindFragment -> { ServiceBindFragment() }
+
+            JUMP_TO_ServiceMessageFragment -> { ServiceMessageFragment() }
+
+            JUMP_TO_ServiceForegroundFragment -> { ServiceForegroundFragment() }
 
             else -> { HomeFragment() }
         }

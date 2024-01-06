@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_service_start"
+        android:text="start"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_service_bind"
+        android:text="bind"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintTop_toBottomOf="@id/tv_service_start"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_service_message"
+        android:text="message"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintTop_toBottomOf="@id/tv_service_bind"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_service_foreground"
+        android:text="foreground"
+        android:textSize="@dimen/sp24"
+        android:textColor="@color/white"
+        android:background="@color/half_transparent"
+        android:padding="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        app:layout_constraintTop_toBottomOf="@id/tv_service_message"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

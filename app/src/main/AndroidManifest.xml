@@ -27,6 +27,9 @@
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
+    <!-- 服务   -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
 
     <application
         android:allowBackup="true"
@@ -69,7 +72,10 @@
             </intent-filter>
         </activity-alias>
 
-
+        <service android:name=".origin.service.MyStartService"/>
+        <service android:name=".origin.service.MyBindService"/>
+        <service android:name=".origin.service.MyForegroundService"/>
+        <service android:name=".origin.service.MyMessageService" android:process=":remote" />
 
     </application>
 
