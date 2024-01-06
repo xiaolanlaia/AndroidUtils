@@ -31,6 +31,8 @@ import com.wjf.androidutils.origin.ui.blue.bt.BlueServiceFragment
 import com.wjf.androidutils.origin.ui.dialog.DialogFragment
 import com.wjf.androidutils.origin.ui.hilt.HiltFragment
 import com.wjf.androidutils.origin.ui.home.HomeFragment
+import com.wjf.androidutils.origin.ui.recyclerView.RecyclerViewMultiFragment
+import com.wjf.androidutils.origin.ui.recyclerView.RecyclerViewSelectFragment
 import com.wjf.androidutils.origin.ui.reflect.ReflectFragment
 import com.wjf.androidutils.origin.ui.service.ServiceBindFragment
 import com.wjf.androidutils.origin.ui.service.ServiceForegroundFragment
@@ -56,6 +58,8 @@ import com.wjf.androidutils.origin.utils.JUMP_TO_FileFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_HiltFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ImgLoaderFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_PersistentFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_RecyclerViewMultiFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_RecyclerViewSelectFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ReflectFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ScreenFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SelectTypeFragment
@@ -175,6 +179,10 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
             JUMP_TO_ServiceMessageFragment -> { ServiceMessageFragment() }
 
             JUMP_TO_ServiceForegroundFragment -> { ServiceForegroundFragment() }
+
+            JUMP_TO_RecyclerViewSelectFragment -> { RecyclerViewSelectFragment() }
+
+            JUMP_TO_RecyclerViewMultiFragment -> { RecyclerViewMultiFragment() }
 
             else -> { HomeFragment() }
         }

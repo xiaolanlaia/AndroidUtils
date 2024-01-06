@@ -43,6 +43,8 @@ const val JUMP_TO_ServiceStartFragment              = "jump_to_ServiceStartFragm
 const val JUMP_TO_ServiceBindFragment               = "jump_to_ServiceBindFragment"
 const val JUMP_TO_ServiceMessageFragment            = "jump_to_ServiceMessageFragment"
 const val JUMP_TO_ServiceForegroundFragment         = "JUMP_TO_ServiceForegroundFragment"
+const val JUMP_TO_RecyclerViewSelectFragment        = "JUMP_TO_RecyclerViewSelectFragment"
+const val JUMP_TO_RecyclerViewMultiFragment         = "JUMP_TO_RecyclerViewFragment"
 
 
 const val ITEM_DESIGN              = "设计模式"
@@ -73,6 +75,8 @@ const val ITEM_SERVICE_START       = "Service start"
 const val ITEM_SERVICE_BIND        = "Service bind"
 const val ITEM_SERVICE_MESSAGE     = "Service message"
 const val ITEM_SERVICE_FOREGROUND  = "Service foreground"
+const val ITEM_RECYCLERVIEW_SELECT = "recyclerview"
+const val ITEM_RECYCLERVIEW_MULTI  = "recyclerview multi"
 const val ITEM_COMPOSE             = "Compose"
 
 val JumpPageKey = HashMap<String, FragmentBean>().apply {
@@ -104,6 +108,8 @@ val JumpPageKey = HashMap<String, FragmentBean>().apply {
      put(ITEM_SERVICE_BIND,        FragmentBean(isShow = false, jumpFlag = JUMP_TO_ServiceBindFragment))
      put(ITEM_SERVICE_MESSAGE,     FragmentBean(isShow = false, jumpFlag = JUMP_TO_ServiceMessageFragment))
      put(ITEM_SERVICE_FOREGROUND,  FragmentBean(isShow = false, jumpFlag = JUMP_TO_ServiceForegroundFragment))
+     put(ITEM_RECYCLERVIEW_SELECT, FragmentBean(isShow = true,  jumpFlag = JUMP_TO_RecyclerViewSelectFragment))
+     put(ITEM_RECYCLERVIEW_MULTI,  FragmentBean(isShow = false, jumpFlag = JUMP_TO_RecyclerViewMultiFragment))
      put(ITEM_COMPOSE,             FragmentBean(isShow = true,  jumpFlag = ""))
 }
 
