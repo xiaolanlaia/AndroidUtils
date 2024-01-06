@@ -36,6 +36,7 @@ class BleClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBleClientBindi
         lifecycle.addObserver(BleCallbackImpl(this))
 
         binding.rvBle.layoutManager = LinearLayoutManager(mView.context)
+        binding.rvBle.setHasFixedSize(true)
         mBleDevAdapter = BleDevAdapter()
         binding.rvBle.adapter = mBleDevAdapter
 

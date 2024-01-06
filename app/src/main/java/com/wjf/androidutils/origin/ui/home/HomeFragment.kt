@@ -28,6 +28,7 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, FragmentHomeBinding>() , Ha
         handlerCallback = this
         val gridLayoutManager = GridLayoutManager(mView.context,3)
         binding.rvHome.layoutManager = gridLayoutManager
+        binding.rvHome.setHasFixedSize(true)
         binding.rvHome.adapter = HomeAdapter()
 
     }

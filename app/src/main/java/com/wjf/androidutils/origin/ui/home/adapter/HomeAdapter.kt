@@ -39,18 +39,20 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when(holder){
             is HomeViewHolder -> {
                 holder.tvItem.text = dataList[position]
-                holder.tvItem.singleClick {
-                    when(dataList[position]){
-                        ITEM_COMPOSE  -> { ComposeActivity.newInstance(mView.context) }
-                        else          -> { TitleBarActivity.newInstance(mView.context, "${JumpPageKey[dataList[position]]?.jumpFlag}") }
-                    }
-                }
             }
         }
     }
 
     inner class HomeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val tvItem: TextView = itemView.findViewById(R.id.tv_item)
+        init {
+            itemView.singleClick {
+                when(dataList[adapterPosition]){
+                    ITEM_COMPOSE  -> { ComposeActivity.newInstance(mView.context) }
+                    else          -> { TitleBarActivity.newInstance(mView.context, "${JumpPageKey[dataList[adapterPosition]]?.jumpFlag}") }
+                }
+            }
+        }
     }
 
 

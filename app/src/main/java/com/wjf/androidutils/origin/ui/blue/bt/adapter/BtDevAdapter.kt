@@ -33,12 +33,8 @@ class BtDevAdapter : RecyclerView.Adapter<BtDevAdapter.VH>() {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val dev = mDevices[position]
-        val name = dev.name
-        val address = dev.address
-        val bondState = dev.bondState
-        holder.name.text = name ?: ""
-        holder.address.text =
-            String.format("%s (%s)", address, if (bondState == 10) "未配对" else "配对")
+        holder.tvName.text = dev.name ?: ""
+        holder.tvAddress.text = String.format("%s (%s)", dev.address, if (dev.bondState == 10) "未配对" else "配对")
     }
 
     override fun getItemCount(): Int {
@@ -62,19 +58,18 @@ class BtDevAdapter : RecyclerView.Adapter<BtDevAdapter.VH>() {
 
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val name: TextView
-        val address: TextView
+        val tvName: TextView
+        val tvAddress: TextView
 
         init {
             itemView.setOnClickListener(this)
-            name = itemView.findViewById(R.id.name)
-            address = itemView.findViewById(R.id.address)
+            tvName = itemView.findViewById(R.id.tv_name)
+            tvAddress = itemView.findViewById(R.id.tv_address)
         }
 
         override fun onClick(v: View) {
             val pos = adapterPosition
             if (pos >= 0 && pos < mDevices.size) {
-
                 ToastUtils.instance.show("正在连接...")
                 BlueUtils.instance.bluetoothSocket(mDevices[pos])
             }

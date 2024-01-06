@@ -10,13 +10,13 @@
     android:showDividers="end">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/address"
+        android:id="@+id/tv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/name" />
+        app:layout_constraintStart_toEndOf="@+id/tv_name" />
 </LinearLayout>

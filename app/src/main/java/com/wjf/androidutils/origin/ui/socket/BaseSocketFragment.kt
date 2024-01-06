@@ -63,6 +63,7 @@ open class BaseSocketFragment : MVVMBaseFragment<HomeViewModel, FragmentBaseSock
         msgAdapter = MsgAdapter(messages)
         binding.rvMsg.apply {
             layoutManager = LinearLayoutManager(mView.context)
+            setHasFixedSize(true)
             adapter = msgAdapter
         }
         

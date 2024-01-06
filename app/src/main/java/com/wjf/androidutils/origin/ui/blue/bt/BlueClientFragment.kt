@@ -46,6 +46,7 @@ class BlueClientFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueClientBin
         layoutSendBinding = LayoutSendBinding.bind(binding.root)
 
         binding.rvBt.layoutManager = LinearLayoutManager(mView.context)
+        binding.rvBt.setHasFixedSize(true)
         binding.rvBt.adapter = mBtDevAdapter
 
         lifecycle.addObserver(BlueCallbackImpl(mView.context,this))
