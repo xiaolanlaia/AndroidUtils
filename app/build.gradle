@@ -87,7 +87,9 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout-compose:$supportDependencies.constraintlayout_compose"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$supportDependencies.lifecycle_runtime_ktx"
     implementation "com.google.accompanist:accompanist-permissions:$supportDependencies.accompanist_permissions"
-
+    implementation "com.google.accompanist:accompanist-insets:$supportDependencies.accompanist_version"
+    implementation "com.google.accompanist:accompanist-insets-ui:$supportDependencies.accompanist_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$supportDependencies.accompanist_version"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$supportDependencies.leakcanary_android"
 
