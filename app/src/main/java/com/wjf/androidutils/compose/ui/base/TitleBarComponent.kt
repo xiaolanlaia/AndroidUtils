@@ -20,8 +20,8 @@ import androidx.navigation.compose.rememberNavController
 import com.wjf.androidutils.R
 import com.wjf.androidutils.compose.nav.RouteConfig
 import com.wjf.androidutils.compose.ui.component.EnterComponent
-import com.wjf.androidutils.compose.ui.component.FlowComponent
-import com.wjf.androidutils.compose.ui.component.FlowHotComponent
+import com.wjf.androidutils.compose.ui.component.flow.FlowComponent
+import com.wjf.androidutils.compose.ui.component.flow.FlowHotComponent
 import com.wjf.androidutils.compose.ui.component.WidgetComponent
 import com.wjf.androidutils.compose.widget.CommonTitle
 

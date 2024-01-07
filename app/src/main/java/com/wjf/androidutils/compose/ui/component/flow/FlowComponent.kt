@@ -1,4 +1,4 @@
-package com.wjf.androidutils.compose.ui.component
+package com.wjf.androidutils.compose.ui.component.flow
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -15,23 +14,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.wjf.androidutils.R
+import com.wjf.androidutils.compose.theme.modifier_240_120
+import com.wjf.androidutils.compose.theme.textStyle_20_white
 import com.wjf.androidutils.compose.utils.*
 import com.wjf.moduleutils.LogUtils
 
@@ -63,7 +57,32 @@ const val OPERATOR_filter = "filter"
 const val OPERATOR_takeWhile = "takeWhile"
 const val OPERATOR_drop = "drop"
 
-val textStyle = TextStyle(fontSize = 40.sp, color = Color.White, textAlign = TextAlign.Center)
+
+val tvFlowContent = ArrayList<String>().apply {
+    add(OPERATOR_flow)
+    add(OPERATOR_asFlow)
+    add(OPERATOR_flowOf)
+
+    add(OPERATOR_process)
+
+    add(OPERATOR_catch)
+
+    add(OPERATOR_map)
+    add(OPERATOR_transform)
+    add(OPERATOR_take)
+    add(OPERATOR_drop)
+    add(OPERATOR_combine)
+    add(OPERATOR_zip)
+    add(OPERATOR_collectLatest)
+    add(OPERATOR_buffer)
+    add(OPERATOR_conflate)
+    add(OPERATOR_flatMapConcat)
+    add(OPERATOR_flatMapMerge)
+    add(OPERATOR_flatMapLatest)
+    add(OPERATOR_flowOn)
+    add(OPERATOR_filter)
+    add(OPERATOR_takeWhile)
+}
 
 @Composable
 fun FlowComponent(
@@ -71,40 +90,15 @@ fun FlowComponent(
     modifier: Modifier = Modifier
 ) {
 
-    val tvModifier = Modifier
-        .size(width = 240.dp, height = 120.dp)
-        .background(color = colorResource(id = R.color.half_transparent))
+
 
     var tvFlowValue by rememberSaveable {
         mutableStateOf("")
     }
-    val tvFlowContent = ArrayList<String>()
 
-    var clickIndex = 0
-
-    tvFlowContent.add(OPERATOR_flow)
-    tvFlowContent.add(OPERATOR_asFlow)
-    tvFlowContent.add(OPERATOR_flowOf)
-
-    tvFlowContent.add(OPERATOR_process)
-
-    tvFlowContent.add(OPERATOR_catch)
-
-    tvFlowContent.add(OPERATOR_map)
-    tvFlowContent.add(OPERATOR_transform)
-    tvFlowContent.add(OPERATOR_take)
-    tvFlowContent.add(OPERATOR_drop)
-    tvFlowContent.add(OPERATOR_combine)
-    tvFlowContent.add(OPERATOR_zip)
-    tvFlowContent.add(OPERATOR_collectLatest)
-    tvFlowContent.add(OPERATOR_buffer)
-    tvFlowContent.add(OPERATOR_conflate)
-    tvFlowContent.add(OPERATOR_flatMapConcat)
-    tvFlowContent.add(OPERATOR_flatMapMerge)
-    tvFlowContent.add(OPERATOR_flatMapLatest)
-    tvFlowContent.add(OPERATOR_flowOn)
-    tvFlowContent.add(OPERATOR_filter)
-    tvFlowContent.add(OPERATOR_takeWhile)
+    var clickIndex by rememberSaveable {
+        mutableStateOf(0)
+    }
 
 
     LazyVerticalGrid(
@@ -118,11 +112,11 @@ fun FlowComponent(
             //创建流
             item(span = { GridItemSpan(maxLineSpan) }){ TitleText("创建流") }
 
-            items((tvFlowContent.indexOf(OPERATOR_flowOf) - tvFlowContent.indexOf(OPERATOR_flow)) + 1) {index ->
+            items((tvFlowContent.indexOf(OPERATOR_flowOf) - tvFlowContent.indexOf(OPERATOR_flow)) + 1) { index ->
                 Text(
                     text = tvFlowContent[index + tvFlowContent.indexOf(OPERATOR_flow)],
-                    style = textStyle,
-                    modifier = tvModifier
+                    style = textStyle_20_white,
+                    modifier = modifier_240_120
                         .clickable {
                             clickIndex = index + tvFlowContent.indexOf(OPERATOR_flow)
 
@@ -161,8 +155,8 @@ fun FlowComponent(
             items(1) {index ->
                 Text(
                     text = tvFlowContent[index + tvFlowContent.indexOf(OPERATOR_process)],
-                    style = textStyle,
-                    modifier = tvModifier
+                    style = textStyle_20_white,
+                    modifier = modifier_240_120
                         .clickable {
                             clickIndex = index + tvFlowContent.indexOf(OPERATOR_process)
                             tvFlowValue = ""
@@ -188,8 +182,8 @@ fun FlowComponent(
 
                 Text(
                     text = tvFlowContent[index + tvFlowContent.indexOf(OPERATOR_catch)],
-                    style = textStyle,
-                    modifier = tvModifier
+                    style = textStyle_20_white,
+                    modifier = modifier_240_120
                         .clickable {
                             clickIndex = index + tvFlowContent.indexOf(OPERATOR_catch)
                             tvFlowValue = ""
@@ -212,8 +206,8 @@ fun FlowComponent(
             items((tvFlowContent.indexOf(OPERATOR_takeWhile) - tvFlowContent.indexOf(OPERATOR_map)) + 1){ index ->
                 Text(
                     text = tvFlowContent[index + tvFlowContent.indexOf(OPERATOR_map)],
-                    style = textStyle,
-                    modifier = tvModifier
+                    style = textStyle_20_white,
+                    modifier = modifier_240_120
                         .clickable {
                             clickIndex = index + tvFlowContent.indexOf(OPERATOR_map)
                             tvFlowValue = ""
@@ -320,7 +314,7 @@ fun FlowComponent(
 
                 Text(
                     text = tvFlowValue,
-                    style = textStyle,
+                    style = textStyle_20_white,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(500.dp)
@@ -343,35 +337,3 @@ fun FlowComponentPreview(){
     )
 }
 
-@Composable
-fun <T: Any> rememberMutableStateListOf(vararg elements: T): SnapshotStateList<T> {
-    return rememberSaveable(
-        saver = listSaver(
-            save = { stateList ->
-                if (stateList.isNotEmpty()) {
-                    val first = stateList.first()
-                    if (!canBeSaved(first)) {
-                        throw IllegalStateException("${first::class} cannot be saved. By default only types which can be stored in the Bundle class can be saved.")
-                    }
-                }
-                stateList.toList()
-            },
-            restore = { it.toMutableStateList() }
-        )
-    ) {
-        elements.toList().toMutableStateList()
-    }
-}
-
-@Composable
-fun TitleText(title: String){
-    Text(
-        text = title,
-        style = textStyle,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .background(color = colorResource(id = R.color.half_transparent))
-            .wrapContentSize(Alignment.Center)
-    )
-}

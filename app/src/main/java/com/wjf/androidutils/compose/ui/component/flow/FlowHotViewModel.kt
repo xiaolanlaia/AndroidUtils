@@ -1,4 +1,4 @@
-package com.wjf.androidutils.compose.ui.component
+package com.wjf.androidutils.compose.ui.component.flow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

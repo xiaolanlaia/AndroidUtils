@@ -1,4 +1,4 @@
-package com.wjf.androidutils.compose.ui.component
+package com.wjf.androidutils.compose.ui.component.flow
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.wjf.androidutils.R
+import com.wjf.androidutils.compose.theme.textStyle_20_white
 import com.wjf.moduleutils.CoroutineUtils
 import kotlinx.coroutines.delay
 import java.lang.NullPointerException
@@ -133,7 +134,7 @@ fun FlowHotComponent(
 
                 Text(
                     text = tvFlowValue,
-                    style = textStyle,
+                    style = textStyle_20_white,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(500.dp)
