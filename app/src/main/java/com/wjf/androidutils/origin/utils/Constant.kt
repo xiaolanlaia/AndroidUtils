@@ -79,7 +79,7 @@ const val ITEM_RECYCLERVIEW_SELECT = "recyclerview"
 const val ITEM_RECYCLERVIEW_MULTI  = "recyclerview multi"
 const val ITEM_COMPOSE             = "Compose"
 
-val JumpPageKey = HashMap<String, FragmentBean>().apply {
+val JumpPageKey = LinkedHashMap<String, FragmentBean>().apply {
      put(ITEM_DESIGN,              FragmentBean(isShow = true,  jumpFlag = JUMP_TO_DesignFragment))
      put(ITEM_PERSISTENT,          FragmentBean(isShow = true,  jumpFlag = JUMP_TO_PersistentFragment))
      put(ITEM_TOAST,               FragmentBean(isShow = true,  jumpFlag = JUMP_TO_ToastFragment))
