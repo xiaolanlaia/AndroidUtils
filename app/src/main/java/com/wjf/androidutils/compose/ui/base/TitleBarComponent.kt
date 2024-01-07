@@ -24,6 +24,7 @@ import com.wjf.androidutils.compose.ui.component.flow.FlowComponent
 import com.wjf.androidutils.compose.ui.component.flow.FlowHotComponent
 import com.wjf.androidutils.compose.ui.component.WidgetComponent
 import com.wjf.androidutils.compose.widget.CommonTitle
+import com.wjf.androidutils.compose.ui.component.net.NetComponent
 
 /**
  * @Description
@@ -100,6 +101,9 @@ fun getPage(
         }
         RouteConfig.ROUTE_FLOW_HOT -> {
             FlowHotComponent(navHostController, modifier)
+        }
+        RouteConfig.ROUTE_NET -> {
+            NetComponent(navHostController, modifier)
         }
     }
 }

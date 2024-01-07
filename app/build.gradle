@@ -56,7 +56,21 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$supportDependencies.ext_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$supportDependencies.espresso_core"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$supportDependencies.kotlinx_coroutines_android"
-    implementation "androidx.lifecycle:lifecycle-extensions:$supportDependencies.lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-extensions:$supportDependencies.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common:$supportDependencies.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$supportDependencies.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$supportDependencies.lifecycle_version"
+
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$supportDependencies.retrofit2_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$supportDependencies.retrofit2_converter_gson"
+    implementation "com.squareup.okhttp3:logging-interceptor:$supportDependencies.okhttp3_logging_interceptor"
+
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$supportDependencies.hilt_android"
+    kapt "com.google.dagger:hilt-android-compiler:$supportDependencies.hilt_android_compiler"
 
 
     // compose
@@ -75,6 +89,9 @@ dependencies {
     implementation "com.google.accompanist:accompanist-permissions:$supportDependencies.accompanist_permissions"
 
 
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$supportDependencies.leakcanary_android"
+
+
     // Local unit tests
     testImplementation "androidx.test:core:$supportDependencies.test_core"
     testImplementation "junit:junit:$supportDependencies.junit"
@@ -90,14 +107,9 @@ dependencies {
     androidTestImplementation "io.mockk:mockk-android:$supportDependencies.mockk_android"
     androidTestImplementation "androidx.test:runner:$supportDependencies.runner"
     androidTestImplementation "androidx.test:rules:$supportDependencies.rules"
-
     debugImplementation "androidx.fragment:fragment-testing:$supportDependencies.fragment_testing"
 
-    //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:$supportDependencies.hilt_android"
-    kapt "com.google.dagger:hilt-android-compiler:$supportDependencies.hilt_android_compiler"
 
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$supportDependencies.leakcanary_android"
 
     implementation project(":moduleUtils")
     implementation project(":moduleDesignPattern")
