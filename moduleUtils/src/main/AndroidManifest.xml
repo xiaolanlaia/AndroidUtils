@@ -4,7 +4,7 @@
     <application>
 
         <!-- USB状态检测(开机自动启动) -->
-        <receiver android:name=".receiver.usb.UsbStatusReceiver">
+        <receiver android:name=".receiver.usb.UsbStatusReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_EJECT" />
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
