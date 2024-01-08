@@ -1,10 +1,10 @@
-package com.vision.moduleroom.data
+package com.wjf.moduleroom.data
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.vision.moduleroom.entity.User
+import com.wjf.moduleroom.entity.User
 
 /**
  * @Description

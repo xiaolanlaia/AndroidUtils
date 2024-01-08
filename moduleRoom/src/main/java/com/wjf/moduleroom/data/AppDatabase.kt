@@ -1,8 +1,8 @@
-package com.vision.moduleroom.data
+package com.wjf.moduleroom.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.vision.moduleroom.entity.User
+import com.wjf.moduleroom.entity.User
 
 /**
  * @Description
@@ -11,7 +11,7 @@ import com.vision.moduleroom.entity.User
  *
  */
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class], version = 1,exportSchema=false)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object{

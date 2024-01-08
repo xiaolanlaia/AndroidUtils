@@ -1,4 +1,4 @@
-package com.vision.moduleroom
+package com.wjf.moduleroom
 
 import android.app.Application
 

@@ -1,8 +1,8 @@
-package com.vision.moduleroom.di
+package com.wjf.moduleroom.di
 
 import androidx.room.Room
-import com.vision.moduleroom.RoomApplication
-import com.vision.moduleroom.data.AppDatabase
+import com.wjf.moduleroom.RoomApplication
+import com.wjf.moduleroom.data.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

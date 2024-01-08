@@ -1,4 +1,4 @@
-package com.vision.moduleroom.entity
+package com.wjf.moduleroom.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
