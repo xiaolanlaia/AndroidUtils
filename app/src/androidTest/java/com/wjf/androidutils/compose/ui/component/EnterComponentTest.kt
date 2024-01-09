@@ -2,6 +2,7 @@ package com.wjf.androidutils.compose.ui.component
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -44,7 +45,13 @@ class EnterComponentTest {
     @Test
     fun checkTextShow_click(){
         tvContentList.forEach {
-            composeRule.onNodeWithText(it).assertIsDisplayed().performClick()
+            composeRule.onNodeWithContentDescription(it)
+                .assertIsDisplayed()
+
+            composeRule
+                .onNodeWithText(it)
+                .assertIsDisplayed()
+                .performClick()
             runBlocking {
                 delay(500)
                 composeRule.onNodeWithTag(TAG_COMMON_TITLE_BACK).performClick()
