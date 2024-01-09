@@ -2,7 +2,7 @@ package com.wjf.androidutils
 
 import android.app.Application
 import android.content.Context
-import com.vision.moduleroom.RoomApplication
+import com.wjf.moduleroom.RoomApplication
 import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.modulesocket.utils.SocketConstant
