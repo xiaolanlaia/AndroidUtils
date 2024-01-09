@@ -86,7 +86,7 @@ val tvFlowContent = ArrayList<String>().apply {
 
 @Composable
 fun FlowComponent(
-    navHostController : NavHostController,
+    navHostController : NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
 

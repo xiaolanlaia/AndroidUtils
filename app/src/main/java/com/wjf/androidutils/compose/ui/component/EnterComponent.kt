@@ -44,7 +44,7 @@ val tvContentList = ArrayList<String>().apply {
 
 @Composable
 fun EnterComponent(
-    navHostController : NavHostController,
+    navHostController : NavHostController = rememberNavController(),
     modifier: Modifier = Modifier,
     funName: (String)-> Unit
 ) {

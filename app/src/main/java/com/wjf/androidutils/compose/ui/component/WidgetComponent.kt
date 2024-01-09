@@ -3,6 +3,7 @@ package com.wjf.androidutils.compose.ui.component
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 /**
  * @Description
@@ -13,7 +14,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun WidgetComponent(
-    navHostController : NavHostController,
+    navHostController : NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
 
