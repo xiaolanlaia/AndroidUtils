@@ -16,6 +16,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.wjf.androidutils.compose.nav.MyNavHost
 import com.wjf.androidutils.compose.theme.MyAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * @Description
@@ -23,6 +24,7 @@ import com.wjf.androidutils.compose.theme.MyAppTheme
  * @Date 2023/12/23 16:31
  *
  */
+@AndroidEntryPoint
 class ComposeActivity : ComponentActivity(){
 
     companion object{

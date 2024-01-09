@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.wjf.androidutils.R
 import com.wjf.androidutils.compose.nav.RouteConfig
 import com.wjf.androidutils.compose.theme.textStyle_52_222222_bold
+import com.wjf.androidutils.compose.utils.TAG_COMMON_TITLE_BACK
 import com.wjf.androidutils.compose.utils.continuousClick
 
 /**
@@ -58,6 +60,7 @@ fun CommonTitle(
         Box(
             modifier = Modifier
                 .size(height = 198.dp, width = 198.dp)
+                .testTag(TAG_COMMON_TITLE_BACK)
                 .clickable {
                     if (pageRoute == RouteConfig.ROUTE_ENTER){
                         activity.finish()
