@@ -35,7 +35,7 @@ const val PAGE_FlowCold     = "FlowCold"
 const val PAGE_FlowHot      = "FlowHot"
 const val PAGE_NET          = "net"
 
-val tvContent = ArrayList<String>().apply {
+val tvContentList = ArrayList<String>().apply {
     add(PAGE_Widget)
     add(PAGE_FlowCold)
     add(PAGE_FlowHot)
@@ -59,15 +59,15 @@ fun EnterComponent(
         horizontalArrangement = Arrangement.spacedBy(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         content = {
-            items(tvContent.size){ index ->
+            items(tvContentList.size){ index ->
                 Text(
-                    text = tvContent[index],
+                    text = tvContentList[index],
                     style = TextStyle(fontSize = 40.sp, color = Color.White),
                     modifier = Modifier
                         .size(width = 240.dp, height = 120.dp)
                         .background(color = colorResource(id = R.color.half_transparent))
                         .clickable {
-                            when(tvContent[index]){
+                            when(tvContentList[index]){
                                 PAGE_Widget -> {
                                     navHostController.navigate(RouteConfig.ROUTE_WIDGET)
                                 }
