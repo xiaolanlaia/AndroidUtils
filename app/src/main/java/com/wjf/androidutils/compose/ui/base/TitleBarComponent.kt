@@ -39,7 +39,7 @@ fun TitleBarComponent(
     pageRoute: String
 ) {
     var title by rememberSaveable {
-        mutableStateOf("")
+        mutableStateOf(pageRoute)
     }
 
     ConstraintLayout(
@@ -74,9 +74,6 @@ fun TitleBarComponent(
                 .constrainAs(viewPage) {
                     top.linkTo(viewTitle.bottom)
                 },
-            funName = {
-                title = "$it"
-            }
         )
     }
 }
@@ -86,12 +83,11 @@ fun getPage(
     navHostController: NavHostController,
     pageRoute: String,
     modifier: Modifier,
-    funName: (String?)-> Unit
 ) {
 
     when (pageRoute) {
         RouteConfig.ROUTE_ENTER -> {
-            EnterComponent(navHostController, modifier, funName)
+            EnterComponent(navHostController, modifier)
         }
         RouteConfig.ROUTE_WIDGET -> {
             WidgetComponent(navHostController, modifier)

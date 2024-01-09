@@ -15,6 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,12 +48,7 @@ val tvContentList = ArrayList<String>().apply {
 fun EnterComponent(
     navHostController : NavHostController = rememberNavController(),
     modifier: Modifier = Modifier,
-    funName: (String)-> Unit
 ) {
-
-    LaunchedEffect(key1 = "", block = {
-        funName(Thread.currentThread().stackTrace[2].fileName)
-    })
     LazyVerticalGrid(
         contentPadding = PaddingValues(20.dp),
         columns = GridCells.Fixed(4),
@@ -82,6 +79,7 @@ fun EnterComponent(
                                 }
                             }
                         }
+                        .semantics { contentDescription = tvContentList[index] }
                         .wrapContentSize(Alignment.Center)
                 )
             }
@@ -93,8 +91,6 @@ fun EnterComponent(
 @Composable
 @Preview(showBackground = true, backgroundColor = 0x000000, widthDp = 1080, heightDp = 1920)
 fun EnterComponentPreview() {
-    EnterComponent(rememberNavController()){
-
-    }
+    EnterComponent(rememberNavController())
 
 }
