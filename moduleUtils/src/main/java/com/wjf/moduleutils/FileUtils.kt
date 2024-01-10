@@ -57,7 +57,7 @@ class FileUtils {
 
         val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
         if (folderExistOrCreate(folderPath)){
-            ThreadPoolUtils.instance.getCachedThreadPool().execute {
+            ThreadPoolUtils.instance.cachedThreadPool().execute {
                 val file = File(folderPath,fileName)
                 if (!file.exists()) { file.createNewFile() }
                 //追加模式
@@ -81,7 +81,7 @@ class FileUtils {
         val folderPath = getFolderPath(folderName = folderName,fileType = fileType, EnvironmentType = Environment.DIRECTORY_DOCUMENTS)
 
         if (folderExistOrCreate(folderPath)){
-            ThreadPoolUtils.instance.getCachedThreadPool().execute {
+            ThreadPoolUtils.instance.cachedThreadPool().execute {
                 val file = File(folderPath,fileName)
 
                 if (file.exists()) {
@@ -163,7 +163,7 @@ class FileUtils {
 
 
         if (folderExistOrCreate(folderPath)){
-            ThreadPoolUtils.instance.getCachedThreadPool().execute {
+            ThreadPoolUtils.instance.cachedThreadPool().execute {
                 val file = File(folderPath,"${fileName}.png")
                 if (file.exists()){
                     file.delete()
@@ -188,7 +188,7 @@ class FileUtils {
     fun getImg(fileName: String = "MyImg", fileType: Int = FILE_TYPE_1, result:(Bitmap?)->Unit){
         val folderPath = getFolderPath(folderName = "", fileType = fileType)
         val file = File(folderPath,"${fileName}.png")
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             var bitmap: Bitmap? = null
             try {
                 val inputStream = FileInputStream(file)
@@ -312,7 +312,7 @@ class FileUtils {
         // 可以通过 MediaStore 保存文件的公共目录有：Images、Audio、Video、Downloads
         val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues) ?: return
 
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             // 写入图片数据
             var outputStream: OutputStream? = null
             try {

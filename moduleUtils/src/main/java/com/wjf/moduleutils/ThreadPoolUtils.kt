@@ -28,8 +28,8 @@ class ThreadPoolUtils {
      * 2、最大线程数等于核心线程数
      * 3、等待队列无界
      */
-    var mFixedThreadPool: ExecutorService? = null
-    fun getFixedThreadPool(size: Int = 10): ExecutorService {
+    private var mFixedThreadPool: ExecutorService? = null
+    fun fixedThreadPool(size: Int = 10): ExecutorService {
         if (mFixedThreadPool == null) {
             mFixedThreadPool = Executors.newFixedThreadPool(size)
         }
@@ -67,7 +67,7 @@ class ThreadPoolUtils {
      * 3、等待队列 SynchronousQueue
      */
     private var mCachedThreadPool: ExecutorService? = null
-    fun getCachedThreadPool(): ExecutorService {
+    fun cachedThreadPool(): ExecutorService {
         if (mCachedThreadPool == null) {
             mCachedThreadPool = Executors.newCachedThreadPool()
         }
@@ -83,7 +83,7 @@ class ThreadPoolUtils {
      * 抢占式执行的线程池（执行顺序不确定）
      */
     private var mWorkStealingPool: ExecutorService? = null
-    fun getWorkStealingPool(): ExecutorService? {
+    fun workStealingPool(): ExecutorService? {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             return null
         }
@@ -107,7 +107,7 @@ class ThreadPoolUtils {
      * 3、等待队列：无界
      */
     private var mSingleThreadExecutor: ExecutorService? = null
-    fun getSingleThreadExecutor(): ExecutorService {
+    fun singleThreadExecutor(): ExecutorService {
         if (mSingleThreadExecutor == null) {
             mSingleThreadExecutor = Executors.newSingleThreadExecutor()
         }
@@ -129,14 +129,14 @@ class ThreadPoolUtils {
      * scheduleWithFixedDelay: 无论上一个任务执行时间是否大于period，任务执行完毕后都会等待 period 再去执行下一个任务
      */
     private var mSingleThreadScheduledExecutor: ScheduledExecutorService? = null
-    fun getSingleThreadScheduledExecutor(): ScheduledExecutorService {
+    fun singleScheduledExecutor(): ScheduledExecutorService {
         if (mSingleThreadScheduledExecutor == null) {
             mSingleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor()
         }
         return mSingleThreadScheduledExecutor!!
     }
 
-    fun shutdownSingleThreadScheduledExecutor() {
+    fun shutdownSingleScheduledExecutor() {
         mSingleThreadScheduledExecutor?.shutdownNow()
         mSingleThreadScheduledExecutor = null
     }

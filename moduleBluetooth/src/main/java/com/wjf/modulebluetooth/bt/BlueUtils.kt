@@ -116,7 +116,7 @@ class BlueUtils {
         }
 
         // 开启子线程
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             //device.createRfcommSocketToServiceRecord(SPP_UUID) //加密传输，Android系统强制配对，弹窗显示配对码
 
             //明文传输(不安全)，无需配对

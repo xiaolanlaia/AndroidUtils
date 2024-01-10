@@ -40,7 +40,7 @@ class SocketServer : LifecycleEventObserver {
     fun startServer(callback: MessageCallback): Boolean {
         mCallback = callback
         result = true
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             try {
                 serverSocket = ServerSocket(SOCKET_PORT)
                 while (result) {
@@ -83,7 +83,7 @@ class SocketServer : LifecycleEventObserver {
      * 发送到客户端
      */
     fun sendToClient(msg: String) {
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             if (socket == null) {
                 mCallback?.otherMsg("客户端还未连接")
                 return@execute
@@ -109,7 +109,7 @@ class SocketServer : LifecycleEventObserver {
      */
     fun replyHeartbeat() {
         val msg = "洞拐收到，洞拐收到，Over!"
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             if (socket == null) {
                 mCallback?.otherMsg("客户端还未连接")
                 return@execute

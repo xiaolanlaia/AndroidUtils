@@ -44,7 +44,7 @@ class SocketClient : LifecycleEventObserver {
     fun connectServer(ipAddress: String, callback: MessageCallback) {
         mHandler = Handler()
         mCallback = callback
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
             try {
                 socket = Socket(ipAddress, SOCKET_PORT)
                 socket?.receiveBufferSize = 64 * 1024
@@ -82,7 +82,7 @@ class SocketClient : LifecycleEventObserver {
      * @param msg 要发送至服务器的字符串
      */
     fun sendToServer(msg: String) {
-        ThreadPoolUtils.instance.getSingleThreadExecutor().execute {
+        ThreadPoolUtils.instance.singleThreadExecutor().execute {
             if (socket == null) {
                 mCallback?.otherMsg("客户端还未连接")
                 return@execute
@@ -109,7 +109,7 @@ class SocketClient : LifecycleEventObserver {
      */
     private fun sendHeartbeat() {
         val msg = "洞幺洞幺，呼叫洞拐，听到请回答，听到请回答，Over!"
-        ThreadPoolUtils.instance.getSingleThreadExecutor().execute {
+        ThreadPoolUtils.instance.singleThreadExecutor().execute {
             if (socket == null) {
                 mCallback?.otherMsg("客户端还未连接")
                 return@execute
@@ -135,7 +135,7 @@ class SocketClient : LifecycleEventObserver {
     fun clientLoop(socket: Socket?){
         if (socket == null) return
 
-        ThreadPoolUtils.instance.getCachedThreadPool().execute {
+        ThreadPoolUtils.instance.cachedThreadPool().execute {
 
             try {
                 inputStream = socket.getInputStream()
