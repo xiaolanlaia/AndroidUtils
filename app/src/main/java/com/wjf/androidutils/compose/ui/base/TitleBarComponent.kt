@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -25,6 +27,7 @@ import com.wjf.androidutils.compose.ui.component.flow.FlowHotComponent
 import com.wjf.androidutils.compose.ui.component.WidgetComponent
 import com.wjf.androidutils.compose.widget.CommonTitle
 import com.wjf.androidutils.compose.ui.component.net.NetComponent
+import com.wjf.moduleutils.ScreenUtils
 
 /**
  * @Description
@@ -63,9 +66,11 @@ fun TitleBarComponent(
             navHostController = navHostController,
             title = title,
             pageRoute = pageRoute,
-            modifier = Modifier.constrainAs(viewTitle) {
-                top.linkTo(parent.top)
-            }
+            modifier = Modifier
+                .padding(top = (ScreenUtils.instance.getStatusBarHeight()).dp)
+                .constrainAs(viewTitle) {
+                    top.linkTo(parent.top)
+                }
         )
         getPage(
             navHostController = navHostController,
