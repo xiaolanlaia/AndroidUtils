@@ -6,8 +6,7 @@ import com.wjf.moduleroom.RoomApplication
 import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.modulesocket.utils.SocketConstant
-import com.wjf.moduleutils.ExceptionUtils
-import com.wjf.moduleutils.LogUtils
+import com.wjf.moduleutils.ScreenAdaptUtils
 import com.wjf.moduleutils.UtilsConstant
 import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.persistent.MMKVUtils
@@ -35,6 +34,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        ScreenAdaptUtils(this, 375f).register()
         instance = this
         UtilsConstant.utilsContext = this
         ImgLoaderConstant.imgLoaderContext = this
@@ -45,12 +45,7 @@ class MyApplication : Application() {
             roomApplication?.onCreate()
         }
 
-        ExceptionUtils.instance(object : ExceptionUtils.CrashHandler {
-            override fun uncaughtException(t: Thread, e: Throwable) {
-                ToastUtils.instance.show("报错了")
-                LogUtils.d("__unCatchException-1", "${e.message}")
-            }
-        })
+
 
         MMKVUtils.instance.init()
         ToastUtils.instance.setToastTextSize()
