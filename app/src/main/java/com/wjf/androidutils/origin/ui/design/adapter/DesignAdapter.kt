@@ -7,32 +7,32 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wjf.androidutils.R
-import com.wjf.androidutils.origin.ui.design.DESIGN_BUILDER
-import com.wjf.androidutils.origin.ui.design.DESIGN_CLONE
-import com.wjf.androidutils.origin.ui.design.DESIGN_FACTORY_SIMPLE
-import com.wjf.androidutils.origin.ui.design.DESIGN_FACTORY_METHOD
-import com.wjf.androidutils.origin.ui.design.DESIGN_FACTORY_ABSTRACT
-import com.wjf.androidutils.origin.ui.design.DESIGN_OBSERVER
-import com.wjf.androidutils.origin.ui.design.DESIGN_MEMO
-import com.wjf.androidutils.origin.ui.design.DESIGN_INTERPRETER
-import com.wjf.androidutils.origin.ui.design.DESIGN_COMMAND
-import com.wjf.androidutils.origin.ui.design.DESIGN_STRATEGY
-import com.wjf.androidutils.origin.ui.design.DESIGN_VISITOR
-import com.wjf.androidutils.origin.ui.design.DESIGN_STATE
-import com.wjf.androidutils.origin.ui.design.DESIGN_MEDIATOR
-import com.wjf.androidutils.origin.ui.design.DESIGN_TEMPLATE
-import com.wjf.androidutils.origin.ui.design.DESIGN_ITERATOR
-import com.wjf.androidutils.origin.ui.design.DESIGN_CHAIN
-import com.wjf.androidutils.origin.ui.design.DESIGN_BRIDGE
-import com.wjf.androidutils.origin.ui.design.DESIGN_FACED
-import com.wjf.androidutils.origin.ui.design.DESIGN_COMBINE
-import com.wjf.androidutils.origin.ui.design.DESIGN_DECORATE
-import com.wjf.androidutils.origin.ui.design.DESIGN_DECORATE_2
 import com.wjf.androidutils.origin.ui.design.DESIGN_ADAPTER
 import com.wjf.androidutils.origin.ui.design.DESIGN_ADAPTER_2
+import com.wjf.androidutils.origin.ui.design.DESIGN_BRIDGE
+import com.wjf.androidutils.origin.ui.design.DESIGN_BUILDER
+import com.wjf.androidutils.origin.ui.design.DESIGN_CHAIN
+import com.wjf.androidutils.origin.ui.design.DESIGN_CLONE
+import com.wjf.androidutils.origin.ui.design.DESIGN_COMBINE
+import com.wjf.androidutils.origin.ui.design.DESIGN_COMMAND
+import com.wjf.androidutils.origin.ui.design.DESIGN_DECORATE
+import com.wjf.androidutils.origin.ui.design.DESIGN_DECORATE_2
+import com.wjf.androidutils.origin.ui.design.DESIGN_FACED
+import com.wjf.androidutils.origin.ui.design.DESIGN_FACTORY_ABSTRACT
+import com.wjf.androidutils.origin.ui.design.DESIGN_FACTORY_METHOD
+import com.wjf.androidutils.origin.ui.design.DESIGN_FACTORY_SIMPLE
+import com.wjf.androidutils.origin.ui.design.DESIGN_FLYWEIGHT
+import com.wjf.androidutils.origin.ui.design.DESIGN_INTERPRETER
+import com.wjf.androidutils.origin.ui.design.DESIGN_ITERATOR
+import com.wjf.androidutils.origin.ui.design.DESIGN_MEDIATOR
+import com.wjf.androidutils.origin.ui.design.DESIGN_MEMO
+import com.wjf.androidutils.origin.ui.design.DESIGN_OBSERVER
 import com.wjf.androidutils.origin.ui.design.DESIGN_PROXY
 import com.wjf.androidutils.origin.ui.design.DESIGN_PROXY_DYNAMIC
-import com.wjf.androidutils.origin.ui.design.DESIGN_FLYWEIGHT
+import com.wjf.androidutils.origin.ui.design.DESIGN_STATE
+import com.wjf.androidutils.origin.ui.design.DESIGN_STRATEGY
+import com.wjf.androidutils.origin.ui.design.DESIGN_TEMPLATE
+import com.wjf.androidutils.origin.ui.design.DESIGN_VISITOR
 import com.wjf.androidutils.origin.utils.JumpPageKey
 import com.wjf.moduledesignpattern.actionType.chain.InterceptorOne
 import com.wjf.moduledesignpattern.actionType.chain.InterceptorTwo
@@ -83,6 +83,10 @@ import com.wjf.moduledesignpattern.structureType.flyweight.Ticket
 import com.wjf.moduledesignpattern.structureType.flyweight.TicketFactory
 import com.wjf.moduledesignpattern.structureType.proxy.ProxySubject
 import com.wjf.moduledesignpattern.structureType.proxy.RealSubject
+import com.wjf.moduledesignpattern.structureType.proxyDynamic.Buyer1
+import com.wjf.moduledesignpattern.structureType.proxyDynamic.Buyer2
+import com.wjf.moduledesignpattern.structureType.proxyDynamic.DynamicProxy
+import com.wjf.moduledesignpattern.structureType.proxyDynamic.Subject
 import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.singleClick
 import java.util.LinkedList
@@ -300,6 +304,26 @@ class DesignAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPa
                         proxySubject.visit()
                     }
                     DESIGN_PROXY_DYNAMIC    -> {
+
+                        // 1. 创建调用处理器类对象
+                        val dynamicProxy = DynamicProxy()
+
+                        // 2. 创建目标对象对象
+                        val mBuyer1 = Buyer1()
+
+                        // 3. 创建动态代理类 & 对象：通过调用处理器类对象newProxyInstance（）
+                        // 传入上述目标对象对象
+                        val buyer1DynamicProxy = dynamicProxy.newProxyInstance(mBuyer1) as Subject
+
+                        // 4. 通过调用动态代理对象方法从而调用目标对象方法
+                        // 实际上是调用了invoke（），再通过invoke（）里的反射机制调用目标对象的方法
+                        buyer1DynamicProxy.buybuybuy()
+                        // 以上代购为小成代购Mac
+
+                        // 以下是代购为小何代购iPhone
+                        val mBuyer2 = Buyer2()
+                        val buyer2DynamicProxy = dynamicProxy.newProxyInstance(mBuyer2) as Subject
+                        buyer2DynamicProxy.buybuybuy()
 
                     }
                     DESIGN_FLYWEIGHT        -> {
