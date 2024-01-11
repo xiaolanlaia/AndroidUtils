@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,16 +31,13 @@ import com.wjf.androidutils.compose.nav.RouteConfig
  * @Date 2023/12/31 8:20
  *
  */
-const val PAGE_Widget       = "Widget"
-const val PAGE_FlowCold     = "FlowCold"
-const val PAGE_FlowHot      = "FlowHot"
-const val PAGE_NET          = "net"
 
 val tvContentList = ArrayList<String>().apply {
-    add(PAGE_Widget)
-    add(PAGE_FlowCold)
-    add(PAGE_FlowHot)
-    add(PAGE_NET)
+    add(RouteConfig.ROUTE_WIDGET)
+    add(RouteConfig.ROUTE_FLOW)
+    add(RouteConfig.ROUTE_FLOW_HOT)
+    add(RouteConfig.ROUTE_NET)
+    add(RouteConfig.ROUTE_COROUTINE)
 }
 
 @Composable
@@ -63,22 +59,7 @@ fun EnterComponent(
                     modifier = Modifier
                         .size(width = 240.dp, height = 120.dp)
                         .background(color = colorResource(id = R.color.half_transparent))
-                        .clickable {
-                            when(tvContentList[index]){
-                                PAGE_Widget -> {
-                                    navHostController.navigate(RouteConfig.ROUTE_WIDGET)
-                                }
-                                PAGE_FlowCold -> {
-                                    navHostController.navigate(RouteConfig.ROUTE_FLOW)
-                                }
-                                PAGE_FlowHot -> {
-                                    navHostController.navigate(RouteConfig.ROUTE_FLOW_HOT)
-                                }
-                                PAGE_NET -> {
-                                    navHostController.navigate(RouteConfig.ROUTE_NET)
-                                }
-                            }
-                        }
+                        .clickable { navHostController.navigate(tvContentList[index]) }
                         .semantics { contentDescription = tvContentList[index] }
                         .wrapContentSize(Alignment.Center)
                 )
