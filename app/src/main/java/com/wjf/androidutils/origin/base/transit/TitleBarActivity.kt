@@ -14,7 +14,7 @@ import com.wjf.androidutils.databinding.CommonTitleBinding
 import com.wjf.androidutils.origin.ui.AnimFragment
 import com.wjf.androidutils.origin.ui.ArrayFragment
 import com.wjf.androidutils.origin.ui.ConstraintLayoutFragment
-import com.wjf.androidutils.origin.ui.DesignFragment
+import com.wjf.androidutils.origin.ui.design.DesignFragment
 import com.wjf.androidutils.origin.ui.ExceptionFragment
 import com.wjf.androidutils.origin.ui.FileFragment
 import com.wjf.androidutils.origin.ui.ImgLoaderFragment

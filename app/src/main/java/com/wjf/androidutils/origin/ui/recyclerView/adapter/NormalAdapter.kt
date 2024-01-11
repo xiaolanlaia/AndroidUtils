@@ -39,7 +39,7 @@ class NormalAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var mView: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        mView = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_home,parent,false)
+        mView = LayoutInflater.from(parent.context).inflate(R.layout.layout_text_view,parent,false)
         return NormalViewHolder(mView)
     }
 

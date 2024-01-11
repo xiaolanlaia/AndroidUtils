@@ -29,7 +29,7 @@ class MultiAdapter(private var dataList: List<String> = JumpPageKey.keys.toList(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
             VIEW_TYPE_NORMAL -> {
-                mView = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_home, parent, false)
+                mView = LayoutInflater.from(parent.context).inflate(R.layout.layout_text_view, parent, false)
                 NormalViewHolder(mView)
             }
             else -> {
