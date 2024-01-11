@@ -11,6 +11,7 @@ import com.wjf.androidutils.origin.base.transit.TitleBarActivity
 import com.wjf.androidutils.origin.utils.ITEM_COMPOSE
 import com.wjf.androidutils.origin.utils.JumpPageKey
 import com.wjf.moduleutils.singleClick
+import java.util.LinkedList
 
 /**
  * @Description
@@ -18,18 +19,13 @@ import com.wjf.moduleutils.singleClick
  * @Date 2024/1/5 8:25
  *
  */
-class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var dataList = ArrayList<String>().apply {
+class HomeAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPageKey.keys)) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        JumpPageKey.forEach {
-            if (it.value.isShow){
-                add(it.key)
-            }
-        }
-    }
+
     lateinit var mView: View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        mView = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_home,parent,false)
+        mView = LayoutInflater.from(parent.context).inflate(R.layout.layout_text_view,parent,false)
         return HomeViewHolder(mView)
     }
 
