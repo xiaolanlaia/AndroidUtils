@@ -23,4 +23,7 @@ object RouteConfig {
 
     //net
     const val ROUTE_NET = "net"
+
+    //Coroutine
+    const val ROUTE_COROUTINE = "Coroutine"
 }

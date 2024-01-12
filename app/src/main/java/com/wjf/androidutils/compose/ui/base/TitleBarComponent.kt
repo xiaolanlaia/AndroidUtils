@@ -21,6 +21,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.wjf.androidutils.R
 import com.wjf.androidutils.compose.nav.RouteConfig
+import com.wjf.androidutils.compose.ui.component.CoroutineComponent
 import com.wjf.androidutils.compose.ui.component.EnterComponent
 import com.wjf.androidutils.compose.ui.component.flow.FlowComponent
 import com.wjf.androidutils.compose.ui.component.flow.FlowHotComponent
@@ -105,6 +106,9 @@ fun getPage(
         }
         RouteConfig.ROUTE_NET -> {
             NetComponent(navHostController, modifier)
+        }
+        RouteConfig.ROUTE_COROUTINE -> {
+            CoroutineComponent(navHostController, modifier)
         }
     }
 }
