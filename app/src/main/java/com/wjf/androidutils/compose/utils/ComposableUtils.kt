@@ -13,7 +13,9 @@ import androidx.compose.runtime.toMutableStateList
  *
  */
 
-
+/**
+ * val tvContent = rememberMutableStateListOf<String>()
+ */
 @Composable
 fun <T : Any> rememberMutableStateListOf(vararg elements: T): SnapshotStateList<T> {
     return rememberSaveable(
