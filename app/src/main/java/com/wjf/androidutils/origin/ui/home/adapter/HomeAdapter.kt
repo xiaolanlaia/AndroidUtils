@@ -1,15 +1,24 @@
 package com.wjf.androidutils.origin.ui.home.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.wjf.androidutils.R
 import com.wjf.androidutils.compose.ui.ComposeActivity
 import com.wjf.androidutils.origin.base.transit.TitleBarActivity
 import com.wjf.androidutils.origin.utils.ITEM_COMPOSE
+import com.wjf.androidutils.origin.utils.ITEM_DESIGN
+import com.wjf.androidutils.origin.utils.ITEM_PERSISTENT
+import com.wjf.androidutils.origin.utils.JUMP_TO
+import com.wjf.androidutils.origin.utils.JUMP_TO_DesignFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_PersistentFragment
 import com.wjf.androidutils.origin.utils.JumpPageKey
+import com.wjf.androidutils.origin.utils.START_FOR_RESULT
 import com.wjf.moduleutils.singleClick
 import java.util.LinkedList
 
@@ -45,6 +54,16 @@ class HomeAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPage
             itemView.singleClick {
                 when(dataList[adapterPosition]){
                     ITEM_COMPOSE  -> { ComposeActivity.newInstance(mView.context) }
+                    ITEM_DESIGN   -> {
+                        val intent = Intent(mView.context, TitleBarActivity::class.java)
+                        intent.putExtra(JUMP_TO,JUMP_TO_DesignFragment)
+                        (mView.context as Activity).startActivityForResult(intent,START_FOR_RESULT)
+                    }
+                    ITEM_PERSISTENT   -> {
+                        val intent = Intent(mView.context, TitleBarActivity::class.java)
+                        intent.putExtra(JUMP_TO, JUMP_TO_PersistentFragment)
+                        ((mView.context as TitleBarActivity).fragment).startActivityForResult(intent,START_FOR_RESULT)
+                    }
                     else          -> { TitleBarActivity.newInstance(mView.context, "${JumpPageKey[dataList[adapterPosition]]?.jumpFlag}") }
                 }
             }

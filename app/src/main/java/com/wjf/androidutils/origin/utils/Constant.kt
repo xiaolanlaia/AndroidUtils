@@ -116,5 +116,7 @@ val JumpPageKey = LinkedHashMap<String, FragmentBean>().apply {
 
 const val LABEL = "label"
 
+const val START_FOR_RESULT = 1
+
 class Constant {
 }

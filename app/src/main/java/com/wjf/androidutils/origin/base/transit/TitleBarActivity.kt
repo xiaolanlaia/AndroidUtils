@@ -42,6 +42,7 @@ import com.wjf.androidutils.origin.ui.service.ServiceStartFragment
 import com.wjf.androidutils.origin.ui.socket.SelectTypeFragment
 import com.wjf.androidutils.origin.ui.socket.SocketClientFragment
 import com.wjf.androidutils.origin.ui.socket.SocketServiceFragment
+import com.wjf.androidutils.origin.utils.COMMON_FLAG
 import com.wjf.androidutils.origin.utils.JUMP_TO
 import com.wjf.androidutils.origin.utils.JUMP_TO_AnimFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ArrayFragment
@@ -73,6 +74,8 @@ import com.wjf.androidutils.origin.utils.JUMP_TO_SocketServiceFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ToastFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ViewPageFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_WebViewFragment
+import com.wjf.androidutils.origin.utils.START_FOR_RESULT
+import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ScreenUtils
 import com.wjf.moduleutils.singleClick
@@ -193,9 +196,36 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
     }
 
     override fun initClick(){
-        commonTitleBinding.linearBack.singleClick { finish() }
+        commonTitleBinding.linearBack.singleClick {
+            onBackPressed()
+        }
     }
 
+    override fun onBackPressed() {
+
+        when(fragment){
+
+            is DesignFragment -> {
+                val intent = Intent()
+                intent.putExtra(COMMON_FLAG,"finish DesignFragment")
+                setResult(START_FOR_RESULT,intent)
+            }
+
+            is PersistentFragment -> {
+                val intent = Intent()
+                intent.putExtra(COMMON_FLAG,"finish PersistentFragment")
+                setResult(START_FOR_RESULT,intent)
+            }
+        }
+        super.onBackPressed()
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        LogUtils.d("__forResult-activity",
+            "requestCode:$requestCode resultCode:$resultCode data:${data?.getStringExtra(COMMON_FLAG)}")
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
