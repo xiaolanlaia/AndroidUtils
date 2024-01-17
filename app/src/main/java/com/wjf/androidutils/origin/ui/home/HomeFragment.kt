@@ -13,7 +13,7 @@ import com.wjf.moduleutils.handler.HandlerCallback
 class HomeFragment : MVVMBaseFragment<HomeViewModel, LayoutRecyclerBinding>() , HandlerCallback {
 
     companion object{
-        lateinit var handlerCallback: HandlerCallback
+        var handlerCallback: HandlerCallback? = null
     }
 
 
@@ -36,6 +36,11 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, LayoutRecyclerBinding>() , 
 
     override fun handlerCallback() {
         LogUtils.d("__handlerCallback","handlerCallback")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handlerCallback = null
     }
 
 }
