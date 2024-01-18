@@ -10,6 +10,7 @@ ext {
             namespaceWidget              :      "com.wjf.moduleWidget",
             namespaceRoom                :      "com.wjf.moduleroom",
             compileSdk                   :      33,
+            targetSdk                    :      33,
             minSdk                       :      24,
             versionCode                  :      1,
             versionName                  :      "1.0",
