@@ -103,15 +103,14 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
     val REQUEST_CODE = 1
 
     lateinit var fragment: Fragment
-    lateinit var commonTitleBinding: CommonTitleBinding
 
-    override fun initViewBinding(inflater: LayoutInflater) = ActivityTitleBarBinding.inflate(layoutInflater)
+    override fun initViewBinding(inflater: LayoutInflater) = ActivityTitleBarBinding.inflate(inflater)
 
 
     override fun initViewModel() = ViewModelProviders.of(this).get(TitleBarViewModel::class.java)
 
     override fun initView(){
-        commonTitleBinding = CommonTitleBinding.bind(binding.root)
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU){
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         }else{
@@ -190,13 +189,13 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
             else -> { HomeFragment() }
         }
 
-        commonTitleBinding.tvPageTitle.text = fragment.javaClass.simpleName
+        binding.commonTitle.tvPageTitle.text = fragment.javaClass.simpleName
         supportFragmentManager.beginTransaction().replace(R.id.info_content, fragment).commit()
 
     }
 
     override fun initClick(){
-        commonTitleBinding.linearBack.singleClick {
+        binding.commonTitle.linearBack.singleClick {
             onBackPressed()
         }
     }
