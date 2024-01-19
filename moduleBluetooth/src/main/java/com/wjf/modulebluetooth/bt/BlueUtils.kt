@@ -22,6 +22,7 @@ import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.File
 import java.io.FileInputStream
+import java.util.LinkedList
 
 /**
  * @Description
@@ -50,7 +51,7 @@ class BlueUtils {
      * 请求权限
      */
     fun requestPermission(activity: Activity, requestCode : Int){
-        val permissionList = ArrayList<String>()
+        val permissionList = LinkedList<String>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             permissionList.add(Manifest.permission.BLUETOOTH)
             permissionList.add(Manifest.permission.BLUETOOTH_ADMIN)

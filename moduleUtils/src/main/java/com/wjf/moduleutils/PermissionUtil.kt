@@ -24,7 +24,7 @@ class PermissionUtil {
      * 判断权限集合
      * permissions 权限数组
      */
-    fun requestPermissions(activity: Activity, permissionList : ArrayList<String>, requestCode : Int) {
+    fun requestPermissions(activity: Activity, permissionList : LinkedList<String>, requestCode : Int) {
         for (permission in permissionList) {
             if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, permissionList.toTypedArray(), requestCode)

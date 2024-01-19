@@ -79,6 +79,7 @@ import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ScreenUtils
 import com.wjf.moduleutils.singleClick
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.LinkedList
 
 @AndroidEntryPoint
 class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBinding>() {
@@ -93,7 +94,7 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
     }
 
     //首先定义请求变量
-    private var permissionList = ArrayList<String>().apply {
+    private var permissionList = LinkedList<String>().apply {
         add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         add(Manifest.permission.READ_PHONE_STATE)
     }
