@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.wjf.androidutils.R
 import com.wjf.androidutils.origin.base.MVVMBaseActivity
 import com.wjf.androidutils.databinding.ActivityTitleBarBinding
-import com.wjf.androidutils.databinding.CommonTitleBinding
 import com.wjf.androidutils.origin.ui.AnimFragment
 import com.wjf.androidutils.origin.ui.ArrayFragment
 import com.wjf.androidutils.origin.ui.ConstraintLayoutFragment
