@@ -26,4 +26,7 @@ object RouteConfig {
 
     //Coroutine
     const val ROUTE_COROUTINE = "Coroutine"
+
+    //Notification
+    const val ROUTE_NOTIFICATION = "Notification"
 }

@@ -23,6 +23,7 @@ import com.wjf.androidutils.R
 import com.wjf.androidutils.compose.nav.RouteConfig
 import com.wjf.androidutils.compose.ui.component.CoroutineComponent
 import com.wjf.androidutils.compose.ui.component.EnterComponent
+import com.wjf.androidutils.compose.ui.component.NotificationComponent
 import com.wjf.androidutils.compose.ui.component.flow.FlowComponent
 import com.wjf.androidutils.compose.ui.component.flow.FlowHotComponent
 import com.wjf.androidutils.compose.ui.component.WidgetComponent
@@ -109,6 +110,9 @@ fun getPage(
         }
         RouteConfig.ROUTE_COROUTINE -> {
             CoroutineComponent(navHostController, modifier)
+        }
+        RouteConfig.ROUTE_NOTIFICATION -> {
+            NotificationComponent(navHostController, modifier)
         }
     }
 }

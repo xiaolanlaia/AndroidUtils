@@ -30,6 +30,10 @@
     <!-- 服务   -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
+    <!-- targetSdk 33 通知权限   -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+
 
     <application
         android:allowBackup="true"
