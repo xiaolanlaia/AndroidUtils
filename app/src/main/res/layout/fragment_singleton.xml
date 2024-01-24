@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_hungary"
+        android:text="饿汉破坏"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp24"
+        android:gravity="center"
+        android:background="@color/half_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <TextView
+        android:id="@+id/tv_lazy"
+        android:text="懒汉破坏"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp24"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@color/half_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <TextView
+        android:id="@+id/tv_double_check"
+        android:text="双重检查锁破坏"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp24"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@color/half_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+</LinearLayout>

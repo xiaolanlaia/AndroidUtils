@@ -19,6 +19,7 @@ import com.wjf.androidutils.origin.ui.FileFragment
 import com.wjf.androidutils.origin.ui.ImgLoaderFragment
 import com.wjf.androidutils.origin.ui.PersistentFragment
 import com.wjf.androidutils.origin.ui.ScreenFragment
+import com.wjf.androidutils.origin.ui.SingletonFragment
 import com.wjf.androidutils.origin.ui.ToastFragment
 import com.wjf.androidutils.origin.ui.ViewPageFragment
 import com.wjf.androidutils.origin.ui.WebViewFragment
@@ -68,6 +69,7 @@ import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceForegroundFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceMessageFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceSelectFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceStartFragment
+import com.wjf.androidutils.origin.utils.JUMP_TO_SingletonFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SocketClientFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_SocketServiceFragment
 import com.wjf.androidutils.origin.utils.JUMP_TO_ToastFragment
@@ -185,6 +187,8 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
             JUMP_TO_RecyclerViewSelectFragment -> { RecyclerViewSelectFragment() }
 
             JUMP_TO_RecyclerViewMultiFragment -> { RecyclerViewMultiFragment() }
+
+            JUMP_TO_SingletonFragment -> { SingletonFragment() }
 
             else -> { HomeFragment() }
         }

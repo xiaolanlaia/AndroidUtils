@@ -45,6 +45,7 @@ const val JUMP_TO_ServiceMessageFragment            = "jump_to_ServiceMessageFra
 const val JUMP_TO_ServiceForegroundFragment         = "JUMP_TO_ServiceForegroundFragment"
 const val JUMP_TO_RecyclerViewSelectFragment        = "JUMP_TO_RecyclerViewSelectFragment"
 const val JUMP_TO_RecyclerViewMultiFragment         = "JUMP_TO_RecyclerViewFragment"
+const val JUMP_TO_SingletonFragment                 = "JUMP_TO_SingletonFragment"
 
 
 const val ITEM_DESIGN              = "设计模式"
@@ -77,6 +78,7 @@ const val ITEM_SERVICE_MESSAGE     = "Service message"
 const val ITEM_SERVICE_FOREGROUND  = "Service foreground"
 const val ITEM_RECYCLERVIEW_SELECT = "recyclerview"
 const val ITEM_RECYCLERVIEW_MULTI  = "recyclerview multi"
+const val ITEM_SINGLETON           = "Singleton"
 const val ITEM_COMPOSE             = "Compose"
 
 val JumpPageKey = LinkedHashMap<String, FragmentBean>().apply {
@@ -110,6 +112,7 @@ val JumpPageKey = LinkedHashMap<String, FragmentBean>().apply {
      put(ITEM_SERVICE_FOREGROUND,  FragmentBean(isShow = false, jumpFlag = JUMP_TO_ServiceForegroundFragment))
      put(ITEM_RECYCLERVIEW_SELECT, FragmentBean(isShow = true,  jumpFlag = JUMP_TO_RecyclerViewSelectFragment))
      put(ITEM_RECYCLERVIEW_MULTI,  FragmentBean(isShow = false, jumpFlag = JUMP_TO_RecyclerViewMultiFragment))
+     put(ITEM_SINGLETON,           FragmentBean(isShow = true,  jumpFlag = JUMP_TO_SingletonFragment))
      put(ITEM_COMPOSE,             FragmentBean(isShow = true,  jumpFlag = ""))
 }
 
