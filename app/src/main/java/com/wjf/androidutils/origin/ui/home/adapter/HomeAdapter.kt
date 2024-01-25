@@ -27,8 +27,15 @@ import java.util.LinkedList
  * @Date 2024/1/5 8:25
  *
  */
-class HomeAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPageKey.keys)) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val dataList = LinkedList<String>()
+    init {
+        JumpPageKey.forEach {
+            if (it.value.isShow){
+                dataList.add(it.key)
+            }
+        }
+    }
 
 
     lateinit var mView: View
