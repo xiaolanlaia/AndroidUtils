@@ -7,6 +7,8 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothServerSocket
 import android.bluetooth.BluetoothSocket
+import android.content.Context
+import android.location.LocationManager
 import android.os.Build
 import android.text.TextUtils
 import com.wjf.modulebluetooth.BLUE_CONNECTED
@@ -14,6 +16,7 @@ import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.modulebluetooth.BLUE_FLAG_FILE
 import com.wjf.modulebluetooth.BLUE_FLAG_MSG
 import com.wjf.modulebluetooth.BLUE_MSG
+import com.wjf.modulebluetooth.BlueConstant.blueContext
 import com.wjf.moduleutils.ExceptionUtils
 import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ThreadPoolUtils
@@ -86,6 +89,16 @@ class BlueUtils {
         } catch (e: Exception) {
             ExceptionUtils.instance.getCashHandler().uncaughtException(Thread.currentThread(),e.fillInStackTrace())
         }
+    }
+
+    /**
+     * 检查定位是否开启
+     */
+    fun checkLocation(): Boolean{
+        val manager =  blueContext?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val isGpsProvider = manager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        val isNetworkProvider = manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        return isGpsProvider || isNetworkProvider
     }
 
     //扫描蓝牙
