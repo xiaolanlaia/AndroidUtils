@@ -54,11 +54,13 @@ class BlueFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        BlueUtils.instance.requestPermission(mView.context as TitleBarActivity,REQUEST_CODE)
+    }
+
     override fun initData() {
         super.initData()
-
-        BlueUtils.instance.requestPermission(requireActivity(),REQUEST_CODE)
-
 
         if (!BlueUtils.instance.isSupport()) {
             ToastUtils.instance.show("本机没有找到蓝牙硬件或驱动！")
