@@ -1,5 +1,6 @@
 package com.wjf.androidutils.net.api
 
+import com.wjf.androidutils.net.interceptor.HeadInterceptor
 import com.wjf.androidutils.net.interceptor.LogInterceptor
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
@@ -20,6 +21,7 @@ object RetrofitBuilder {
     private val mOkHttpClient = OkHttpClient
         .Builder()
         .addInterceptor(LogInterceptor())
+        .addInterceptor(HeadInterceptor())
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)

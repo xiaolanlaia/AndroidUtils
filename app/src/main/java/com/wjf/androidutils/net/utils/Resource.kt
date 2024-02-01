@@ -7,8 +7,8 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
     companion object {
         fun <T> success(baseBean: BaseEntity<T>): Resource<Any?> {
             return when(baseBean.code){
-                "200" -> { Resource(status = Status.SUCCESS, data = baseBean.data, message = null) }
-                else -> { Resource(status = Status.ERROR, data = baseBean, message = baseBean.toString()) }
+                "200" -> { Resource(status = Status.SUCCESS, data = baseBean.data?: "", message = null) }
+                else -> { Resource(status = Status.ERROR, data = baseBean, message = baseBean.message) }
             }
         }
 
