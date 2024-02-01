@@ -1,4 +1,4 @@
-package com.wjf.moduleutils.receiver.time
+package com.wjf.androidutils.receiver.time
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -8,6 +8,8 @@ import android.icu.util.Calendar
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import com.wjf.androidutils.origin.base.transit.TitleBarActivity
+import com.wjf.androidutils.origin.ui.home.HomeFragment
 import com.wjf.moduleutils.TimeUtils
 
 /**
@@ -31,15 +33,21 @@ class TimeReceiver(val context: Context) : BroadcastReceiver(), LifecycleEventOb
         when(event){
 
             Lifecycle.Event.ON_CREATE -> {
-                TimeCallback.timeInterface = context as TimeCallback.TimeInterface
-                val timeReceiverFilter = IntentFilter()
-                timeReceiverFilter.addAction(Intent.ACTION_TIME_TICK)
-                context.registerReceiver(this, timeReceiverFilter)
+                if ((source as TitleBarActivity).fragment is HomeFragment){
+                    val timeReceiverFilter = IntentFilter()
+                    timeReceiverFilter.addAction(Intent.ACTION_TIME_TICK)
+                    context.registerReceiver(this, timeReceiverFilter)
+                }
 
             }
+            Lifecycle.Event.ON_RESUME -> {
+                TimeCallback.timeInterface = context as TimeCallback.TimeInterface
+            }
             Lifecycle.Event.ON_DESTROY -> {
-                TimeCallback.timeInterface = null
-                context.unregisterReceiver(this)
+                if ((source as TitleBarActivity).fragment is HomeFragment){
+                    TimeCallback.timeInterface = null
+                    context.unregisterReceiver(this)
+                }
             }
             else -> {}
         }

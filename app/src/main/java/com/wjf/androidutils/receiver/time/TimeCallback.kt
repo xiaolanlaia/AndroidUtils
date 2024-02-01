@@ -1,4 +1,4 @@
-package com.wjf.moduleutils.receiver.time
+package com.wjf.androidutils.receiver.time
 
 class TimeCallback {
 
