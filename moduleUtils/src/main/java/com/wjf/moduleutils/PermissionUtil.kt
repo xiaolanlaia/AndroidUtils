@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import java.util.LinkedList
 
 /**
  * @Description
