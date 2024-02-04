@@ -7,10 +7,7 @@ import com.wjf.androidutils.origin.base.MVVMBaseFragment
 import com.wjf.androidutils.origin.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentBlueBinding
 import com.wjf.androidutils.origin.ui.home.HomeViewModel
-import com.wjf.androidutils.origin.utils.JUMP_TO_BleClientFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BleServiceFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BlueClientFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BlueServiceFragment
+import com.wjf.androidutils.origin.utils.JumpSealed
 import com.wjf.modulebluetooth.bt.BlueUtils
 import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.singleClick
@@ -38,19 +35,19 @@ class BlueFragment : MVVMBaseFragment<HomeViewModel, FragmentBlueBinding>() {
     override fun initView() {
 
         binding.btnBtClient.singleClick {
-            TitleBarActivity.newInstance(it.context, JUMP_TO_BlueClientFragment)
+            TitleBarActivity.newInstance(it.context, JumpSealed.BlueClient.jumpTag)
         }
 
         binding.btnBtServer.singleClick {
-            TitleBarActivity.newInstance(it.context, JUMP_TO_BlueServiceFragment)
+            TitleBarActivity.newInstance(it.context, JumpSealed.BlueService.jumpTag)
         }
 
         binding.btnBleClient.singleClick {
-            TitleBarActivity.newInstance(it.context, JUMP_TO_BleClientFragment)
+            TitleBarActivity.newInstance(it.context, JumpSealed.BleClient.jumpTag)
         }
 
         binding.btnBleServer.singleClick {
-            TitleBarActivity.newInstance(it.context, JUMP_TO_BleServiceFragment)
+            TitleBarActivity.newInstance(it.context, JumpSealed.BleService.jumpTag)
         }
     }
 

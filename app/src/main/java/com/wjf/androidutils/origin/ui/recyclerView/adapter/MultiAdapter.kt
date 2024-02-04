@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wjf.androidutils.R
-import com.wjf.androidutils.origin.utils.JumpPageKey
 import com.wjf.moduleutils.ToastUtils
 import com.wjf.moduleutils.singleClick
 
@@ -17,7 +16,7 @@ import com.wjf.moduleutils.singleClick
  *
  */
 
-class MultiAdapter(private var dataList: List<String> = JumpPageKey.keys.toList()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MultiAdapter(private var dataList: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object{
         const val VIEW_TYPE_NORMAL = 0

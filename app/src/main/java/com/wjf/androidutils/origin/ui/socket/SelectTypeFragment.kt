@@ -7,8 +7,7 @@ import com.wjf.androidutils.origin.base.MVVMBaseFragment
 import com.wjf.androidutils.origin.base.transit.TitleBarActivity
 import com.wjf.androidutils.databinding.FragmentSelectTypeBinding
 import com.wjf.androidutils.origin.ui.home.HomeViewModel
-import com.wjf.androidutils.origin.utils.JUMP_TO_SocketClientFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_SocketServiceFragment
+import com.wjf.androidutils.origin.utils.JumpSealed
 import com.wjf.moduleutils.singleClick
 
 /**
@@ -27,11 +26,11 @@ class SelectTypeFragment : MVVMBaseFragment<HomeViewModel, FragmentSelectTypeBin
 
     override fun initView() {
         binding.btnServer.singleClick {
-            TitleBarActivity.newInstance(it.context, JUMP_TO_SocketServiceFragment)
+            TitleBarActivity.newInstance(it.context, JumpSealed.SocketService.jumpTag)
 
         }
         binding.btnClient.singleClick {
-            TitleBarActivity.newInstance(it.context, JUMP_TO_SocketClientFragment)
+            TitleBarActivity.newInstance(it.context, JumpSealed.SocketClient.jumpTag)
 
         }
 

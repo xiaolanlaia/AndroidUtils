@@ -7,10 +7,7 @@ import com.wjf.androidutils.databinding.FragmentServiceSelectBinding
 import com.wjf.androidutils.origin.base.MVVMBaseFragment
 import com.wjf.androidutils.origin.base.transit.TitleBarActivity
 import com.wjf.androidutils.origin.ui.home.HomeViewModel
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceBindFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceForegroundFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceMessageFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceStartFragment
+import com.wjf.androidutils.origin.utils.JumpSealed
 import com.wjf.moduleutils.singleClick
 
 /**
@@ -27,9 +24,9 @@ class ServiceSelectFragment : MVVMBaseFragment<HomeViewModel, FragmentServiceSel
         FragmentServiceSelectBinding.inflate(inflater,container,false)
 
     override fun initClick() {
-        binding.tvServiceStart.singleClick { TitleBarActivity.newInstance(mView.context, JUMP_TO_ServiceStartFragment) }
-        binding.tvServiceBind.singleClick { TitleBarActivity.newInstance(mView.context, JUMP_TO_ServiceBindFragment) }
-        binding.tvServiceMessage.singleClick { TitleBarActivity.newInstance(mView.context, JUMP_TO_ServiceMessageFragment) }
-        binding.tvServiceForeground.singleClick { TitleBarActivity.newInstance(mView.context, JUMP_TO_ServiceForegroundFragment) }
+        binding.tvServiceStart.singleClick { TitleBarActivity.newInstance(mView.context, JumpSealed.ServiceStart.jumpTag) }
+        binding.tvServiceBind.singleClick { TitleBarActivity.newInstance(mView.context, JumpSealed.ServiceBind.jumpTag) }
+        binding.tvServiceMessage.singleClick { TitleBarActivity.newInstance(mView.context, JumpSealed.ServiceMessage.jumpTag) }
+        binding.tvServiceForeground.singleClick { TitleBarActivity.newInstance(mView.context, JumpSealed.ServiceForeground.jumpTag) }
     }
 }

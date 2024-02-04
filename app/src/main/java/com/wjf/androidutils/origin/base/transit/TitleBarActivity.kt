@@ -44,47 +44,19 @@ import com.wjf.androidutils.origin.ui.socket.SocketClientFragment
 import com.wjf.androidutils.origin.ui.socket.SocketServiceFragment
 import com.wjf.androidutils.origin.utils.COMMON_FLAG
 import com.wjf.androidutils.origin.utils.JUMP_TO
-import com.wjf.androidutils.origin.utils.JUMP_TO_AnimFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ArrayFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BleClientFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BleServiceFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BlueClientFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BlueFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_BlueServiceFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ConstraintLayoutFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_DesignFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_DialogFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ExceptionFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_FileFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_HiltFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ImgLoaderFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_PersistentFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_RecyclerViewMultiFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_RecyclerViewSelectFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ReflectFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ScreenFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_SelectTypeFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceBindFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceForegroundFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceMessageFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceSelectFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ServiceStartFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_SingletonFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_SocketClientFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_SocketServiceFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ToastFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_ViewPageFragment
-import com.wjf.androidutils.origin.utils.JUMP_TO_WebViewFragment
+import com.wjf.androidutils.origin.utils.JumpSealed
 import com.wjf.androidutils.origin.utils.START_FOR_RESULT
 import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.PermissionUtil
 import com.wjf.moduleutils.ScreenUtils
+import com.wjf.androidutils.receiver.time.TimeCallback
+import com.wjf.androidutils.receiver.time.TimeReceiver
 import com.wjf.moduleutils.singleClick
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.LinkedList
 
 @AndroidEntryPoint
-class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBinding>() {
+class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBinding>(), TimeCallback.TimeInterface {
 
 
     companion object{
@@ -128,67 +100,67 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
 
         fragment = when(intent.getStringExtra(JUMP_TO)) {
 
-            JUMP_TO_DesignFragment -> { DesignFragment() }
+            JumpSealed.Design.jumpTag -> { DesignFragment() }
 
-            JUMP_TO_PersistentFragment -> { PersistentFragment() }
+            JumpSealed.Persistent.jumpTag -> { PersistentFragment() }
 
-            JUMP_TO_ToastFragment -> { ToastFragment() }
+            JumpSealed.Toast.jumpTag -> { ToastFragment() }
 
-            JUMP_TO_ArrayFragment -> { ArrayFragment() }
+            JumpSealed.Array.jumpTag -> { ArrayFragment() }
 
-            JUMP_TO_FileFragment -> { FileFragment() }
+            JumpSealed.File.jumpTag -> { FileFragment() }
 
-            JUMP_TO_ExceptionFragment -> { ExceptionFragment() }
+            JumpSealed.Exception.jumpTag -> { ExceptionFragment() }
 
-            JUMP_TO_ReflectFragment -> { ReflectFragment() }
+            JumpSealed.Reflect.jumpTag -> { ReflectFragment() }
 
-            JUMP_TO_ImgLoaderFragment -> { ImgLoaderFragment() }
+            JumpSealed.ImgLoader.jumpTag -> { ImgLoaderFragment() }
 
-            JUMP_TO_WebViewFragment -> { WebViewFragment() }
+            JumpSealed.WebView.jumpTag -> { WebViewFragment() }
 
-            JUMP_TO_AnimFragment -> { AnimFragment() }
+            JumpSealed.Anim.jumpTag -> { AnimFragment() }
 
-            JUMP_TO_BlueFragment -> { BlueFragment() }
+            JumpSealed.Blue.jumpTag -> { BlueFragment() }
 
-            JUMP_TO_BlueClientFragment -> { BlueClientFragment() }
+            JumpSealed.BlueClient.jumpTag -> { BlueClientFragment() }
 
-            JUMP_TO_BlueServiceFragment -> { BlueServiceFragment() }
+            JumpSealed.BlueService.jumpTag -> { BlueServiceFragment() }
 
-            JUMP_TO_BleClientFragment -> { BleClientFragment() }
+            JumpSealed.BleClient.jumpTag -> { BleClientFragment() }
 
-            JUMP_TO_BleServiceFragment -> { BleServiceFragment() }
+            JumpSealed.BleService.jumpTag -> { BleServiceFragment() }
 
-            JUMP_TO_DialogFragment -> { DialogFragment() }
+            JumpSealed.Dialog.jumpTag -> { DialogFragment() }
 
-            JUMP_TO_SelectTypeFragment -> { SelectTypeFragment() }
+            JumpSealed.SelectType.jumpTag -> { SelectTypeFragment() }
 
-            JUMP_TO_SocketClientFragment -> { SocketClientFragment() }
+            JumpSealed.SocketClient.jumpTag -> { SocketClientFragment() }
 
-            JUMP_TO_SocketServiceFragment -> { SocketServiceFragment() }
+            JumpSealed.SocketService.jumpTag -> { SocketServiceFragment() }
 
-            JUMP_TO_ScreenFragment -> { ScreenFragment() }
+            JumpSealed.Screen.jumpTag -> { ScreenFragment() }
 
-            JUMP_TO_HiltFragment -> { HiltFragment() }
+            JumpSealed.Hilt.jumpTag -> { HiltFragment() }
 
-            JUMP_TO_ConstraintLayoutFragment -> { ConstraintLayoutFragment() }
+            JumpSealed.ConstraintLayout.jumpTag -> { ConstraintLayoutFragment() }
 
-            JUMP_TO_ViewPageFragment -> { ViewPageFragment() }
+            JumpSealed.ViewPage.jumpTag -> { ViewPageFragment() }
 
-            JUMP_TO_ServiceSelectFragment -> { ServiceSelectFragment() }
+            JumpSealed.ServiceSelect.jumpTag -> { ServiceSelectFragment() }
 
-            JUMP_TO_ServiceStartFragment -> { ServiceStartFragment() }
+            JumpSealed.ServiceStart.jumpTag -> { ServiceStartFragment() }
 
-            JUMP_TO_ServiceBindFragment -> { ServiceBindFragment() }
+            JumpSealed.ServiceBind.jumpTag -> { ServiceBindFragment() }
 
-            JUMP_TO_ServiceMessageFragment -> { ServiceMessageFragment() }
+            JumpSealed.ServiceMessage.jumpTag -> { ServiceMessageFragment() }
 
-            JUMP_TO_ServiceForegroundFragment -> { ServiceForegroundFragment() }
+            JumpSealed.ServiceForeground.jumpTag -> { ServiceForegroundFragment() }
 
-            JUMP_TO_RecyclerViewSelectFragment -> { RecyclerViewSelectFragment() }
+            JumpSealed.RecyclerViewSelect.jumpTag -> { RecyclerViewSelectFragment() }
 
-            JUMP_TO_RecyclerViewMultiFragment -> { RecyclerViewMultiFragment() }
+            JumpSealed.RecyclerViewMulti.jumpTag -> { RecyclerViewMultiFragment() }
 
-            JUMP_TO_SingletonFragment -> { SingletonFragment() }
+            JumpSealed.Singleton.jumpTag -> { SingletonFragment() }
 
             else -> { HomeFragment() }
         }
@@ -196,6 +168,10 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
         binding.commonTitle.tvPageTitle.text = fragment.javaClass.simpleName
         supportFragmentManager.beginTransaction().replace(R.id.info_content, fragment).commit()
 
+    }
+
+    override fun initData() {
+        lifecycle.addObserver(TimeReceiver(this))
     }
 
     override fun initClick(){
@@ -232,5 +208,9 @@ class TitleBarActivity : MVVMBaseActivity<TitleBarViewModel, ActivityTitleBarBin
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun updateTime(time: String) {
+
     }
 }

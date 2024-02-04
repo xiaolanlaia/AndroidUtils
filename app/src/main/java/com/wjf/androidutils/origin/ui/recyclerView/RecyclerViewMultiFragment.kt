@@ -1,5 +1,6 @@
 package com.wjf.androidutils.origin.ui.recyclerView
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
@@ -10,8 +11,10 @@ import com.wjf.androidutils.origin.ui.home.HomeViewModel
 import com.wjf.androidutils.origin.ui.recyclerView.adapter.MultiAdapter
 import com.wjf.androidutils.origin.ui.recyclerView.helper.DefaultItemTouchHelpCallback
 import com.wjf.androidutils.origin.ui.recyclerView.helper.DefaultItemTouchHelper
-import com.wjf.androidutils.origin.utils.JumpPageKey
+import com.wjf.androidutils.origin.utils.JumpSealed
 import java.util.Collections
+import java.util.LinkedList
+import kotlin.reflect.full.isSubclassOf
 
 /**
  * @Description
@@ -31,7 +34,14 @@ class RecyclerViewMultiFragment : MVVMBaseFragment<HomeViewModel, FragmentRecycl
         val gridLayoutManager = GridLayoutManager(mView.context,3)
         binding.rvTest.layoutManager = gridLayoutManager
         binding.rvTest.setHasFixedSize(true)
-        val dataList = JumpPageKey.keys.toMutableList()
+        val dataList = LinkedList<String>()
+        JumpSealed::class.sealedSubclasses.forEach {
+            if (it.isSubclassOf(JumpSealed::class)){
+                if (!TextUtils.isEmpty(it.objectInstance?.jumpTag) && it.objectInstance!!.showInHome){
+                    dataList.add(it.objectInstance!!.jumpName)
+                }
+            }
+        }
         val adapter = MultiAdapter(dataList)
         binding.rvTest.adapter = adapter
 

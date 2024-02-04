@@ -60,6 +60,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common:$supportDependencies.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime:$supportDependencies.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$supportDependencies.lifecycle_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$supportDependencies.core_ktx"
 
 
     //Retrofit

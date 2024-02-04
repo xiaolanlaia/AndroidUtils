@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wjf.androidutils.R
 import com.wjf.androidutils.origin.base.transit.TitleBarActivity
-import com.wjf.androidutils.origin.utils.JUMP_TO_RecyclerViewMultiFragment
+import com.wjf.androidutils.origin.utils.JumpSealed
 import com.wjf.moduleutils.singleClick
 
 /**
@@ -60,7 +60,7 @@ class NormalAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             tvItem.singleClick {
                 when(dataList[adapterPosition]){
 
-                    ITEM_1 -> { TitleBarActivity.newInstance(itemView.context, JUMP_TO_RecyclerViewMultiFragment) }
+                    ITEM_1 -> { TitleBarActivity.newInstance(itemView.context, JumpSealed.RecyclerViewMulti.jumpTag) }
 
                     ITEM_2 -> {
 

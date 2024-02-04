@@ -1,6 +1,5 @@
 package com.wjf.androidutils.origin.ui.design.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +32,6 @@ import com.wjf.androidutils.origin.ui.design.DESIGN_STATE
 import com.wjf.androidutils.origin.ui.design.DESIGN_STRATEGY
 import com.wjf.androidutils.origin.ui.design.DESIGN_TEMPLATE
 import com.wjf.androidutils.origin.ui.design.DESIGN_VISITOR
-import com.wjf.androidutils.origin.utils.JumpPageKey
 import com.wjf.moduledesignpattern.actionType.chain.InterceptorOne
 import com.wjf.moduledesignpattern.actionType.chain.InterceptorTwo
 import com.wjf.moduledesignpattern.actionType.chain.RealInterceptorChain
@@ -98,9 +96,7 @@ import java.util.LinkedList
  *
  */
 
-class DesignAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPageKey.keys)) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+class DesignAdapter(private val dataList: LinkedList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var mView: View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -187,8 +183,8 @@ class DesignAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPa
                     DESIGN_INTERPRETER      -> {
                         val isMale = InterpreterPattern.getMaleExpression()
                         val isMarriedWoman = InterpreterPattern.getMarriedWomanExpression()
-                        Log.d("__expression", "John is male? " + isMale.interpret("John"))
-                        Log.d("__expression", "Julie is a married women?  " + isMarriedWoman.interpret("Married Julie"))
+                        LogUtils.d("__expression", "John is male? " + isMale.interpret("John"))
+                        LogUtils.d("__expression", "Julie is a married women?  " + isMarriedWoman.interpret("Married Julie"))
                     }
                     DESIGN_COMMAND          -> {
                         val receiver = Receiver()
@@ -204,9 +200,9 @@ class DesignAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPa
                     }
                     DESIGN_VISITOR          -> {
                         val businessReport = BusinessReport()
-                        Log.d("__businessReport-CEO", "-----------------")
+                        LogUtils.d("__businessReport-CEO", "-----------------")
                         businessReport.showReport(CEOVisitor())
-                        Log.d("__businessReport-CTO", "-----------------")
+                        LogUtils.d("__businessReport-CTO", "-----------------")
                         businessReport.showReport(CTOVisitor())
                     }
                     DESIGN_STATE            -> {
@@ -289,7 +285,7 @@ class DesignAdapter(private val dataList: LinkedList<String> = LinkedList(JumpPa
                     }
                     DESIGN_ADAPTER          -> {
                         val adapter = VoltAdapter()
-                        Log.d("__adapter", "" + adapter.getVolt5())
+                        LogUtils.d("__adapter", "" + adapter.getVolt5())
                     }
                     DESIGN_ADAPTER_2        -> {
                         val audioPlayer = AudioPlayer()
