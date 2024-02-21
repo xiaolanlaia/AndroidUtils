@@ -6,6 +6,8 @@ import com.wjf.moduleroom.RoomApplication
 import com.wjf.modulebluetooth.BlueConstant
 import com.wjf.moduleimgloader.utils.ImgLoaderConstant
 import com.wjf.modulesocket.utils.SocketConstant
+import com.wjf.moduleutils.ExceptionUtils
+import com.wjf.moduleutils.LogUtils
 import com.wjf.moduleutils.ScreenAdaptUtils
 import com.wjf.moduleutils.UtilsConstant
 import com.wjf.moduleutils.ToastUtils
@@ -45,7 +47,19 @@ class MyApplication : Application() {
             roomApplication?.onCreate()
         }
 
+        ExceptionUtils.instance.invoke(object : ExceptionUtils.CrashHandler{
+            override fun uncaughtException(t: Thread, e: Throwable) {
+                val sb = StringBuffer()
+                sb.append("======start======\n")
+                sb.append("message:${e.message}\n")
+                e.stackTrace.forEach {
+                    sb.append("----------\nfile:${it.fileName} \nclass:${it.className} \nmethod:${it.methodName} \nline:${it.lineNumber} \n")
+                }
+                sb.append("======end======\n")
+                LogUtils.d("__crash-MainCrashHandler",sb.toString())
 
+            }
+        })
 
         MMKVUtils.instance.init()
         ToastUtils.instance.setToastTextSize()
