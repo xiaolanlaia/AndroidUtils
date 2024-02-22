@@ -10,7 +10,7 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 
 /**
- * 使用 ScreenAdaptUtils(this, 1920f, 0).register()
+ * 使用 ScreenAdaptUtils(this, 1920f, ORIENT_WIDTH).register()
  *
  */
 const val ORIENT_WIDTH = 0
