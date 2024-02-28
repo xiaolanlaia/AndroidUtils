@@ -19,6 +19,10 @@ android {
         versionName config.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //指定默认渠道
+//        flavorDimensions config.flavorName
+
     }
 
     buildTypes {
@@ -26,6 +30,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField('String', 'TestString', '"TestString..."')
+
         }
     }
     compileOptions {
@@ -44,6 +51,35 @@ android {
     composeOptions {
         // Compose 是 Kotlin 开发的，需要配置 Kotlin 对应的编译扩展版本
         kotlinCompilerExtensionVersion supportDependencies.compose_version
+    }
+
+    //差异化打包
+    flavorDimensions config.flavorName
+
+
+    //多渠道打包
+    productFlavors {
+        flavor_1 {
+            //配置维度
+            dimension = config.flavorName
+            //配置包名
+            applicationId = 'com.wjf.flavor_1'
+            minSdk config.minSdk
+            targetSdk config.targetSdk
+            versionCode config.versionCode
+            versionName config.versionName
+            signingConfig signingConfigs.debug
+            //配置变量
+            buildConfigField('String', 'TestString', '"TestString..."')
+
+            //清单文件配置
+            manifestPlaceholders = [
+                    app_name      : "@string/app_name",
+                    app_icon      : "@mipmap/ic_launcher",
+                    app_round_icon: "@mipmap/ic_launcher",
+                    app_style     : "@style/AppTheme",
+            ]
+        }
     }
 }
 
