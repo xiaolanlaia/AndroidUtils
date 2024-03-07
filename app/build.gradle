@@ -8,6 +8,20 @@ plugins {
 def config = rootProject.ext.android
 def supportDependencies = rootProject.ext.supportDependencies
 android {
+
+    signingConfigs {
+        release {
+            File strFile = new File("../sign/wjf.jks")
+            storeFile file(strFile)
+            storePassword KEY_PASS
+            keyAlias ALIAS_NAME
+            keyPassword ALIAS_PASS
+        }
+        debug {
+        }
+    }
+
+
     namespace config.namespace
     compileSdk config.compileSdk
 
@@ -22,6 +36,7 @@ android {
 
         //指定默认渠道
 //        flavorDimensions config.flavorName
+        signingConfig signingConfigs.release
 
     }
 
@@ -32,6 +47,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField('String', 'TestString', '"TestString..."')
+            signingConfig signingConfigs.release//设置签名信息
 
         }
     }
@@ -68,7 +84,7 @@ android {
             targetSdk config.targetSdk
             versionCode config.versionCode
             versionName config.versionName
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             //配置变量
             buildConfigField('String', 'TestString', '"TestString..."')
 
@@ -81,6 +97,68 @@ android {
             ]
         }
     }
+
+    /**
+     * apk重命名
+     */
+    applicationVariants.all { variant ->
+        // 打包完成后复制到的目录
+        def outputFileDir = "${project.projectDir.absolutePath}/${variant.buildType.name}/${variant.flavorName}/${variant.versionName}"
+
+
+//  此处可以根据需求配置相关渠道的默认输出路径,默认输出路径为“app/build/outputs/apk/${variant.flavorName}“”
+//        if (variant.buildType.name == "release"&&variant.flavorName == "online") {
+//            println("outputDirectory1:${variant.getPackageApplicationProvider().get().outputDirectory}")
+//            variant.getPackageApplicationProvider().get().outputDirectory = new File(outputFileDir)
+//        }
+        //确定输出文件名
+        def today = new Date()
+        def path = ((project.name != "app") ? project.name : rootProject.name.replace(" ","")) + "_" +
+                variant.flavorName + "_" +
+                variant.buildType.name + "_"+
+                variant.versionName + "_" +
+                today.format('yyyyMMddhhmm') +
+                ".apk"
+        // 不同版本更改输出apk文件名方式
+        /**
+         *  gradleVersion 小于4.0
+         */
+        /*  variant.getPackageApplicationProvider().get().outputScope.apkDatas.forEach { apkData ->
+              apkData.outputFileName = path
+          }*/
+        /*      *//**
+         *  gradleVersion 大于4.0
+         *//*
+        variant.outputs.forEach {
+            it.apkData.outputFileName = path
+        }*/
+        /**
+         *  gradleVersion 大于4.1
+         */
+        variant.outputs.forEach {
+            it.outputFileName = path
+        }
+        // 打包完成后做的一些事,复制apk到指定文件夹,复制mapping等
+        if (variant.buildType.name.equalsIgnoreCase("release")) {
+            variant.assemble.doLast {
+                File out = new File(outputFileDir)
+                copy {
+                    from variant.mappingFile
+                    into  out
+                    rename {
+                        String fileName -> "${variant.buildType.name}-${variant.flavorName}-mapping-${variant.versionName}.txt"
+                    }
+                    variant.outputs.forEach{ file->
+                        copy{
+                            from file.outputFile
+                            into out
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {
