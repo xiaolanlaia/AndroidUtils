@@ -29,6 +29,7 @@ import com.wjf.androidutils.compose.ui.component.flow.FlowHotComponent
 import com.wjf.androidutils.compose.ui.component.WidgetComponent
 import com.wjf.androidutils.compose.widget.CommonTitle
 import com.wjf.androidutils.compose.ui.component.net.NetComponent
+import com.wjf.androidutils.compose.ui.component.remember.RememberComponent
 import com.wjf.moduleutils.ScreenUtils
 
 /**
@@ -113,6 +114,9 @@ fun getPage(
         }
         RouteConfig.ROUTE_NOTIFICATION -> {
             NotificationComponent(navHostController, modifier)
+        }
+        RouteConfig.ROUTE_REMEMBER -> {
+            RememberComponent(navHostController, modifier)
         }
     }
 }

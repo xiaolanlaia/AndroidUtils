@@ -29,4 +29,7 @@ object RouteConfig {
 
     //Notification
     const val ROUTE_NOTIFICATION = "Notification"
+
+    //Remember
+    const val ROUTE_REMEMBER = "Remember"
 }
