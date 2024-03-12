@@ -206,6 +206,10 @@ dependencies {
     implementation "com.google.accompanist:accompanist-insets-ui:$supportDependencies.accompanist_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$supportDependencies.accompanist_version"
 
+    implementation "io.reactivex.rxjava2:rxjava:$supportDependencies.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$supportDependencies.rxandroid"
+
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$supportDependencies.leakcanary_android"
 
 

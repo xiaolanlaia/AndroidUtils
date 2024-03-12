@@ -48,6 +48,9 @@ fun MyNavHost(navHostController : NavHostController = rememberNavController()) {
         composable(RouteConfig.ROUTE_REMEMBER){
             TitleBarComponent(navHostController, RouteConfig.ROUTE_REMEMBER)
         }
+        composable(RouteConfig.ROUTE_RXJAVA){
+            TitleBarComponent(navHostController, RouteConfig.ROUTE_RXJAVA)
+        }
 
 //        composable(
 //            route = "${RouteConfig.ROUTE_DETECT}/{$COMMON_FLAG}",

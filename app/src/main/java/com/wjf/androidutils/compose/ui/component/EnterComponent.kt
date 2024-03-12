@@ -40,6 +40,7 @@ val tvContentList = ArrayList<String>().apply {
     add(RouteConfig.ROUTE_COROUTINE)
     add(RouteConfig.ROUTE_NOTIFICATION)
     add(RouteConfig.ROUTE_REMEMBER)
+    add(RouteConfig.ROUTE_RXJAVA)
 }
 
 @Composable

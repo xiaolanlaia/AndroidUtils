@@ -32,4 +32,7 @@ object RouteConfig {
 
     //Remember
     const val ROUTE_REMEMBER = "Remember"
+
+    //RxJava
+    const val ROUTE_RXJAVA = "RxJava"
 }
