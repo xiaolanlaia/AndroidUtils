@@ -50,11 +50,12 @@ class WebViewUtils {
         )
         mVebView?.layoutParams = params
 
-        mVebView?.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(webView: WebView, s: String) {
-                super.onPageFinished(webView, s)
-            }
-        } //防止加载网页时调起系统浏览器
+//        mVebView?.webViewClient = object : WebViewClient() {
+//            override fun onPageFinished(webView: WebView, s: String) {
+//                super.onPageFinished(webView, s)
+//            }
+//        }
+        //防止加载网页时调起系统浏览器
         initWebSetting()
         setClient()
 

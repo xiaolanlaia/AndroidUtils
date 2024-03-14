@@ -23,7 +23,7 @@ sealed class JumpSealed(val jumpName: String, val jumpTag: String, val showInHom
      object Exception         : JumpSealed("exception"            , "jump_to_ExceptionFragment"            , true)
      object Reflect           : JumpSealed("reflect"              , "jump_to_ReflectFragment"              , true)
      object ImgLoader         : JumpSealed("img"                  , "jump_to_ImgLoaderFragment"            , true)
-     object WebView           : JumpSealed("web"                  , "jump_to_WebViewFragment"              , true)
+     object WebView           : JumpSealed("WebView"              , "jump_to_WebViewFragment"              , true)
      object Anim              : JumpSealed("anim"                 , "jump_to_AnimFragment"                 , true)
      object Blue              : JumpSealed("Blue"                 , "jump_to_BlueFragment"                 , true)
      object BlueClient        : JumpSealed("Blue client"          , "jump_to_BlueClientFragment"           , false)
