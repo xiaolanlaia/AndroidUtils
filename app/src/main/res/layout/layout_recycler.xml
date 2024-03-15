@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rv_widget"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:text="https://github.com/xiaolanlaia/AndroidUtils"
+        android:textIsSelectable="true"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="@dimen/sp20"
+        android:layout_margin="@dimen/dp20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_widget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

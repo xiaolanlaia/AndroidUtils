@@ -2,6 +2,7 @@ package com.wjf.androidutils.origin.ui.home
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,6 +33,8 @@ class HomeFragment : MVVMBaseFragment<HomeViewModel, LayoutRecyclerBinding>() , 
         binding.rvWidget.layoutManager = gridLayoutManager
         binding.rvWidget.setHasFixedSize(true)
         binding.rvWidget.adapter = HomeAdapter()
+
+        binding.tvAddress.visibility = View.VISIBLE
 
     }
 
